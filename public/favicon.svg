@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 48">
+  <defs>
+    <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbfbfb"/>
+      <stop offset="0.5" stop-color="#9b9b9b"/>
+      <stop offset="1" stop-color="#2f2f2f"/>
+    </linearGradient>
+  </defs>
+  <!-- AI -->
+  <text x="2" y="40" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="800" letter-spacing="-2" fill="url(#steel)">AI</text>
+  <!-- + -->
+  <text x="55" y="18" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="800" fill="url(#steel)">+</text>
+  <!-- heartbeat pulse through the letters -->
+  <path d="M6 27 H15 L18.5 16 L23 38 L27 21 L29.5 27 H47"
+        fill="none" stroke="#1f1f1f" stroke-width="2.4"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
