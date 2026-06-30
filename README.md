@@ -2,8 +2,7 @@
 
 A marketing site for an **AI voice receptionist** product, built in **React (Vite +
 React Router)**. The AI receptionist answers calls 24/7, books appointments,
-qualifies leads, and sounds human. The concept is inspired by services like
-9278.ai; all copy here is original.
+qualifies leads, and sounds human.
 
 ## Run it
 ```sh
@@ -67,5 +66,4 @@ src/
 ## Notes
 - The contact form is front-end only (no backend); submit shows a confirmation.
 - Metrics, phone number, and pricing are illustrative placeholders.
-- Inspired by the AI-voice-agent category (e.g. 9278.ai); copy and structure here
-  are original, not copied.
+
