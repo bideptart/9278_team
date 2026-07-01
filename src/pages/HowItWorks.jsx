@@ -3,20 +3,32 @@ import { steps } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
 
 export default function HowItWorks() {
-  return (
-    <div className="page container">
-      <Reveal>
-        <p className="eyebrow">How it works</p>
-        <h1 style={{ fontSize: 'clamp(34px,6vw,64px)', maxWidth: '15ch' }}>
-          From sign-up to answering calls — <span className="grad">in a day.</span>
-        </h1>
-        <p className="lead" style={{ marginTop: 24 }}>
-          No call-center build-out, no new phone system. Configure your agent, connect
-          your knowledge, and forward your line.
-        </p>
-      </Reveal>
+  const scrollToBody = () =>
+    document.getElementById('content')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-      <div className="steps-list" style={{ marginTop: 56 }}>
+  return (
+    <>
+      <section className="page-hero container">
+        <Reveal>
+          <p className="eyebrow">How it works</p>
+          <h1 style={{ fontSize: 'clamp(38px,6.4vw,72px)', maxWidth: '15ch' }}>
+            From sign-up to answering calls — <span className="grad">in a day.</span>
+          </h1>
+          <p className="lead" style={{ marginTop: 24 }}>
+            No call-center build-out, no new phone system. Configure your agent, connect
+            your knowledge, and forward your line.
+          </p>
+          <div className="cta-row" style={{ marginTop: 36 }}>
+            <button type="button" className="btn btn-cta" onClick={scrollToBody}>
+              See the steps <span className="arrow">↓</span>
+            </button>
+            <Link to="/contact" className="btn btn-ghost">Book a demo</Link>
+          </div>
+        </Reveal>
+      </section>
+
+      <div className="container page-body" id="content">
+      <div className="steps-list">
         {steps.map((s, i) => (
           <Reveal className="step-row" delay={i * 90} key={s.title}>
             <div className="step-num">0{i + 1}</div>
@@ -50,6 +62,7 @@ export default function HowItWorks() {
         <Link to="/contact" className="btn btn-sheen">Book a demo <span className="arrow">→</span></Link>
         <Link to="/features" className="btn btn-ghost">Explore features</Link>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

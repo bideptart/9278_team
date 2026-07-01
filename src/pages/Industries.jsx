@@ -3,20 +3,32 @@ import { industries } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
 
 export default function Industries() {
-  return (
-    <div className="page container">
-      <Reveal>
-        <p className="eyebrow">Industries</p>
-        <h1 style={{ fontSize: 'clamp(34px,6vw,64px)', maxWidth: '16ch' }}>
-          Wherever the phone rings, <span className="grad">NIXXY answers.</span>
-        </h1>
-        <p className="lead" style={{ marginTop: 24 }}>
-          The same AI receptionist adapts to your business — your hours, your services,
-          your booking flow, your tone.
-        </p>
-      </Reveal>
+  const scrollToBody = () =>
+    document.getElementById('content')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-      <div className="grid grid-2" style={{ marginTop: 56 }}>
+  return (
+    <>
+      <section className="page-hero container">
+        <Reveal>
+          <p className="eyebrow">Industries</p>
+          <h1 style={{ fontSize: 'clamp(38px,6.4vw,72px)', maxWidth: '16ch' }}>
+            Wherever the phone rings, <span className="grad">NIXXY answers.</span>
+          </h1>
+          <p className="lead" style={{ marginTop: 24 }}>
+            The same AI receptionist adapts to your business — your hours, your services,
+            your booking flow, your tone.
+          </p>
+          <div className="cta-row" style={{ marginTop: 36 }}>
+            <button type="button" className="btn btn-cta" onClick={scrollToBody}>
+              Explore industries <span className="arrow">↓</span>
+            </button>
+            <Link to="/contact" className="btn btn-ghost">Book a demo</Link>
+          </div>
+        </Reveal>
+      </section>
+
+      <div className="container page-body" id="content">
+      <div className="grid grid-2">
         {industries.map((ind, i) => (
           <Reveal className="card glow-card" delay={(i % 2) * 70} key={ind.name}>
             <h3 className="card-title">{ind.name}</h3>
@@ -37,6 +49,7 @@ export default function Industries() {
           </Reveal>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
