@@ -36,7 +36,9 @@ export default function Header() {
             ))}
           </nav>
           <div className="nav-actions">
-            <Link to="/signup" className="btn btn-cta" onClick={() => setOpen(false)}>Get started <span className="arrow">→</span></Link>
+            <Link to="/contact" className="btn btn-ghost" onClick={() => setOpen(false)}>Book a demo</Link>
+<Link to="/signup" className="btn btn-sheen" onClick={() => setOpen(false)}>Get started</Link>
+
           </div>
         </div>
         <button className="nav-toggle" aria-label="Menu" onClick={() => setOpen((o) => !o)}>
