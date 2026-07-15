@@ -224,16 +224,17 @@
 .ie-item.active .ie-num { color: var(--accent-live); }
 .ie-item.active .ie-arrow { opacity: 1; transform: none; }
 
+.ie-panel-wrap { display: flex; flex-direction: column; min-height: 100%; }
 .ie-panel {
   position: relative; overflow: hidden; display: flex; flex-direction: column;
+  flex: 1;
   background: none; border: none; border-radius: 18px;
-  padding: 24px; min-height: 100%;
+  padding: 24px; padding-bottom: 0;
   box-shadow: none;
   animation: ie-slide-next .6s cubic-bezier(.22,.61,.36,1) both;
 }
 .ie-panel--prev { animation-name: ie-slide-prev; }
 .ie-panel > .ie-panel-glow { position: absolute; }
-.ie-progress { margin-top: auto; }
 @keyframes ie-slide-next { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: none; } }
 @keyframes ie-slide-prev { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: none; } }
 .ie-panel-glow { position: absolute; inset: -1px; background: radial-gradient(380px circle at 85% -10%, rgba(21,154,166,.16), transparent 60%); pointer-events: none; }
@@ -247,7 +248,7 @@
 .ie-bars i:nth-child(2) { animation-delay: .15s; }
 .ie-bars i:nth-child(3) { animation-delay: .3s; }
 .ie-bars i:nth-child(4) { animation-delay: .45s; }
-.ie-progress { display: flex; align-items: center; gap: 6px; margin-top: 22px; }
+.ie-progress { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 22px; padding: 0 24px 24px; }
 .ie-progress span {
   height: 6px; width: 6px; border-radius: 999px; background: var(--border);
   transition: width .35s cubic-bezier(.22,.61,.36,1), background .35s ease;

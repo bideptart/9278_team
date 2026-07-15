@@ -50,18 +50,20 @@ export default function IndustryExplorer() {
         ))}
       </ul>
 
-      <div className={`ie-panel ie-panel--${dir}`} key={active}>
-        <div className="ie-panel-glow" />
-        <p className="eyebrow"><span className="live-dot" /> {cur.name}</p>
-        <p className="ie-desc">{cur.desc}</p>
+      <div className="ie-panel-wrap">
+        <div className={`ie-panel ie-panel--${dir}`} key={active}>
+          <div className="ie-panel-glow" />
+          <p className="eyebrow"><span className="live-dot" /> {cur.name}</p>
+          <p className="ie-desc">{cur.desc}</p>
 
-        <div className="ie-call">
-          <div className="ie-call-head">
-            <span className="ie-tag">Sample call</span>
-            <span className="ie-bars"><i /><i /><i /><i /></span>
+          <div className="ie-call">
+            <div className="ie-call-head">
+              <span className="ie-tag">Sample call</span>
+              <span className="ie-bars"><i /><i /><i /><i /></span>
+            </div>
+            <div className="bubble caller"><span className="bubble-who">Caller</span>{cur.sample.caller}</div>
+            <div className="bubble agent"><span className="bubble-who">NIXXY</span>{cur.sample.agent}</div>
           </div>
-          <div className="bubble caller"><span className="bubble-who">Caller</span>{cur.sample.caller}</div>
-          <div className="bubble agent"><span className="bubble-who">NIXXY</span>{cur.sample.agent}</div>
         </div>
 
         <div className="ie-progress">
