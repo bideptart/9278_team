@@ -122,6 +122,22 @@ export default function Pricing() {
       </p>
 
       </div>
+
+      <section className="cta-band" style={{ marginTop: 80 }}>
+        <div className="container">
+          <Reveal>
+            <p className="eyebrow" style={{ justifyContent: 'center' }}>Ready when you are</p>
+            <h2>Give your front desk an AI receptionist.</h2>
+            <p>Pick a plan, forward your number, and start answering patient calls the same day.</p>
+            <div className="cta-row" style={{ justifyContent: 'center' }}>
+              <button type="button" className="btn btn-sheen" onClick={scrollToPlans}>
+                View plans <span className="arrow">↓</span>
+              </button>
+              <Link to="/contact" className="btn btn-ghost">Talk to sales</Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
     </div>
   );
 }
