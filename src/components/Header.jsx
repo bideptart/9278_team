@@ -10,11 +10,14 @@ const links = [
   { to: '/blog', label: 'Blog' },
 ];
 
+const KALLUS_ROUTES = ['/pricing', '/blog'];
+
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
   const isHome = pathname === '/';
+  const kallus = KALLUS_ROUTES.includes(pathname);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -39,7 +42,7 @@ export default function Header() {
             ))}
           </nav>
           <div className="nav-actions">
-              <Link to="/signup" className={`btn btn-sheen${isHome ? ' home-cta' : ''}`} onClick={() => setOpen(false)}>Get started</Link>
+              <Link to="/signup" className={`btn btn-sheen${isHome ? ' home-cta' : ''}${kallus ? ' kallus-theme' : ''}`} onClick={() => setOpen(false)}>Get started</Link>
 
           </div>
         </div>
