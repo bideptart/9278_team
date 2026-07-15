@@ -1,11 +1,14 @@
 import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo.jsx';
 
+const DARK_ROUTES = ['/pricing', '/blog'];
+
 export default function Footer() {
   const { pathname } = useLocation();
-  const isHome = pathname === '/';
+  const dark = DARK_ROUTES.includes(pathname);
+
   return (
-    <footer className={`site-footer${isHome ? ' footer-dark' : ''}`}>
+    <footer className={`site-footer${dark ? ' dark' : ''}`}>
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
@@ -25,6 +28,7 @@ export default function Footer() {
           </div>
           <div className="footer-col">
             <h5>Company</h5>
+            <Link to="/blog">Blog</Link>
             <Link to="/contact">Book a demo</Link>
             <a href="mailto:hello@nixxy.ai">Contact sales</a>
             <Link to="/privacy-policy">Privacy Policy</Link>

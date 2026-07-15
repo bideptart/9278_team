@@ -6,6 +6,7 @@ import Features from './pages/Features.jsx';
 import HowItWorks from './pages/HowItWorks.jsx';
 import Pricing from './pages/Pricing.jsx';
 import Industries from './pages/Industries.jsx';
+import Blog from './pages/Blog.jsx';
 import Contact from './pages/Contact.jsx';
 import Privacy from './pages/Privacy.jsx';
 import Terms from './pages/Terms.jsx';
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/industries" element={<Industries />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/privacy-policy" element={<Privacy />} />

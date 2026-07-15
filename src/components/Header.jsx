@@ -7,6 +7,7 @@ const links = [
   { to: '/how-it-works', label: 'How it works' },
   { to: '/industries', label: 'Industries' },
   { to: '/pricing', label: 'Pricing' },
+  { to: '/blog', label: 'Blog' },
 ];
 
 export default function Header() {

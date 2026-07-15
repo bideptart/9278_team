@@ -97,50 +97,50 @@ export const homeSteps = [
 
 export const industries = [
   {
-    name: 'Retail & E-commerce', desc: 'Order updates, returns and 24/7 support.',
-    sample: { caller: "Where's my order? It's been a week.", agent: 'It shipped Monday — arriving tomorrow by 8pm. Want the tracking link?' },
-  },
-  {
-    name: 'Banking & Insurance', desc: 'Lead qualification, premium and instalment reminders.',
-    sample: { caller: 'I got a call about my premium being overdue.', agent: "Yes — it's due Friday. Want me to process the payment now, or send a reminder?" },
-  },
-  {
-    name: 'Debt Collection', desc: 'Consistent, compliant early-stage reminder calls.',
-    sample: { caller: "I know I'm behind, I just need a few more days.", agent: "No problem — I'll note that and follow up Monday. Anything else I can help with?" },
-  },
-  {
-    name: 'BPO & Contact Centres', desc: 'Automate tier-1 queues and outbound campaigns at scale.',
-    sample: { caller: "I've been on hold forever, I just want a status update.", agent: 'I can pull that up right now — no hold needed. One moment.' },
-  },
-  {
-    name: 'Logistics', desc: 'Delivery confirmations and driver coordination.',
-    sample: { caller: 'Has my delivery left the depot yet?', agent: "Yes — it's out with the driver now, arriving by 3pm." },
-  },
-  {
-    name: 'Telecoms & Utilities', desc: 'Service queries, upgrades and outage updates.',
-    sample: { caller: 'Is there an outage in my area right now?', agent: 'Yes — crews are on site, expected restore time is 6pm.' },
-  },
-  {
-    name: 'Real Estate', desc: 'Qualify property leads and book viewings 24/7.',
+    name: 'Real estate', desc: 'Capture every buyer and renter inquiry, schedule showings, and qualify leads before they reach an agent.',
     sample: { caller: 'Is the downtown loft still available to tour?', agent: 'It is — I have Saturday at 11 or 1. Shall I book one for you?' },
   },
   {
-    name: 'Healthcare', desc: 'Appointment booking, reminders and patient intake.',
+    name: 'Legal services', desc: 'Intake new clients 24/7, screen matters, and book consultations without tying up paralegals.',
+    sample: { caller: 'I need to talk to someone about a contract dispute.', agent: 'I can set up a consultation. Are mornings or afternoons better?' },
+  },
+  {
+    name: 'Healthcare & dental', desc: 'Book, reschedule, and confirm appointments, answer insurance questions, and triage after hours.',
     sample: { caller: 'Can I move my cleaning to next week?', agent: "Done — you're rebooked for Tuesday at 9:30am." },
+  },
+  {
+    name: 'Home services', desc: 'Answer every job call, dispatch urgent requests, and quote standard work while your crews are on site.',
+    sample: { caller: "My water heater's leaking — can someone come today?", agent: "I'm flagging this as urgent and dispatching a tech now." },
+  },
+  {
+    name: 'Restaurants', desc: 'Take reservations and to-go orders, answer hours and menu questions, and stop missing the dinner rush.',
+    sample: { caller: 'Table for four tonight around 7?', agent: 'I have 7:15 on the patio — want me to hold it?' },
+  },
+  {
+    name: 'Automotive', desc: 'Schedule service, answer parts and pricing questions, and follow up on quotes automatically.',
+    sample: { caller: 'When can you fit me in for an oil change?', agent: "Thursday at 8am works — I'll add it to the schedule." },
+  },
+  {
+    name: 'E-commerce & retail', desc: 'Handle order status, returns, and product questions across every line at once.',
+    sample: { caller: "Where's my order? It's been a week.", agent: 'It shipped Monday — arriving tomorrow by 8pm. Want the tracking link?' },
+  },
+  {
+    name: 'Professional services', desc: 'Qualify inbound interest, route to the right team, and book discovery calls around the clock.',
+    sample: { caller: 'Do you have time for a discovery call this week?', agent: "I do — Wednesday at 3pm. I'll send a calendar invite." },
   },
 ];
 
 export const plans = [
   {
     name: 'Starter',
-    price: '$31',
-    blurb: 'Pilot a single agent.',
-    meta: '250 included min · $0.13/min eff. · 2 agents',
+    price: '₹2,999',
+    blurb: 'Pilot a single clinic line.',
+    meta: '250 included min · ₹12/min eff. · 2 agents',
     features: [
       '2 AI voice agents',
       '250 included minutes',
-      '$0.13/min effective rate',
-      'Inbound calling',
+      '₹12/min effective rate · ₹12/min overage',
+      'Inbound patient calls',
       'Per-second billing',
       'Standard voice stack',
       'Call recording',
@@ -150,15 +150,15 @@ export const plans = [
   },
   {
     name: 'Growth',
-    price: '$93',
-    blurb: 'Most teams start here.',
-    meta: '800 included min · $0.12/min eff. · 10 agents',
+    price: '₹8,799',
+    blurb: 'Most practices start here.',
+    meta: '800 included min · ₹11/min eff. · 10 agents',
     featured: true,
     features: [
       '10 AI voice agents',
       '800 included minutes',
-      '$0.12/min effective rate',
-      'Inbound calling',
+      '₹11/min effective rate',
+      'Inbound patient calls',
       'Per-second billing',
       'Standard + premium voices',
       'Call recording',
@@ -168,20 +168,86 @@ export const plans = [
   },
   {
     name: 'Scale',
-    price: '$316',
-    blurb: 'High-volume call centers.',
-    meta: '3000 included min · $0.11/min eff. · Unlimited agents',
+    price: '₹29,999',
+    blurb: 'High-volume clinics & hospital networks.',
+    meta: '3,000 included min · ₹10/min eff. · Unlimited agents',
     features: [
       'Unlimited AI voice agents',
       '3,000 included minutes',
-      '$0.11/min effective rate',
-      'Inbound calling',
+      '₹10/min effective rate',
+      'Inbound patient calls',
       'Per-second billing',
       'Realtime + premium voices',
       'Call recording',
       'Real-time transcription',
       'Dedicated success manager + SLA',
     ],
+  },
+];
+
+export const blogCategories = ['All', 'Patient Care', 'Practice Ops', 'Compliance', 'Onboarding'];
+
+export const blogStats = [
+  { value: '60+', label: 'Articles published' },
+  { value: '1.8M+', label: 'Patient calls analyzed' },
+  { value: '12', label: 'Contributing clinicians' },
+  { value: 'Weekly', label: 'New posts' },
+];
+
+export const blogPosts = [
+  {
+    slug: 'after-hours-calls-cost-clinics',
+    category: 'Patient Care',
+    author: 'Dr. Priya Nandakumar',
+    date: 'Jul 10, 2026',
+    readTime: '6 min read',
+    title: 'What after-hours calls are really costing your clinic',
+    excerpt: 'Missed calls after 6pm aren\'t just inconvenient — they\'re lost patients. Here\'s what we found analyzing thousands of after-hours voicemails.',
+  },
+  {
+    slug: 'ai-receptionist-vs-answering-service',
+    category: 'Practice Ops',
+    author: 'Marcus Bell',
+    date: 'Jun 28, 2026',
+    readTime: '5 min read',
+    title: 'AI receptionist vs. answering service: what\'s actually different',
+    excerpt: 'Both promise to pick up when you can\'t. Only one books the appointment, checks insurance, and remembers the caller next time.',
+  },
+  {
+    slug: 'hipaa-and-your-ai-receptionist',
+    category: 'Compliance',
+    author: 'Elena Ruiz',
+    date: 'Jun 21, 2026',
+    readTime: '7 min read',
+    title: 'HIPAA and your AI receptionist: what to ask before you sign',
+    excerpt: 'Call recording, transcripts, and patient data all pass through your voice agent. Here\'s the compliance checklist to run before go-live.',
+  },
+  {
+    slug: 'go-live-same-day-checklist',
+    category: 'Onboarding',
+    author: 'Dr. Priya Nandakumar',
+    date: 'Jun 14, 2026',
+    readTime: '4 min read',
+    title: 'Going live the same day: a practice manager\'s checklist',
+    excerpt: 'Forward your number, connect your calendar, write your greeting. Most teams are answering calls with an AI receptionist in under an hour.',
+  },
+  {
+    slug: 'insurance-verification-calls',
+    category: 'Practice Ops',
+    author: 'Marcus Bell',
+    date: 'Jun 5, 2026',
+    readTime: '5 min read',
+    title: 'Insurance verification calls: the most repetitive job at your front desk',
+    excerpt: 'Coverage checks eat up hours every week. Here\'s how clinics are routing the routine questions to a voice agent and keeping staff for the hard cases.',
+  },
+  {
+    slug: 'patient-no-shows-and-reminders',
+    category: 'Patient Care',
+    author: 'Elena Ruiz',
+    date: 'May 30, 2026',
+    readTime: '5 min read',
+    title: 'Cutting no-shows without hiring another front-desk hire',
+    excerpt: 'Confirmations, reschedules, and reminders handled on the same line that answers the phone — no extra headcount required.',
   },
 ];
 
@@ -211,22 +277,22 @@ export const useCases = [
 
 export const testimonials = [
   {
-    quote: 'Our collections reminders go out consistently and compliantly. The cost per resolved call dropped sharply.',
-    name: 'George Harrison',
-    role: 'Collections Director · Coastal Credit, Durban',
-    metric: '',
+    quote: 'It picks up on the first ring at 2am and books the job. We stopped losing after-hours calls overnight.',
+    name: 'Marcus Bell',
+    role: 'Owner, Bell Plumbing & Heating',
+    metric: '+41% booked jobs',
   },
   {
-    quote: 'Setup took an afternoon. The isiZulu and Afrikaans handling is genuinely natural, and POPIA was sorted out of the box.',
-    name: 'Sophia Mitchell',
-    role: 'COO · Atlantic Pay, Cape Town',
-    metric: '',
+    quote: 'Callers genuinely think it\'s a person. Our front desk finally has time to handle patients in the room.',
+    name: 'Dr. Priya Nandakumar',
+    role: 'Practice Lead, Northgate Dental',
+    metric: '58% fewer holds',
   },
   {
-    quote: "We answer every after-hours call now, in the customer's own language. Our missed-call rate basically disappeared.",
-    name: 'James Anderson',
-    role: 'Head of Customer Care · Meridian Contact Group, Johannesburg',
-    metric: '',
+    quote: 'We pointed our main line at NIXXY in an afternoon. Lead response went from hours to seconds.',
+    name: 'Elena Ruiz',
+    role: 'Head of Sales, Vantage Realty',
+    metric: '2.7x qualified leads',
   },
 ];
 
@@ -254,32 +320,5 @@ export const faqs = [
   {
     q: 'How fast can I go live?',
     a: 'Most teams launch the same day: design the agent, connect your knowledge, forward your number. No new hardware or long migrations.',
-  },
-];
-
-export const homeFaqs = [
-  {
-    q: 'Do your AI voice agents work in South African languages?',
-    a: 'Yes. Our agents speak all 11 official South African languages, including English, Afrikaans, isiZulu, isiXhosa, Sesotho, Setswana and Sepedi, and can switch to the caller’s preferred language automatically during a call.',
-  },
-  {
-    q: 'Are AI calling agents POPIA-compliant in South Africa?',
-    a: 'Our platform is built for POPIA. It includes consent capture, opt-out handling, call-recording disclosure, data localisation and an audit trail, plus ICASA-compliant connectivity over licensed South African carriers. We recommend a quick review with your compliance team before launching outbound campaigns.',
-  },
-  {
-    q: 'Which networks do you support?',
-    a: 'Inbound and outbound calls run over Vodacom, MTN, Telkom and Cell C. You can provision local geographic and national numbers, or port your existing number through our SIP trunk.',
-  },
-  {
-    q: 'How quickly can we go live?',
-    a: 'Most teams build and test an agent in hours and go live on a South African number the same day, once connectivity and POPIA consent settings are in place.',
-  },
-  {
-    q: 'How much does it cost?',
-    a: 'Pricing is wallet-based in Rands, with a per-minute rate plus included minutes shown up front, local numbers from a low monthly fee, and POPIA compliance standard on every plan.',
-  },
-  {
-    q: 'Do I need an engineering team?',
-    a: 'No. You design the agent in plain English, connect your documents and tools, test it in a sandbox, and go live. No code required.',
   },
 ];
