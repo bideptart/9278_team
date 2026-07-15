@@ -235,6 +235,9 @@ h1, h2, h3, h4 { font-weight: 600; line-height: 1.08; letter-spacing: -0.02em; m
 }
 .kallus-theme .btn { background: linear-gradient(90deg, var(--accent-2), var(--accent-mid)); color: var(--ink); box-shadow: 0 8px 20px -10px rgba(77,124,15,.35); }
 .kallus-theme .btn-sheen:hover { filter: brightness(.9); }
+/* same-element variant (e.g. Header's route-aware "Get started" button) */
+.btn.kallus-theme { background: linear-gradient(90deg, var(--accent-2), var(--accent-mid)); color: var(--ink); box-shadow: 0 8px 20px -10px rgba(77,124,15,.35); }
+.btn-sheen.kallus-theme:hover { filter: brightness(.9); }
 .kallus-theme .btn-ghost { background: var(--paper); color: var(--ink); border-color: var(--ink); box-shadow: none; }
 .kallus-theme .btn-ghost:hover { background: var(--accent-mid); color: var(--ink); border-color: var(--accent-mid); filter: none; }
 .kallus-theme .btn-cta { background: linear-gradient(180deg, var(--accent-2) 0%, var(--accent-mid) 100%); box-shadow: 0 8px 22px -8px rgba(111,165,36,.45); }
@@ -242,6 +245,20 @@ h1, h2, h3, h4 { font-weight: 600; line-height: 1.08; letter-spacing: -0.02em; m
 .kallus-theme .badge { background: var(--accent-mid); color: var(--ink); }
 .kallus-theme .price-card.featured:hover { box-shadow: 0 0 0 1px var(--accent-mid) inset, 0 24px 60px -30px rgba(111,165,36,.4); }
 .kallus-theme .tag.accent { color: var(--accent-ink); border-color: var(--accent-soft); background: var(--accent-soft); }
+.kallus-theme .eyebrow {
+  color: var(--accent-ink);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-2);
+  border-radius: 999px;
+  padding: 7px 16px 7px 12px;
+  font-weight: 600;
+}
+.kallus-theme .eyebrow::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent-mid);
+  display: inline-block;
+}
 .kallus-theme .chip-btn.active { background: var(--accent-mid); color: var(--ink); border-color: var(--accent-mid); }
 .kallus-theme .metric-value { color: var(--ink); }
 
