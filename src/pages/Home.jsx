@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { metrics, features, steps, useCases, testimonials } from '../data/content.js';
+import { metrics, features, steps, useCases, testimonials, homeFaqs } from '../data/content.js';
 import CallCard from '../components/CallCard.jsx';
 import IndustryExplorer from '../components/IndustryExplorer.jsx';
 import Reveal from '../components/Reveal.jsx';
@@ -12,12 +12,13 @@ export default function Home() {
           <div className="hero-copy">
             <p className="eyebrow"><span className="live-dot" /> AI Voice Receptionist</p>
             <h1>
-              Never miss <br /> a call <span className="grad">again.</span>
+              AI voice agents <br /> that <span className="grad">actually sound <br /> human.</span>
             </h1>
             <p className="sub">
-              NIXXY answers your phones 24/7 with an AI receptionist that books
-              appointments, qualifies leads, and sounds genuinely human — responding
-              in under 300&nbsp;milliseconds.
+              Native-audio voice agents for South African businesses.
+              Sub-second latency on Vodacom, MTN, Telkom and Cell C,
+              RAG over your own documents, and a self-hosted control
+              panel you actually own, without the enterprise vendor markup.
             </p>
             <div className="cta-row">
               <Link to="/contact" className="btn btn-sheen">Book a demo <span className="arrow">→</span></Link>
@@ -116,8 +117,8 @@ export default function Home() {
       <section className="section section-light">
         <div className="container">
           <Reveal className="section-head">
-            <p className="eyebrow"><span className="live-dot" /> Results</p>
-            <h2>Teams that stopped missing calls.</h2>
+            <p className="eyebrow"><span className="live-dot" /> Trusted on the ground</p>
+            <h2>Trusted by South African businesses.</h2>
           </Reveal>
         </div>
         <Reveal className="quote-marquee">
@@ -134,6 +135,24 @@ export default function Home() {
             ))}
           </div>
         </Reveal>
+      </section>
+
+      {/* FAQ */}
+      <section className="section section-light">
+        <div className="container">
+          <Reveal className="section-head faq-head" style={{ textAlign: 'center' }}>
+            <p className="eyebrow" style={{ justifyContent: 'center' }}><span className="live-dot" /> FAQ</p>
+            <h2>Questions, answered.</h2>
+          </Reveal>
+          <div className="faq">
+            {homeFaqs.map((f) => (
+              <details className="faq-item" key={f.q}>
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="cta-band">

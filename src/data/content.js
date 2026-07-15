@@ -174,22 +174,22 @@ export const useCases = [
 
 export const testimonials = [
   {
-    quote: 'It picks up on the first ring at 2am and books the job. We stopped losing after-hours calls overnight.',
-    name: 'Marcus Bell',
-    role: 'Owner, Bell Plumbing & Heating',
-    metric: '+41% booked jobs',
+    quote: 'Our collections reminders go out consistently and compliantly. The cost per resolved call dropped sharply.',
+    name: 'George Harrison',
+    role: 'Collections Director · Coastal Credit, Durban',
+    metric: '',
   },
   {
-    quote: 'Callers genuinely think it\'s a person. Our front desk finally has time to handle patients in the room.',
-    name: 'Dr. Priya Nandakumar',
-    role: 'Practice Lead, Northgate Dental',
-    metric: '58% fewer holds',
+    quote: 'Setup took an afternoon. The isiZulu and Afrikaans handling is genuinely natural, and POPIA was sorted out of the box.',
+    name: 'Sophia Mitchell',
+    role: 'COO · Atlantic Pay, Cape Town',
+    metric: '',
   },
   {
-    quote: 'We pointed our main line at NIXXY in an afternoon. Lead response went from hours to seconds.',
-    name: 'Elena Ruiz',
-    role: 'Head of Sales, Vantage Realty',
-    metric: '2.7x qualified leads',
+    quote: "We answer every after-hours call now, in the customer's own language. Our missed-call rate basically disappeared.",
+    name: 'James Anderson',
+    role: 'Head of Customer Care · Meridian Contact Group, Johannesburg',
+    metric: '',
   },
 ];
 
@@ -217,5 +217,32 @@ export const faqs = [
   {
     q: 'How fast can I go live?',
     a: 'Most teams launch the same day: design the agent, connect your knowledge, forward your number. No new hardware or long migrations.',
+  },
+];
+
+export const homeFaqs = [
+  {
+    q: 'Do your AI voice agents work in South African languages?',
+    a: 'Yes. Our agents speak all 11 official South African languages, including English, Afrikaans, isiZulu, isiXhosa, Sesotho, Setswana and Sepedi, and can switch to the caller’s preferred language automatically during a call.',
+  },
+  {
+    q: 'Are AI calling agents POPIA-compliant in South Africa?',
+    a: 'Our platform is built for POPIA. It includes consent capture, opt-out handling, call-recording disclosure, data localisation and an audit trail, plus ICASA-compliant connectivity over licensed South African carriers. We recommend a quick review with your compliance team before launching outbound campaigns.',
+  },
+  {
+    q: 'Which networks do you support?',
+    a: 'Inbound and outbound calls run over Vodacom, MTN, Telkom and Cell C. You can provision local geographic and national numbers, or port your existing number through our SIP trunk.',
+  },
+  {
+    q: 'How quickly can we go live?',
+    a: 'Most teams build and test an agent in hours and go live on a South African number the same day, once connectivity and POPIA consent settings are in place.',
+  },
+  {
+    q: 'How much does it cost?',
+    a: 'Pricing is wallet-based in Rands, with a per-minute rate plus included minutes shown up front, local numbers from a low monthly fee, and POPIA compliance standard on every plan.',
+  },
+  {
+    q: 'Do I need an engineering team?',
+    a: 'No. You design the agent in plain English, connect your documents and tools, test it in a sandbox, and go live. No code required.',
   },
 ];
