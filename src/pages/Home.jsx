@@ -105,7 +105,7 @@ export default function Home() {
           <Reveal className="section-head" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 16 }}>
             <div>
               <p className="eyebrow"><span className="live-dot" /> Built for your front desk</p>
-              <h2>One receptionist, every industry.</h2>
+              <h2>Built for every South African industry.</h2>
             </div>
             <Link to="/industries" className="text-link">Explore industries →</Link>
           </Reveal>
