@@ -58,6 +58,25 @@ export const steps = [
   },
 ];
 
+export const homeSteps = [
+  {
+    title: 'Build',
+    desc: 'Set the prompt, RAG sources, tools and persona. Describe the agent in plain language.',
+  },
+  {
+    title: 'Evaluate',
+    desc: 'Sandbox every scenario, compare versions and roll back any update with zero downtime.',
+  },
+  {
+    title: 'Launch',
+    desc: 'Provision a local number or port your own, and go live on Vodacom, MTN, Telkom or Cell C.',
+  },
+  {
+    title: 'Optimise',
+    desc: 'Watch latency, transcripts and AI summaries from your self-hosted dashboard and fine-tune.',
+  },
+];
+
 export const industries = [
   {
     name: 'Retail & E-commerce', desc: 'Order updates, returns and 24/7 support.',

@@ -167,6 +167,7 @@
 
 /* how-it-works — connected step cards */
 .steps3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.steps3.steps4 { grid-template-columns: repeat(4, 1fr); }
 .step3 {
   position: relative;
   background: var(--bg-card);

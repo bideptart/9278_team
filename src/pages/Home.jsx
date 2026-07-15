@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { metrics, features, steps, useCases, testimonials, homeFaqs } from '../data/content.js';
+import { metrics, features, useCases, testimonials, homeFaqs, homeSteps } from '../data/content.js';
 import CallCard from '../components/CallCard.jsx';
 import IndustryExplorer from '../components/IndustryExplorer.jsx';
 import Reveal from '../components/Reveal.jsx';
@@ -81,11 +81,15 @@ export default function Home() {
       <section className="section section-light">
         <div className="container">
           <Reveal className="section-head">
-            <p className="eyebrow"><span className="live-dot" /> How it works</p>
-            <h2>Live in three steps.</h2>
+            <p className="eyebrow"><span className="live-dot" /> From idea to live call</p>
+            <h2>Live on a South African number in hours.</h2>
+            <p className="lead" style={{ marginTop: 16 }}>
+              Design your agent in plain English, test every scenario in a sandbox,
+              then go live — no engineering team required.
+            </p>
           </Reveal>
-          <div className="steps3">
-            {steps.map((s, i) => (
+          <div className="steps3 steps4">
+            {homeSteps.map((s, i) => (
               <Reveal className="step3" delay={i * 110} key={s.title}>
                 <div className="step3-badge">0{i + 1}</div>
                 <h3 className="step3-title">{s.title}</h3>
