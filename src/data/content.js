@@ -30,34 +30,42 @@ export const features = [
   {
     title: 'Human-sounding voice',
     desc: 'Native audio-to-audio responses under 300ms, so conversations feel natural — not like talking to a robot or waiting on a script.',
+    bullet: 'Sub-300ms responses',
   },
   {
     title: 'Talk over it, anytime',
     desc: 'Callers can interrupt mid-sentence and the agent adapts instantly, just like a real receptionist would.',
+    bullet: 'Interrupt mid-sentence',
   },
   {
     title: 'Never a busy signal',
     desc: 'Handle unlimited calls at once. No hold music, no queues — every caller is answered on the first ring, 24/7.',
+    bullet: 'Unlimited concurrent calls',
   },
   {
     title: 'Knows your business',
     desc: 'Connect your FAQs, docs, menus, and policies. The agent answers from your own knowledge base using retrieval, not guesswork.',
+    bullet: 'Answers from your own docs',
   },
   {
     title: 'Speaks their language',
     desc: 'Detects and switches languages mid-call, so you can serve every caller without a separate line or staff member.',
+    bullet: 'Switches language mid-call',
   },
   {
     title: 'Books and routes',
     desc: 'Schedules appointments on your calendar, qualifies leads, takes messages, and warm-transfers to a human when it matters.',
+    bullet: 'Calendar booking + warm transfer',
   },
   {
     title: 'Bring your own numbers',
     desc: 'Keep your existing phone numbers and carrier. Point your line at NIXXY and go live — no migrations, no new hardware.',
+    bullet: 'Keep your number and carrier',
   },
   {
     title: 'Every call, in your CRM',
     desc: 'Transcripts, call summaries, sentiment, and intent flow straight into your tools, so nothing slips through the cracks.',
+    bullet: 'Transcripts, summaries, sentiment',
   },
 ];
 
@@ -347,5 +355,32 @@ export const homeFaqs = [
   {
     q: 'Do I need an engineering team?',
     a: 'No. You design the agent in plain English, connect your documents and tools, test it in a sandbox, and go live. No code required.',
+  },
+];
+
+export const integrations = [
+  {
+    cat: 'Integrations',
+    title: 'Scheduling & calendars',
+    desc: 'Native Google, Outlook, and Calendly integrations. Book, reschedule, and confirm — all over voice.',
+    widget: 'scheduling',
+  },
+  {
+    cat: 'Integrations',
+    title: 'CRM sync',
+    desc: 'Every call logs to HubSpot, Salesforce, or Zoho automatically, with transcripts and outcomes attached.',
+    widget: 'crm',
+  },
+  {
+    cat: 'Integrations',
+    title: 'WhatsApp & SMS',
+    desc: 'Send confirmations, reminders, and follow-ups automatically the moment a call ends.',
+    widget: 'messaging',
+  },
+  {
+    cat: 'Integrations',
+    title: 'Zapier & webhooks',
+    desc: 'Trigger any workflow in 5,000+ apps the moment a call ends — no engineering required.',
+    widget: 'automation',
   },
 ];
