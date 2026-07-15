@@ -3,12 +3,25 @@ import { industries } from '../data/content.js';
 
 export default function IndustryExplorer() {
   const [active, setActive] = useState(0);
+  const [dir, setDir] = useState('next');
   const [paused, setPaused] = useState(false);
+
+  const go = (i) => {
+    if (i === active) return;
+    const len = industries.length;
+    const forwardDist = (i - active + len) % len;
+    const backwardDist = (active - i + len) % len;
+    setDir(forwardDist <= backwardDist ? 'next' : 'prev');
+    setActive(i);
+  };
 
   // Auto-advance through industries unless the user is interacting.
   useEffect(() => {
     if (paused) return;
-    const id = setInterval(() => setActive((a) => (a + 1) % industries.length), 3200);
+    const id = setInterval(() => {
+      setDir('next');
+      setActive((a) => (a + 1) % industries.length);
+    }, 3200);
     return () => clearInterval(id);
   }, [paused]);
 
@@ -25,9 +38,9 @@ export default function IndustryExplorer() {
           <li key={ind.name}>
             <button
               className={`ie-item${i === active ? ' active' : ''}`}
-              onMouseEnter={() => setActive(i)}
-              onFocus={() => setActive(i)}
-              onClick={() => setActive(i)}
+              onMouseEnter={() => go(i)}
+              onFocus={() => go(i)}
+              onClick={() => go(i)}
             >
               <span className="ie-num">{String(i + 1).padStart(2, '0')}</span>
               <span className="ie-name">{ind.name}</span>
@@ -37,7 +50,7 @@ export default function IndustryExplorer() {
         ))}
       </ul>
 
-      <div className="ie-panel" key={active}>
+      <div className={`ie-panel ie-panel--${dir}`} key={active}>
         <div className="ie-panel-glow" />
         <p className="eyebrow"><span className="live-dot" /> {cur.name}</p>
         <p className="ie-desc">{cur.desc}</p>
