@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import Logo from './Logo.jsx';
 
 const links = [
@@ -13,6 +13,8 @@ const links = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
+  const isHome = pathname === '/';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -22,7 +24,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`site-header${open ? ' open' : ''}${scrolled ? ' scrolled' : ''}`}>
+    <header className={`site-header${open ? ' open' : ''}${scrolled ? ' scrolled' : ''}${isHome ? ' home-header' : ''}`}>
       <div className="container bar">
         <Link to="/" className="brand" onClick={() => setOpen(false)}>
           <Logo />
@@ -37,7 +39,7 @@ export default function Header() {
             ))}
           </nav>
           <div className="nav-actions">
-              <Link to="/signup" className="btn btn-sheen" onClick={() => setOpen(false)}>Get started</Link>
+              <Link to="/signup" className={`btn btn-sheen${isHome ? ' home-cta' : ''}`} onClick={() => setOpen(false)}>Get started</Link>
 
           </div>
         </div>

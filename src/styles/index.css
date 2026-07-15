@@ -358,7 +358,7 @@ h1, h2, h3, h4 { font-weight: 600; line-height: 1.08; letter-spacing: -0.02em; m
 .prose h3 { font-size: 20px; margin: 28px 0 10px; }
 
 /* ---- footer ---- */
-.site-footer { border-top: 1px solid var(--border); padding: 64px 0 40px; margin-top: 40px; }
+.site-footer { border-top: 1px solid var(--border); padding: 64px 0 40px; margin-top: 0; }
 .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
 .footer-brand .brand { font-size: 22px; }
 .footer-brand p { color: var(--fg-dim); font-size: 13px; max-width: 42ch; margin-top: 18px; line-height: 1.7; }

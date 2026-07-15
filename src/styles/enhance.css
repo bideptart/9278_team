@@ -55,6 +55,11 @@
 @media (max-width: 560px) { .logo-img { height: 34px; } }
 .site-header { transition: background .3s ease, border-color .3s ease, box-shadow .3s ease; border-bottom: 1px solid transparent; background: transparent; }
 .site-header.scrolled { background: rgba(255,255,255,.82); border-bottom-color: var(--border); box-shadow: 0 6px 20px -12px rgba(16,38,46,.18); }
+/* home page navbar — solid white, always separated from the hero below it */
+.site-header.home-header { background: #ffffff; border-bottom: 1px solid #e7e7e5; }
+.site-header.home-header.scrolled { box-shadow: 0 6px 20px -12px rgba(11,18,32,.12); }
+.btn.home-cta { background: #d1f792; color: #0b1220; box-shadow: 0 8px 20px -10px rgba(77,124,15,.35); }
+.btn.home-cta:hover { filter: brightness(1.05); opacity: 1; }
 /* Get started CTA */
 .btn-cta {
   background: linear-gradient(180deg, #1cb3bf 0%, #0e8a96 100%);
