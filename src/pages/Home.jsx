@@ -41,8 +41,8 @@ export default function Home() {
       <section className="section section-light">
         <div className="container">
           <Reveal className="section-head">
-            <p className="eyebrow"><span className="live-dot" /> Why NIXXY</p>
-            <h2>A receptionist that sounds human <span className="grad">and never clocks out.</span></h2>
+            <p className="eyebrow"><span className="live-dot" /> The cost of a missed call</p>
+            <h2>Every missed call is a customer <span className="grad">who phoned someone else.</span></h2>
           </Reveal>
           <div className="grid grid-3">
             {features.slice(0, 6).map((f, i) => (
