@@ -536,3 +536,25 @@ html, body { max-width: 100%; overflow-x: clip; }
 @media (max-width: 560px) {
   .carousel-card { flex-basis: 232px; width: 232px; padding: 18px; }
 }
+
+/* ============================================================
+   FEATURES PAGE ONLY — kallus.io lime-green theme, scoped to .feat-page
+   (mirrors the .home-page override pattern above; same green stops)
+   ============================================================ */
+.feat-page {
+  --accent-live: #4d7c0f;
+  --accent-live-2: #6fa524;
+  --accent-deep: #3a5a0c;
+}
+.feat-page .grad {
+  background-image: linear-gradient(100deg, #c2ee6f 10%, #6fa524 55%, #4d7c0f 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.feat-page .glow-card::before { background: linear-gradient(140deg, rgba(111,165,36,.45), transparent 45%); }
+.feat-page .glow-card:hover .card-title,
+.feat-page .glow-card.usecase:hover h3 { color: #4d7c0f; }
+.feat-page .feat-card:hover { box-shadow: 0 24px 54px -30px rgba(111,165,36,.35); }
+.feat-page .carousel-card:hover { box-shadow: 0 14px 32px -18px rgba(111,165,36,.35); }
+.feat-page .btn-sheen { background: linear-gradient(90deg, #6fa524, #3a5a0c); box-shadow: 0 8px 20px -10px rgba(74,124,15,.6); }
