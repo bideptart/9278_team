@@ -44,28 +44,26 @@ export default function Home() {
             <p className="eyebrow"><span className="live-dot" /> The cost of a missed call</p>
             <h2>Every missed call is a customer <span className="grad">who phoned someone else.</span></h2>
           </Reveal>
-          <div className="grid grid-2 cost-grid">
-            <Reveal className="cost-lead">
-              <p className="lead">{missedCallLead}</p>
+          <Reveal className="cost-lead">
+            <p className="lead">{missedCallLead}</p>
+          </Reveal>
+          <div className="cost-compare">
+            <Reveal className="compare-card compare-without">
+              <span className="compare-badge without">✕ Without a voice agent</span>
+              <ul className="compare-list">
+                {missedCallWithout.map((t) => (
+                  <li key={t}><span className="compare-icon without">✕</span>{t}</li>
+                ))}
+              </ul>
             </Reveal>
-            <div className="cost-compare">
-              <Reveal className="compare-card compare-without">
-                <span className="compare-badge without">✕ Without a voice agent</span>
-                <ul className="compare-list">
-                  {missedCallWithout.map((t) => (
-                    <li key={t}><span className="compare-icon without">✕</span>{t}</li>
-                  ))}
-                </ul>
-              </Reveal>
-              <Reveal className="compare-card compare-with" delay={90}>
-                <span className="compare-badge with">📞 With NIXXY</span>
-                <ul className="compare-list">
-                  {missedCallWith.map((t) => (
-                    <li key={t}><span className="compare-icon with">✓</span>{t}</li>
-                  ))}
-                </ul>
-              </Reveal>
-            </div>
+            <Reveal className="compare-card compare-with" delay={90}>
+              <span className="compare-badge with">📞 With NIXXY</span>
+              <ul className="compare-list">
+                {missedCallWith.map((t) => (
+                  <li key={t}><span className="compare-icon with">✓</span>{t}</li>
+                ))}
+              </ul>
+            </Reveal>
           </div>
           <Reveal style={{ marginTop: 28 }}>
             <Link to="/features" className="text-link">See all features →</Link>

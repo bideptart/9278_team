@@ -105,36 +105,36 @@ export const homeSteps = [
 
 export const industries = [
   {
-    name: 'Real estate', desc: 'Capture every buyer and renter inquiry, schedule showings, and qualify leads before they reach an agent.',
-    sample: { caller: 'Is the downtown loft still available to tour?', agent: 'It is — I have Saturday at 11 or 1. Shall I book one for you?' },
-  },
-  {
-    name: 'Legal services', desc: 'Intake new clients 24/7, screen matters, and book consultations without tying up paralegals.',
-    sample: { caller: 'I need to talk to someone about a contract dispute.', agent: 'I can set up a consultation. Are mornings or afternoons better?' },
-  },
-  {
-    name: 'Healthcare & dental', desc: 'Book, reschedule, and confirm appointments, answer insurance questions, and triage after hours.',
-    sample: { caller: 'Can I move my cleaning to next week?', agent: "Done — you're rebooked for Tuesday at 9:30am." },
-  },
-  {
-    name: 'Home services', desc: 'Answer every job call, dispatch urgent requests, and quote standard work while your crews are on site.',
-    sample: { caller: "My water heater's leaking — can someone come today?", agent: "I'm flagging this as urgent and dispatching a tech now." },
-  },
-  {
-    name: 'Restaurants', desc: 'Take reservations and to-go orders, answer hours and menu questions, and stop missing the dinner rush.',
-    sample: { caller: 'Table for four tonight around 7?', agent: 'I have 7:15 on the patio — want me to hold it?' },
-  },
-  {
-    name: 'Automotive', desc: 'Schedule service, answer parts and pricing questions, and follow up on quotes automatically.',
-    sample: { caller: 'When can you fit me in for an oil change?', agent: "Thursday at 8am works — I'll add it to the schedule." },
-  },
-  {
-    name: 'E-commerce & retail', desc: 'Handle order status, returns, and product questions across every line at once.',
+    name: 'Retail & E-commerce', desc: 'Order updates, returns and 24/7 support.',
     sample: { caller: "Where's my order? It's been a week.", agent: 'It shipped Monday — arriving tomorrow by 8pm. Want the tracking link?' },
   },
   {
-    name: 'Professional services', desc: 'Qualify inbound interest, route to the right team, and book discovery calls around the clock.',
-    sample: { caller: 'Do you have time for a discovery call this week?', agent: "I do — Wednesday at 3pm. I'll send a calendar invite." },
+    name: 'Banking & Insurance', desc: 'Lead qualification, premium and instalment reminders.',
+    sample: { caller: 'I got a call about my premium being overdue.', agent: "Yes — it's due Friday. Want me to process the payment now, or send a reminder?" },
+  },
+  {
+    name: 'Debt Collection', desc: 'Consistent, compliant early-stage reminder calls.',
+    sample: { caller: "I know I'm behind, I just need a few more days.", agent: "No problem — I'll note that and follow up Monday. Anything else I can help with?" },
+  },
+  {
+    name: 'BPO & Contact Centres', desc: 'Automate tier-1 queues and outbound campaigns at scale.',
+    sample: { caller: "I've been on hold forever, I just want a status update.", agent: 'I can pull that up right now — no hold needed. One moment.' },
+  },
+  {
+    name: 'Logistics', desc: 'Delivery confirmations and driver coordination.',
+    sample: { caller: 'Has my delivery left the depot yet?', agent: "Yes — it's out with the driver now, arriving by 3pm." },
+  },
+  {
+    name: 'Telecoms & Utilities', desc: 'Service queries, upgrades and outage updates.',
+    sample: { caller: 'Is there an outage in my area right now?', agent: 'Yes — crews are on site, expected restore time is 6pm.' },
+  },
+  {
+    name: 'Real Estate', desc: 'Qualify property leads and book viewings 24/7.',
+    sample: { caller: 'Is the downtown loft still available to tour?', agent: 'It is — I have Saturday at 11 or 1. Shall I book one for you?' },
+  },
+  {
+    name: 'Healthcare', desc: 'Appointment booking, reminders and patient intake.',
+    sample: { caller: 'Can I move my cleaning to next week?', agent: "Done — you're rebooked for Tuesday at 9:30am." },
   },
 ];
 
@@ -285,22 +285,22 @@ export const useCases = [
 
 export const testimonials = [
   {
-    quote: 'It picks up on the first ring at 2am and books the job. We stopped losing after-hours calls overnight.',
-    name: 'Marcus Bell',
-    role: 'Owner, Bell Plumbing & Heating',
-    metric: '+41% booked jobs',
+    quote: 'Our collections reminders go out consistently and compliantly. The cost per resolved call dropped sharply.',
+    name: 'George Harrison',
+    role: 'Collections Director · Coastal Credit, Durban',
+    metric: '',
   },
   {
-    quote: 'Callers genuinely think it\'s a person. Our front desk finally has time to handle patients in the room.',
-    name: 'Dr. Priya Nandakumar',
-    role: 'Practice Lead, Northgate Dental',
-    metric: '58% fewer holds',
+    quote: 'Setup took an afternoon. The isiZulu and Afrikaans handling is genuinely natural, and POPIA was sorted out of the box.',
+    name: 'Sophia Mitchell',
+    role: 'COO · Atlantic Pay, Cape Town',
+    metric: '',
   },
   {
-    quote: 'We pointed our main line at NIXXY in an afternoon. Lead response went from hours to seconds.',
-    name: 'Elena Ruiz',
-    role: 'Head of Sales, Vantage Realty',
-    metric: '2.7x qualified leads',
+    quote: "We answer every after-hours call now, in the customer's own language. Our missed-call rate basically disappeared.",
+    name: 'James Anderson',
+    role: 'Head of Customer Care · Meridian Contact Group, Johannesburg',
+    metric: '',
   },
 ];
 
