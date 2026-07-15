@@ -373,6 +373,17 @@ h1, h2, h3, h4 { font-weight: 600; line-height: 1.08; letter-spacing: -0.02em; m
 
 .home-page .faq { max-width: 840px; margin: 0 auto; }
 .home-page .faq-head { max-width: 720px; margin-left: auto; margin-right: auto; }
+.home-page .faq-item summary::after { transition: transform .3s ease; }
+.home-page .faq-item[open] summary::after { transform: rotate(180deg); }
+.home-page .faq-item p {
+  display: block;
+  overflow: hidden;
+  max-height: 0;
+  margin: 0;
+  opacity: 0;
+  transition: max-height .35s ease, opacity .25s ease, margin .35s ease;
+}
+.home-page .faq-item[open] p { max-height: 300px !important; margin: 14px 0 0; opacity: 1; }
 
 .home-page .cta-band { border-top: 1px solid transparent; background: linear-gradient(130deg, #d1f792, #aee05a); margin-top: 0; }
 .home-page .cta-band h2 { color: #0b1220; }
