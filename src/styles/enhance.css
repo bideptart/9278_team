@@ -226,9 +226,9 @@
 
 .ie-panel {
   position: relative; overflow: hidden; display: flex; flex-direction: column;
-  background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px;
+  background: none; border: none; border-radius: 18px;
   padding: 24px; min-height: 100%;
-  box-shadow: 0 20px 45px -30px rgba(11,18,32,.35);
+  box-shadow: none;
   animation: ie-slide-next .6s cubic-bezier(.22,.61,.36,1) both;
 }
 .ie-panel--prev { animation-name: ie-slide-prev; }
