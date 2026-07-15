@@ -382,3 +382,16 @@ h1, h2, h3, h4 { font-weight: 600; line-height: 1.08; letter-spacing: -0.02em; m
 .home-page .cta-band .btn-ghost { color: #0b1220; border-color: rgba(11,18,32,.34); }
 .home-page .cta-band .btn-ghost:hover { background: #0b1220; color: #fff; border-color: #0b1220; }
 .home-page .cta-band .glow-cta { display: none; }
+
+/* footer is rendered by Layout.jsx outside .home-page, so it's toggled via
+   a route check in Footer.jsx (isHome) + this dedicated class instead */
+.site-footer.footer-dark { background: #0b1220; color: rgba(255,255,255,.66); border-top: 1px solid transparent; margin-top: 0; }
+.site-footer.footer-dark .footer-brand .brand { color: #fff; }
+.site-footer.footer-dark .footer-brand p { color: rgba(255,255,255,.6); }
+.site-footer.footer-dark .footer-col h5 { color: rgba(255,255,255,.45); }
+.site-footer.footer-dark .footer-col a { color: rgba(255,255,255,.66); }
+.site-footer.footer-dark .footer-col a:hover { color: #fff; }
+.site-footer.footer-dark .footer-bottom { border-top-color: rgba(255,255,255,.12); }
+.site-footer.footer-dark .footer-bottom, .site-footer.footer-dark .footer-bottom a { color: rgba(255,255,255,.55); }
+.site-footer.footer-dark .footer-bottom a:hover { color: #fff; }
+.site-footer.footer-dark .footer-brand .logo-img { filter: invert(1); }

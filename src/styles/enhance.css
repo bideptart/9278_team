@@ -324,7 +324,12 @@ html, body { max-width: 100%; overflow-x: hidden; }
 /* ============================================================
    HOME PAGE ONLY — kallus.io-style theme, scoped to .home-page
    ============================================================ */
-.home-page .grad { background: linear-gradient(100deg, #c2ee6f 10%, #6fa524 55%, #4d7c0f 90%); }
+.home-page .grad {
+  background-image: linear-gradient(100deg, #c2ee6f 10%, #6fa524 55%, #4d7c0f 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 .home-page .glow-card::before { background: linear-gradient(140deg, rgba(111,165,36,.45), transparent 45%); }
 .home-page .glow-card:hover .card-title { color: #4d7c0f; }
 .home-page .call-glow { background: radial-gradient(400px circle at 80% -10%, rgba(111,165,36,.18), transparent 60%); }

@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo.jsx';
 
 export default function Footer() {
+  const { pathname } = useLocation();
+  const isHome = pathname === '/';
   return (
-    <footer className="site-footer">
+    <footer className={`site-footer${isHome ? ' footer-dark' : ''}`}>
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
