@@ -1,6 +1,24 @@
 // Product content for the NIXXY AI voice receptionist site.
 // Original copy written for this rebuild.
 
+export const missedCallLead = 'South African businesses lose revenue to the same gaps every day, and adding more agents only scales the cost, not the coverage.';
+
+export const missedCallWithout = [
+  'Calls go unanswered after hours, over weekends and during peak queues',
+  'Customers who prefer isiZulu, isiXhosa or Afrikaans drop off the call',
+  'Contact-centre headcount climbs faster than revenue',
+  'POPIA consent and opt-out tracking is manual and risky',
+  'Follow-ups and reminders depend on someone remembering',
+];
+
+export const missedCallWith = [
+  "Every call answered, day or night, in the caller's language",
+  'Leads qualified and appointments booked before a human steps in',
+  'Thousands of simultaneous calls without adding seats',
+  'POPIA consent, opt-out and recording disclosure built in',
+  'Reminders and follow-ups that go out every single time',
+];
+
 export const metrics = [
   { value: '1.8M+', label: 'Calls answered every month' },
   { value: '58%', label: 'Average reduction in front-desk workload' },

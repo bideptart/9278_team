@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { metrics, features, useCases, testimonials, homeFaqs, homeSteps } from '../data/content.js';
+import { metrics, useCases, testimonials, homeFaqs, homeSteps, missedCallLead, missedCallWithout, missedCallWith } from '../data/content.js';
 import CallCard from '../components/CallCard.jsx';
 import IndustryExplorer from '../components/IndustryExplorer.jsx';
 import Reveal from '../components/Reveal.jsx';
@@ -44,13 +44,28 @@ export default function Home() {
             <p className="eyebrow"><span className="live-dot" /> The cost of a missed call</p>
             <h2>Every missed call is a customer <span className="grad">who phoned someone else.</span></h2>
           </Reveal>
-          <div className="grid grid-3">
-            {features.slice(0, 6).map((f, i) => (
-              <Reveal className="card glow-card" delay={(i % 3) * 80} key={f.title}>
-                <h3 className="card-title">{f.title}</h3>
-                <p className="card-desc">{f.desc}</p>
+          <div className="grid grid-2 cost-grid">
+            <Reveal className="cost-lead">
+              <p className="lead">{missedCallLead}</p>
+            </Reveal>
+            <div className="cost-compare">
+              <Reveal className="compare-card compare-without">
+                <span className="compare-badge without">✕ Without a voice agent</span>
+                <ul className="compare-list">
+                  {missedCallWithout.map((t) => (
+                    <li key={t}><span className="compare-icon without">✕</span>{t}</li>
+                  ))}
+                </ul>
               </Reveal>
-            ))}
+              <Reveal className="compare-card compare-with" delay={90}>
+                <span className="compare-badge with">📞 With NIXXY</span>
+                <ul className="compare-list">
+                  {missedCallWith.map((t) => (
+                    <li key={t}><span className="compare-icon with">✓</span>{t}</li>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
           </div>
           <Reveal style={{ marginTop: 28 }}>
             <Link to="/features" className="text-link">See all features →</Link>
