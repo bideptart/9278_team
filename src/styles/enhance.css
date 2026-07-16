@@ -79,7 +79,7 @@
 .btn.home-cta { background: #d1f792; color: #0b1220; box-shadow: 0 8px 20px -10px rgba(77,124,15,.35); }
 .btn.home-cta:hover { filter: brightness(1.05); opacity: 1; }
 /* chat widget icon color (all pages) */
-.chat-fab { color: #0b1220; }
+.chat-fab { color: #ffffff; }
 /* Get started CTA */
 .btn-cta {
   background: linear-gradient(180deg, #8dc63f 0%, #6fa524 100%);

@@ -802,7 +802,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 .chat-panel-input input:focus { outline: none; border-color: #6fa524; }
 .chat-panel-input button {
   width: 38px; height: 38px; border-radius: 50%; border: none; cursor: pointer; flex-shrink: 0;
-  background: #0b1220; color: #fff; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #d1f792, #6fa524); color: #ffffff;
+  display: flex; align-items: center; justify-content: center;
 }
 .chat-panel-hint { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; font-size: 11.5px; color: var(--ink-3, #8a9a7a); }
 .chat-panel-hint a { color: #4d7c0f; font-weight: 600; text-decoration: none; }
