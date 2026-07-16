@@ -3,11 +3,20 @@ import { blogPosts } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
 import NotFound from './NotFound.jsx';
 
+const headingId = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+const scrollToHeading = (e, id) => {
+  e.preventDefault();
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
+
 export default function BlogPost() {
   const { slug } = useParams();
   const post = blogPosts.find((p) => p.slug === slug);
 
   if (!post) return <NotFound />;
+
+  const toc = post.body.filter((b) => b.type === 'h2').map((b) => ({ text: b.text, id: headingId(b.text) }));
 
   return (
     <div className="kallus-theme">
@@ -28,8 +37,20 @@ export default function BlogPost() {
 
       <div className="container page-body">
         <Reveal className="article">
+          {toc.length > 0 && (
+            <nav className="article-toc" aria-label="Table of contents">
+              <p className="article-toc-title">Table of contents</p>
+              <ul>
+                {toc.map((item) => (
+                  <li key={item.id}>
+                    <a href={`#${item.id}`} onClick={(e) => scrollToHeading(e, item.id)}>{item.text}</a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
           {post.body.map((block, i) => {
-            if (block.type === 'h2') return <h2 key={i}>{block.text}</h2>;
+            if (block.type === 'h2') return <h2 id={headingId(block.text)} key={i}>{block.text}</h2>;
             if (block.type === 'p') return <p key={i}>{block.text}</p>;
             if (block.type === 'bullets') {
               return (
