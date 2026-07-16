@@ -66,6 +66,10 @@
 .site-header.home-header.scrolled { box-shadow: 0 6px 20px -12px rgba(11,18,32,.12); }
 .btn.home-cta { background: #d1f792; color: #0b1220; box-shadow: 0 8px 20px -10px rgba(77,124,15,.35); }
 .btn.home-cta:hover { filter: brightness(1.05); opacity: 1; }
+/* home page chat widget — opens on the left, real SVG icon instead of emoji */
+.chat-widget-home { left: 24px; right: auto; align-items: flex-start; }
+.chat-widget-home .chat-fab { color: #ffffff; }
+@media (max-width: 480px) { .chat-widget-home { left: 16px; } }
 /* Get started CTA */
 .btn-cta {
   background: linear-gradient(180deg, #8dc63f 0%, #6fa524 100%);
