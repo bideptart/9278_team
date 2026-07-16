@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { metrics, useCases, testimonials, homeFaqs, homeSteps, missedCallLead, missedCallWithout, missedCallWith } from '../data/content.js';
-import CallCard from '../components/CallCard.jsx';
+import CoverageMap from '../components/CoverageMap.jsx';
 import IndustryExplorer from '../components/IndustryExplorer.jsx';
 import Reveal from '../components/Reveal.jsx';
 
@@ -34,7 +34,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div className="hero-visual"><CallCard /></div>
+          <div className="hero-visual"><CoverageMap /></div>
         </div>
       </section>
 

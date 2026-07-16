@@ -950,3 +950,29 @@ html, body { max-width: 100%; overflow-x: clip; }
 .feat-page .feat-card:hover { box-shadow: 0 24px 54px -30px rgba(111,165,36,.35); }
 .feat-page .carousel-card:hover { box-shadow: 0 14px 32px -18px rgba(111,165,36,.35); }
 .feat-page .btn-sheen { background: linear-gradient(90deg, #6fa524, #3a5a0c); box-shadow: 0 8px 20px -10px rgba(74,124,15,.6); }
+
+/* ---- hero coverage map: SA provinces + animated city network ---- */
+.za-map { padding: 0; }
+.za-map-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.za-provinces path {
+  fill: #e3e6e0; stroke: #ffffff; stroke-width: 1;
+  filter: drop-shadow(0 6px 10px rgba(16,38,46,.12));
+}
+.za-link { fill: none; stroke-linecap: round; stroke-dasharray: 1px, 1px; animation: za-line-draw 2.6s cubic-bezier(.45,0,.25,1) infinite; }
+.za-link-glow { stroke: rgba(111,165,36,.35); stroke-width: 5; filter: blur(3px); }
+.za-link-crisp { stroke: #9ed15c; stroke-width: 1.6; }
+@keyframes za-line-draw {
+  0% { stroke-dashoffset: 1; }
+  55% { stroke-dashoffset: 0; }
+  65% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -1; }
+}
+.za-pulse { fill: none; stroke: var(--accent-live); stroke-width: 1.5; transform-box: fill-box; transform-origin: center; animation: za-pulse 2.2s ease-out infinite; }
+@keyframes za-pulse { 0% { opacity: .65; transform: scale(.6); } 100% { opacity: 0; transform: scale(2.1); } }
+.za-dot { fill: var(--accent-live); stroke: #ffffff; stroke-width: 1.5; }
+.za-city { color: #ffffff; }
+.za-flag-badge rect { fill: #ffffff; stroke: var(--accent-live); stroke-width: .75; filter: drop-shadow(0 2px 3px rgba(16,38,46,.25)); }
+.za-label {
+  font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+  fill: var(--fg); text-anchor: middle;
+}
