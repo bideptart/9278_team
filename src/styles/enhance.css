@@ -979,28 +979,42 @@ html, body { max-width: 100%; overflow-x: clip; }
 /* ---- hero coverage map: SA provinces + animated city network ---- */
 .za-map { padding: 0; position: relative; }
 .za-map-svg { display: block; width: 100%; height: auto; overflow: visible; position: relative; z-index: 1; }
-.za-carriers { position: absolute; inset: 0; pointer-events: none; }
-.za-carrier-bubble {
-  position: absolute; display: flex; align-items: center; justify-content: center;
-  background: #ffffff; border-radius: 50%; border: 1px solid var(--border);
-  box-shadow: 0 12px 24px -12px rgba(16,38,46,.4);
-  padding: 10px; animation: za-carrier-float 5.5s ease-in-out infinite;
-  pointer-events: none;
+.za-greetings { position: absolute; inset: 0; pointer-events: none; }
+.za-greet-card {
+  position: absolute; display: flex; flex-direction: column; gap: 1px;
+  background: #ffffff; border: 1px solid var(--border); border-radius: 14px;
+  padding: 9px 13px; box-shadow: 0 14px 28px -14px rgba(16,38,46,.35);
+  animation: za-greet-float 5.5s ease-in-out infinite;
+  pointer-events: auto; z-index: 2;
 }
-.za-carrier-bubble img { width: 100%; height: 100%; object-fit: contain; display: block; }
-.za-carrier-sm { width: 44px; height: 44px; padding: 8px; }
-.za-carrier-md { width: 58px; height: 58px; }
-.za-carrier-lg { width: 70px; height: 70px; }
-.za-carrier-front { z-index: 2; }
-.za-carrier-back { z-index: 0; opacity: .9; }
-@keyframes za-carrier-float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-16px) rotate(4deg); }
+.za-greet-word { font-weight: 700; font-size: 15px; line-height: 1.2; color: var(--ink, #0b1220); }
+.za-greet-lang { font-family: var(--font-mono); font-size: 9.5px; color: #6b7a90; white-space: nowrap; }
+.za-greet-audio { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.za-greet-play {
+  width: 26px; height: 26px; border-radius: 50%; border: none; cursor: pointer;
+  background: #6fa524; color: #ffffff; display: flex; align-items: center; justify-content: center;
+  padding: 0; flex: none; transition: background .2s ease, transform .2s ease;
 }
+.za-greet-play:hover { background: #5c8b1e; transform: scale(1.08); }
+.za-greet-play svg { width: 12px; height: 12px; display: block; }
+.za-greet-wave { display: flex; align-items: flex-end; gap: 2.5px; height: 18px; padding-bottom: 2px; }
+.za-greet-wave i { width: 3px; border-radius: 2px; background: #9ed15c; }
+.za-greet-wave i:nth-child(1) { height: 5px; }
+.za-greet-wave i:nth-child(2) { height: 11px; }
+.za-greet-wave i:nth-child(3) { height: 16px; }
+.za-greet-wave i:nth-child(4) { height: 9px; }
+.za-greet-wave i:nth-child(5) { height: 6px; }
+.za-greet-card.playing .za-greet-play { background: #3a5a0c; }
+.za-greet-card.playing .za-greet-wave i { animation: za-wave .9s ease-in-out infinite; background: #6fa524; }
+@keyframes za-wave { 0%, 100% { height: 5px; } 50% { height: 16px; } }
+@keyframes za-greet-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 @media (max-width: 640px) {
-  .za-carrier-lg { width: 52px; height: 52px; }
-  .za-carrier-md { width: 42px; height: 42px; }
-  .za-carrier-sm { width: 34px; height: 34px; padding: 6px; }
+  .za-greet-card { padding: 7px 10px; border-radius: 11px; }
+  .za-greet-word { font-size: 12px; }
+  .za-greet-lang { font-size: 8px; }
+  .za-greet-play { width: 21px; height: 21px; }
+  .za-greet-play svg { width: 10px; height: 10px; }
+  .za-greet-wave { height: 14px; }
 }
 .za-provinces path {
   fill: whitesmoke; stroke: #6fa524; stroke-width: 1.1;
