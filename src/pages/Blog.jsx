@@ -82,7 +82,7 @@ export default function Blog() {
         ) : (
           <>
             {featured && (
-              <Reveal className="blog-featured">
+              <Reveal as={Link} to={`/blog/${featured.slug}`} className="blog-featured">
                 <div className="blog-featured-media">
                   {featured.image
                     ? <img src={featured.image} alt="" />
@@ -99,7 +99,7 @@ export default function Blog() {
                       <div className="blog-featured-sub">{featured.date} · {featured.readTime}</div>
                     </div>
                   </div>
-                  <Link to={`/blog/${featured.slug}`} className="text-link">Read the full piece →</Link>
+                  <span className="text-link">Read the full piece →</span>
                 </div>
               </Reveal>
             )}

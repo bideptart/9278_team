@@ -5,7 +5,7 @@ const DARK_ROUTES = ['/', '/pricing', '/blog', '/how-it-works', '/features'];
 
 export default function Footer() {
   const { pathname } = useLocation();
-  const dark = DARK_ROUTES.includes(pathname);
+  const dark = DARK_ROUTES.some((r) => pathname === r || pathname.startsWith(`${r}/`));
   const isIndustries = pathname === '/industries';
 
   return (
