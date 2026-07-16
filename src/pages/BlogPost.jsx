@@ -22,8 +22,8 @@ export default function BlogPost() {
     <div className="kallus-theme">
       <section className="page-hero container">
         <Reveal>
-          <Link to="/blog" className="text-link">← Back to blog</Link>
-          <p className="eyebrow" style={{ marginTop: 18 }}>{post.category}</p>
+          <Link to="/blog" className="text-link" style={{ display: 'block', marginBottom: 22 }}>← Back to blog</Link>
+          <p className="eyebrow">{post.category}</p>
           <h1 style={{ fontSize: 'clamp(30px,4.6vw,52px)', maxWidth: '20ch' }}>{post.title}</h1>
           <div className="blog-featured-meta" style={{ marginTop: 22 }}>
             <span className="blog-avatar" aria-hidden="true">{post.author[0]}</span>
