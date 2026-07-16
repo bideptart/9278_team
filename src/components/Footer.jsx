@@ -30,7 +30,6 @@ export default function Footer() {
           <div className="footer-col">
             <h5>Company</h5>
             <Link to="/blog">Blog</Link>
-            <Link to="/contact">Book a demo</Link>
             <a href="mailto:hello@kall.us">Contact sales</a>
             <Link to="/privacy-policy">Privacy Policy</Link>
             <Link to="/terms-and-conditions">Terms &amp; Conditions</Link>
