@@ -161,7 +161,7 @@ export default function Pricing() {
         <table className="compare-table">
           <thead>
             <tr>
-              <th></th>
+              <th>Feature</th>
               {plans.map((p) => (
                 <th key={p.name} className={p.featured ? 'compare-featured-col' : ''}>
                   {p.name}
