@@ -1042,3 +1042,8 @@ html, body { max-width: 100%; overflow-x: clip; }
 @media (max-width: 480px) {
   .route-branches { min-height: 110px; }
 }
+@media (max-width: 400px) {
+  .route-branch { width: 68px; }
+  .route-node { font-size: 9.5px; padding: 5px 6px; }
+  .route-sub { font-size: 8.5px; margin-top: 5px; }
+}
