@@ -263,6 +263,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 .price-card { position: relative; display: flex; flex-direction: column; height: 100%; background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 30px 26px; }
 .price-card.featured { border-color: var(--accent-live); box-shadow: 0 0 0 1px var(--accent-live) inset; }
 .pricing-swipe-hint { display: none; }
+.compare-swipe-hint { display: none; }
 
 /* mobile — stacked/peeking card carousel, featured plan front and center */
 @media (max-width: 640px) {
@@ -338,6 +339,20 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 }
 .compare-yes { background: var(--accent-mid); color: var(--ink); }
 .compare-no { background: var(--border); color: var(--fg-dim); }
+
+/* mobile — smaller, tighter compare table so less of it needs scrolling */
+@media (max-width: 640px) {
+  .compare-swipe-hint {
+    display: block; text-align: center; margin: 0 0 10px;
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .04em; color: var(--fg-dim);
+  }
+  .compare-table { min-width: 540px; }
+  .compare-table th, .compare-table td { padding: 12px 14px; font-size: 13px; }
+  .compare-table thead th { font-size: 13px; }
+  .compare-table thead th:first-child { min-width: 130px; }
+  .compare-popular { font-size: 9px; padding: 2px 7px; }
+}
+
 .testimonial-card { display: flex; flex-direction: column; }
 .testimonial-card .quote-text { color: var(--fg-soft); font-size: 16px; line-height: 1.6; margin: 14px 0 20px; flex: 1; }
 .testimonial-card .quote-by { display: flex; flex-direction: column; gap: 2px; padding-top: 16px; border-top: 1px solid var(--border); }

@@ -187,6 +187,7 @@ export default function Pricing() {
         <p className="eyebrow">Compare plans</p>
         <h2 style={{ fontSize: 'clamp(24px,3.6vw,38px)' }}>Every plan, side by side.</h2>
       </Reveal>
+      <p className="compare-swipe-hint">← Swipe to see all plans →</p>
       <div className="compare-table-wrap">
         <table className="compare-table">
           <thead>
