@@ -33,7 +33,7 @@ export default function Blog() {
             <button type="button" className="btn btn-cta" onClick={scrollToPosts}>
               Read the latest <span className="arrow">↓</span>
             </button>
-            <Link to="/contact" className="btn btn-ghost">Talk to sales</Link>
+            <Link to="/contact" className="btn btn-cta">Talk to sales</Link>
           </div>
         </Reveal>
 
