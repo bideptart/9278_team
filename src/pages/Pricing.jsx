@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { plans } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
@@ -68,6 +69,28 @@ export default function Pricing() {
   const scrollToPlans = () =>
     document.getElementById('plans')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
+  const gridRef = useRef(null);
+  const slideRefs = useRef([]);
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid || window.innerWidth > 640) return;
+
+    const featuredIndex = plans.findIndex((p) => p.featured);
+    slideRefs.current[featuredIndex]?.scrollIntoView({ inline: 'center', block: 'nearest' });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('is-stack-active', entry.intersectionRatio > 0.6);
+        });
+      },
+      { root: grid, threshold: [0, 0.6, 1] }
+    );
+    slideRefs.current.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="kallus-theme">
       <section className="pricing-hero container">
@@ -99,35 +122,42 @@ export default function Pricing() {
         ))}
       </Reveal>
 
-      <div className="pricing-grid">
+      <p className="pricing-swipe-hint">← Swipe to compare plans →</p>
+
+      <div className="pricing-grid" ref={gridRef}>
         {plans.map((p, i) => (
-          <Reveal
-            as="div"
-            delay={i * 90}
-            className={`price-card${p.featured ? ' featured' : ''}`}
+          <div
+            className={`price-card-slide${p.featured ? ' is-stack-active' : ''}`}
+            ref={(el) => (slideRefs.current[i] = el)}
             key={p.name}
           >
-            {p.featured && <span className="badge">Most popular</span>}
-            <h3 className="plan-name">{p.name}</h3>
-            <p className="plan-blurb">{p.blurb}</p>
-            <div className="plan-rate"><span>{p.price}</span> /mo</div>
-            <div className="plan-meta">{p.meta}</div>
-            <ul className="plan-features">
-              {p.features.map((f) => (
-                <li key={f}>{f}</li>
-              ))}
-            </ul>
-            <div className="plan-actions">
-              <Link
-                to="/contact"
-                className="btn btn-sheen"
-                style={{ width: '100%', justifyContent: 'center' }}
-              >
-                Buy {p.price} now
-              </Link>
-            </div>
-            <p className="plan-gst">GST charged at checkout.</p>
-          </Reveal>
+            <Reveal
+              as="div"
+              delay={i * 90}
+              className={`price-card${p.featured ? ' featured' : ''}`}
+            >
+              {p.featured && <span className="badge">Most popular</span>}
+              <h3 className="plan-name">{p.name}</h3>
+              <p className="plan-blurb">{p.blurb}</p>
+              <div className="plan-rate"><span>{p.price}</span> /mo</div>
+              <div className="plan-meta">{p.meta}</div>
+              <ul className="plan-features">
+                {p.features.map((f) => (
+                  <li key={f}>{f}</li>
+                ))}
+              </ul>
+              <div className="plan-actions">
+                <Link
+                  to="/contact"
+                  className="btn btn-sheen"
+                  style={{ width: '100%', justifyContent: 'center' }}
+                >
+                  Buy {p.price} now
+                </Link>
+              </div>
+              <p className="plan-gst">GST charged at checkout.</p>
+            </Reveal>
+          </div>
         ))}
       </div>
 

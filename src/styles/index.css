@@ -260,8 +260,31 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 
 /* ---- pricing ---- */
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
-.price-card { position: relative; display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 30px 26px; }
+.price-card { position: relative; display: flex; flex-direction: column; height: 100%; background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 30px 26px; }
 .price-card.featured { border-color: var(--accent-live); box-shadow: 0 0 0 1px var(--accent-live) inset; }
+.pricing-swipe-hint { display: none; }
+
+/* mobile — stacked/peeking card carousel, featured plan front and center */
+@media (max-width: 640px) {
+  .pricing-swipe-hint {
+    display: block; text-align: center; margin: 0 0 14px;
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .04em; color: var(--fg-dim);
+  }
+  .pricing-grid {
+    display: flex; gap: 14px; align-items: stretch;
+    overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    padding: 10px 22vw 28px; margin: 0 calc(var(--pad) * -1);
+    scrollbar-width: none;
+  }
+  .pricing-grid::-webkit-scrollbar { display: none; }
+  .price-card-slide {
+    flex: 0 0 74vw; scroll-snap-align: center;
+    transform: scale(.9); opacity: .55;
+    transition: transform .35s ease, opacity .35s ease;
+  }
+  .price-card-slide.is-stack-active { transform: scale(1); opacity: 1; z-index: 2; }
+  .price-card-slide .price-card { height: 100%; }
+}
 .badge { position: absolute; top: -11px; left: 26px; background: var(--accent-live); color: #fff; font-family: var(--font-mono); font-size: 11px; letter-spacing: .05em; padding: 4px 10px; border-radius: 999px; font-weight: 600; }
 .plan-name { font-size: 22px; margin-bottom: 10px; }
 .plan-rate { font-size: 34px; font-weight: 700; letter-spacing: -0.02em; }
