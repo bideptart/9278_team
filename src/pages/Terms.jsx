@@ -42,9 +42,9 @@ export default function Terms() {
         </p>
         <h2>Contact</h2>
         <p>
-          Questions about these terms? Contact <a href="mailto:legal@nixxy.ai">legal@nixxy.ai</a>.
+          Questions about these terms? Contact <a href="mailto:legal@kall.us">legal@kall.us</a>.
         </p>
-        <p style={{ color: 'var(--fg-dim)', fontSize: 13 }}>© 2026 NIXXY — All rights reserved.</p>
+        <p style={{ color: 'var(--fg-dim)', fontSize: 13 }}>© 2026 KALL.US — All rights reserved.</p>
       </div>
     </div>
   );

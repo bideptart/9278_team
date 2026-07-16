@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo.jsx';
 
-const DARK_ROUTES = ['/', '/pricing', '/blog'];
+const DARK_ROUTES = ['/', '/pricing', '/blog', '/how-it-works'];
 
 export default function Footer() {
   const { pathname } = useLocation();
@@ -30,13 +30,13 @@ export default function Footer() {
             <h5>Company</h5>
             <Link to="/blog">Blog</Link>
             <Link to="/contact">Book a demo</Link>
-            <a href="mailto:hello@nixxy.ai">Contact sales</a>
+            <a href="mailto:hello@kall.us">Contact sales</a>
             <Link to="/privacy-policy">Privacy Policy</Link>
             <Link to="/terms-and-conditions">Terms &amp; Conditions</Link>
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© 2026 NIXXY — AI Voice Receptionist. All rights reserved.</span>
+          <span>© 2026 KALL.US — AI Voice Receptionist. All rights reserved.</span>
           <div className="socials">
             <a href="https://x.com" target="_blank" rel="noreferrer">X</a>
             <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
