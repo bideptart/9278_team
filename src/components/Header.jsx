@@ -18,6 +18,7 @@ export default function Header() {
   const { pathname } = useLocation();
   const isHome = pathname === '/';
   const kallus = KALLUS_ROUTES.includes(pathname);
+  const isHowItWorks = pathname === '/how-it-works';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -27,7 +28,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`site-header${open ? ' open' : ''}${scrolled ? ' scrolled' : ''}${isHome ? ' home-header' : ''}`}>
+    <header className={`site-header${open ? ' open' : ''}${scrolled ? ' scrolled' : ''}${isHome ? ' home-header' : ''}${isHowItWorks ? ' nav-animated' : ''}`}>
       <div className="container bar">
         <Link to="/" className="brand" onClick={() => setOpen(false)}>
           <Logo />
@@ -42,6 +43,9 @@ export default function Header() {
             ))}
           </nav>
           <div className="nav-actions">
+              {isHowItWorks && (
+                <Link to="/signup" className="btn btn-ghost" onClick={() => setOpen(false)}>Sign in</Link>
+              )}
               <Link to="/signup" className={`btn btn-sheen${isHome ? ' home-cta' : ''}${kallus ? ' kallus-theme' : ''}`} onClick={() => setOpen(false)}>Get started</Link>
 
           </div>
