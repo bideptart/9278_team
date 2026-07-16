@@ -270,7 +270,11 @@ h1, h2, h3, h4 { font-weight: 600; line-height: 1.08; letter-spacing: -0.02em; m
 .kallus-theme .cta-band h2 { color: var(--ink); }
 .kallus-theme .cta-band p { color: rgba(11,18,32,.72); }
 .kallus-theme .cta-band .eyebrow { background: rgba(11,18,32,.08); border-color: rgba(11,18,32,.16); color: var(--ink); }
-.kallus-theme .cta-band .eyebrow::before { background: var(--ink); }
+.kallus-theme .cta-band .eyebrow::before {
+  content: '★';
+  width: auto; height: auto; border-radius: 0; background: none;
+  color: var(--ink); font-size: 10px;
+}
 .kallus-theme .cta-band .btn-sheen { background: var(--ink); color: #fff; box-shadow: 0 8px 20px -10px rgba(11,18,32,.5); }
 .kallus-theme .cta-band .btn-sheen:hover { filter: brightness(1.2); }
 .kallus-theme .cta-band .btn-ghost { color: var(--ink); border-color: rgba(11,18,32,.34); background: none; }

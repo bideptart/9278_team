@@ -121,9 +121,7 @@ export default function Pricing() {
         GST charged at checkout. Top-ups available from ₹500. Cancel anytime.
       </p>
 
-      </div>
-
-      <section className="cta-band" style={{ marginTop: 80 }}>
+      <div className="cta-band" style={{ marginTop: 80, borderRadius: 20 }}>
         <div className="container">
           <Reveal>
             <p className="eyebrow" style={{ justifyContent: 'center' }}>Ready when you are</p>
@@ -137,7 +135,9 @@ export default function Pricing() {
             </div>
           </Reveal>
         </div>
-      </section>
+      </div>
+
+      </div>
     </div>
   );
 }
