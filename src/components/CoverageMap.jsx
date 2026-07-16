@@ -75,9 +75,9 @@ export default function CoverageMap() {
               <circle className="za-pulse" r="9" />
               <circle className="za-dot" r="8" />
               <VoiceIcon />
-              <g className="za-flag-badge" transform="translate(4,-12)">
-                <rect x="-1" y="-1" width="16" height="11" rx="2" />
-                <image href={c.flag} x="0" y="0" width="14" height="9" preserveAspectRatio="xMidYMid slice" />
+              <g className="za-flag-badge" transform="translate(6,-18)">
+                <rect x="-1.5" y="-1.5" width="25" height="17" rx="3" />
+                <image href={c.flag} x="0" y="0" width="22" height="14" preserveAspectRatio="xMidYMid slice" />
               </g>
               <text className="za-label" y="22">{c.name}</text>
             </g>
