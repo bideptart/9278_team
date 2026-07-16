@@ -62,7 +62,7 @@ export default function IndustryExplorer() {
               <span className="ie-bars"><i /><i /><i /><i /></span>
             </div>
             <div className="bubble caller"><span className="bubble-who">Caller</span>{cur.sample.caller}</div>
-            <div className="bubble agent"><span className="bubble-who">NIXXY</span>{cur.sample.agent}</div>
+            <div className="bubble agent"><span className="bubble-who">KallUs</span>{cur.sample.agent}</div>
           </div>
         </div>
 

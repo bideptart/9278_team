@@ -57,7 +57,7 @@ export default function Home() {
               </ul>
             </Reveal>
             <Reveal className="compare-card compare-with" delay={90}>
-              <span className="compare-badge with">📞 With NIXXY</span>
+              <span className="compare-badge with">📞 With KallUs</span>
               <ul className="compare-list">
                 {missedCallWith.map((t) => (
                   <li key={t}><span className="compare-icon with">✓</span>{t}</li>

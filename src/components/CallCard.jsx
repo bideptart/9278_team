@@ -60,12 +60,13 @@ export default function CallCard() {
         <div className="cc-header-left">
           <div className="cc-avatar-badge">
             <svg viewBox="0 0 24 24" fill="none">
-              <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
-              <path d="M16.2 8.6a5 5 0 0 1 0 6.8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              <path d="M12 14.5a3 3 0 0 0 3-3v-5a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3z" fill="currentColor" />
+              <path d="M18.5 11.5a6.5 6.5 0 0 1-13 0" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              <path d="M12 18v3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
             </svg>
           </div>
           <div>
-            <div className="cc-agent-name">NIXXY Voice Agent</div>
+            <div className="cc-agent-name">KallUs Voice Agent</div>
             <div className="cc-agent-meta">Inbound · Live call</div>
           </div>
         </div>
@@ -75,14 +76,14 @@ export default function CallCard() {
       <div className="call-transcript" ref={bodyRef}>
         {visible.map((t, i) => (
           <div key={i} className={`bubble ${t.who}`}>
-            <span className="bubble-who">{t.who === 'agent' ? 'NIXXY' : 'Caller'}</span>
+            <span className="bubble-who">{t.who === 'agent' ? 'KallUs' : 'Caller'}</span>
             {t.text}
             <span className="bubble-tag">{t.tag}</span>
           </div>
         ))}
         {typing && nextWho && (
           <div className={`bubble ${nextWho} is-typing`}>
-            <span className="bubble-who">{nextWho === 'agent' ? 'NIXXY' : 'Caller'}</span>
+            <span className="bubble-who">{nextWho === 'agent' ? 'KallUs' : 'Caller'}</span>
             <span className="dots"><i /><i /><i /></span>
           </div>
         )}
