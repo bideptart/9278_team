@@ -543,6 +543,15 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   background: rgba(255,255,255,.55); border-radius: 999px; padding: 5px 12px; margin-bottom: 10px;
 }
 .article-image-placeholder p { color: rgba(11,18,32,.65); font-size: 13.5px; margin: 0; max-width: 46ch; margin-inline: auto; }
+.article-table-wrap { overflow-x: auto; margin: 8px 0 32px; border: 1px solid var(--border); border-radius: 14px; }
+.article-table { width: 100%; border-collapse: collapse; min-width: 480px; background: var(--bg-card); }
+.article-table th, .article-table td { padding: 14px 18px; text-align: left; font-size: 14.5px; }
+.article-table thead th { font-size: 13px; font-weight: 700; color: var(--ink); background: var(--accent-soft); border-bottom: 1px solid var(--border); white-space: nowrap; }
+.article-table tbody tr { border-bottom: 1px solid var(--border); }
+.article-table tbody tr:last-child { border-bottom: none; }
+.article-table tbody td { color: var(--fg-soft); }
+.article-table tbody td:first-child { color: var(--fg); font-weight: 500; }
+.related-posts .blog-card { display: block; }
 
 /* ---- roadmap ---- */
 .roadmap { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; counter-reset: step; }

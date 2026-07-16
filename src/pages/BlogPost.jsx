@@ -20,6 +20,23 @@ function ImagePlaceholder({ caption }) {
   );
 }
 
+function ArticleTable({ headers, rows }) {
+  return (
+    <div className="article-table-wrap">
+      <table className="article-table">
+        <thead>
+          <tr>{headers.map((h, i) => <th key={i}>{h}</th>)}</tr>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => (
+            <tr key={i}>{row.map((cell, j) => <td key={j}>{cell}</td>)}</tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 export default function BlogPost() {
   const { slug } = useParams();
   const post = blogPosts.find((p) => p.slug === slug);
@@ -54,6 +71,8 @@ export default function BlogPost() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [slug, tocIds]);
 
+  const related = blogPosts.filter((p) => p.slug !== slug).slice(0, 3);
+
   return (
     <div className="kallus-theme">
       <section className="page-hero container">
@@ -87,7 +106,7 @@ export default function BlogPost() {
                   {toc.map((item, i) => (
                     <li key={item.id} className={item.id === activeId ? 'active' : ''}>
                       <a href={`#${item.id}`} onClick={(e) => scrollToHeading(e, item.id)}>
-                        <span className="article-toc-num">{String(i + 1).padStart(2, '0')}</span>
+                        <span className="article-toc-num">{i + 1}.</span>
                         <span className="article-toc-label">{item.text}</span>
                       </a>
                     </li>
@@ -108,9 +127,24 @@ export default function BlogPost() {
                   </ul>
                 );
               }
+              if (block.type === 'table') return <ArticleTable headers={block.headers} rows={block.rows} key={i} />;
               if (block.type === 'image') return <ImagePlaceholder caption={block.caption} key={i} />;
               return null;
             })}
+
+            {post.faqs?.length > 0 && (
+              <>
+                <h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+                <div className="faq">
+                  {post.faqs.map((f) => (
+                    <details className="faq-item" name={`faq-${post.slug}`} key={f.q}>
+                      <summary>{f.q}</summary>
+                      <p>{f.a}</p>
+                    </details>
+                  ))}
+                </div>
+              </>
+            )}
           </Reveal>
         </div>
 
@@ -127,6 +161,31 @@ export default function BlogPost() {
             </Reveal>
           </div>
         </div>
+
+        {related.length > 0 && (
+          <section className="related-posts" style={{ marginTop: 80 }}>
+            <Reveal className="section-head" style={{ textAlign: 'center' }}>
+              <p className="eyebrow" style={{ justifyContent: 'center' }}>Keep reading</p>
+              <h2>Related reading</h2>
+              <p className="lead" style={{ margin: '12px auto 0' }}>Hand-picked next reads from the KallUs blog.</p>
+            </Reveal>
+            <div className="blog-grid" style={{ marginTop: 32 }}>
+              {related.map((p) => (
+                <Reveal as={Link} to={`/blog/${p.slug}`} className="blog-card" key={p.slug}>
+                  <div className="blog-card-media">
+                    <div className="blog-card-placeholder" aria-hidden="true" />
+                    <span className="blog-card-tag">{p.category}</span>
+                  </div>
+                  <div className="blog-card-body">
+                    <h3>{p.title}</h3>
+                    <p>{p.excerpt}</p>
+                    <p className="blog-meta">{p.author} · {p.readTime}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );
