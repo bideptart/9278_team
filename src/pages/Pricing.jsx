@@ -2,6 +2,39 @@ import { Link } from 'react-router-dom';
 import { plans } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
 
+const trustBadges = [
+  'HIPAA-ready',
+  'GST-compliant invoicing',
+  '99.9% uptime SLA',
+  'Cancel anytime',
+];
+
+const comparison = [
+  { feature: 'Included minutes', values: ['250 min', '800 min', '3,000 min'] },
+  { feature: 'Effective rate', values: ['₹12/min', '₹11/min', '₹10/min'] },
+  { feature: 'AI voice agents', values: ['2', '10', 'Unlimited'] },
+  { feature: 'Voice stack', values: ['Standard', 'Standard + premium', 'Realtime + premium'] },
+  { feature: 'Call recording', values: [true, true, true] },
+  { feature: 'Real-time transcription', values: [true, true, true] },
+  { feature: 'Support', values: ['Email', 'Priority', 'Dedicated success manager'] },
+  { feature: 'SLA', values: [false, false, true] },
+];
+
+const pricingTestimonials = [
+  {
+    quote: 'It paid for itself in the first week — we stopped losing after-hours bookings to voicemail.',
+    name: 'Dr. Anjali Rao',
+    role: 'Owner, Rao Family Dental',
+    metric: '+38% booked appointments',
+  },
+  {
+    quote: 'Front desk finally has time for patients in the room instead of the phone. Setup took an afternoon.',
+    name: 'Vikram Shah',
+    role: 'Practice Manager, CarePlus Clinics',
+    metric: '54% fewer missed calls',
+  },
+];
+
 const billing = [
   ['Prepaid wallet billing', 'Buy credit up front and your clinic\'s minutes draw down as patient calls come in. Top up anytime from ₹500.'],
   ['Per-second overage', 'Go past your included minutes and you\'re billed per second at your plan\'s effective rate — as low as ₹10/min on Scale.'],
@@ -59,6 +92,13 @@ export default function Pricing() {
       </section>
 
       <div className="container pricing-body" id="plans">
+
+      <Reveal className="trust-badges">
+        {trustBadges.map((b) => (
+          <span className="trust-badge" key={b}>✓ {b}</span>
+        ))}
+      </Reveal>
+
       <div className="pricing-grid">
         {plans.map((p, i) => (
           <Reveal
@@ -112,6 +152,55 @@ export default function Pricing() {
       </section>
 
       <div className="container pricing-body">
+
+      <Reveal className="section-head" style={{ marginTop: 80 }}>
+        <p className="eyebrow">Compare plans</p>
+        <h2 style={{ fontSize: 'clamp(24px,3.6vw,38px)' }}>Every plan, side by side.</h2>
+      </Reveal>
+      <div className="compare-table-wrap">
+        <table className="compare-table">
+          <thead>
+            <tr>
+              <th></th>
+              {plans.map((p) => (
+                <th key={p.name}>
+                  {p.name}
+                  {p.featured && <span className="badge" style={{ position: 'static', display: 'inline-block', marginLeft: 8 }}>Popular</span>}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {comparison.map((row) => (
+              <tr key={row.feature}>
+                <th scope="row">{row.feature}</th>
+                {row.values.map((v, i) => (
+                  <td key={i}>
+                    {typeof v === 'boolean' ? (v ? <span className="compare-yes">✓</span> : <span className="compare-no">—</span>) : v}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <Reveal className="section-head" style={{ marginTop: 80 }}>
+        <p className="eyebrow">What practices say</p>
+        <h2 style={{ fontSize: 'clamp(24px,3.6vw,38px)' }}>Real results from real clinics.</h2>
+      </Reveal>
+      <div className="grid grid-2">
+        {pricingTestimonials.map((t, i) => (
+          <Reveal className="quote-card" delay={i * 90} key={t.name}>
+            <div className="quote-metric">{t.metric}</div>
+            <p className="quote-text">"{t.quote}"</p>
+            <div className="quote-by">
+              <span className="quote-name">{t.name}</span>
+              <span className="quote-role">{t.role}</span>
+            </div>
+          </Reveal>
+        ))}
+      </div>
 
       <div className="section-head faq-head" style={{ marginTop: 80, textAlign: 'center' }}>
         <p className="eyebrow" style={{ justifyContent: 'center' }}>FAQ</p>
