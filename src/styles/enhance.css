@@ -977,7 +977,8 @@ html, body { max-width: 100%; overflow-x: clip; }
 .feat-page .btn-sheen { background: linear-gradient(90deg, #6fa524, #3a5a0c); box-shadow: 0 8px 20px -10px rgba(74,124,15,.6); }
 
 /* ---- hero coverage map: SA provinces + animated city network ---- */
-.za-map { padding: 0; position: relative; }
+/* top/bottom padding reserves space so greeting cards never cover the map */
+.za-map { padding: 96px 0 118px; position: relative; }
 .za-map-svg { display: block; width: 100%; height: auto; overflow: visible; position: relative; z-index: 1; }
 .za-greetings { position: absolute; inset: 0; pointer-events: none; }
 .za-greet-card {
@@ -1009,6 +1010,7 @@ html, body { max-width: 100%; overflow-x: clip; }
 @keyframes za-wave { 0%, 100% { height: 5px; } 50% { height: 16px; } }
 @keyframes za-greet-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 @media (max-width: 640px) {
+  .za-map { padding: 68px 0 86px; }
   .za-greet-card { padding: 7px 10px; border-radius: 11px; }
   .za-greet-word { font-size: 12px; }
   .za-greet-lang { font-size: 8px; }
