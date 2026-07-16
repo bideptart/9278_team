@@ -247,7 +247,9 @@
   width: 100%; display: flex; align-items: center; gap: 14px;
   background: none; border: none; border-bottom: 1px solid var(--border);
   color: var(--fg-muted); font: inherit; text-align: left; cursor: pointer;
-  padding: 10px 6px; transition: color .2s ease, padding .25s ease, background .25s ease;
+  padding: 10px 6px; transition: color .2s ease, padding .25s ease, background .25s ease,
+    transform .3s cubic-bezier(.22,.61,.36,1), opacity .3s ease;
+  transform-origin: left center;
 }
 /* gradient glow border on hover/active — matches the cards */
 .ie-item::before {
@@ -398,6 +400,9 @@ html, body { max-width: 100%; overflow-x: clip; }
 
 .home-page .ie-item::before { background: linear-gradient(120deg, rgba(111,165,36,.55), transparent 55%); }
 .home-page .ie-item.active { box-shadow: 0 0 26px -12px rgba(111,165,36,.55); background: linear-gradient(90deg, rgba(111,165,36,.08), transparent 80%); }
+/* hover focus: active item pops forward, its siblings recede */
+.home-page .ie-list:hover .ie-item:not(.active) { opacity: .5; transform: scale(.97); }
+.home-page .ie-item.active { transform: scale(1.035); z-index: 1; }
 .home-page .ie-panel-glow { background: radial-gradient(380px circle at 85% -10%, rgba(111,165,36,.16), transparent 60%); }
 .home-page .ie-call { background: #ffffff; border-color: rgba(11,18,32,.1); box-shadow: 0 10px 28px -18px rgba(11,18,32,.18); }
 .home-page .ie-tag { color: rgba(11,18,32,.45); }
