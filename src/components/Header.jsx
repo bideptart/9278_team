@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Logo from './Logo.jsx';
 
 const links = [
@@ -10,15 +10,9 @@ const links = [
   { to: '/blog', label: 'Blog' },
 ];
 
-const KALLUS_ROUTES = ['/pricing', '/blog'];
-
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { pathname } = useLocation();
-  const isHome = pathname === '/';
-  const kallus = KALLUS_ROUTES.includes(pathname);
-  const isHowItWorks = pathname === '/how-it-works';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -28,7 +22,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`site-header${open ? ' open' : ''}${scrolled ? ' scrolled' : ''}${isHome ? ' home-header' : ''}${isHowItWorks ? ' nav-animated' : ''}`}>
+    <header className={`site-header nav-animated${open ? ' open' : ''}${scrolled ? ' scrolled' : ''}`}>
       <div className="container bar">
         <Link to="/" className="brand" onClick={() => setOpen(false)}>
           <Logo />
@@ -43,11 +37,8 @@ export default function Header() {
             ))}
           </nav>
           <div className="nav-actions">
-              {isHowItWorks && (
-                <Link to="/signup" className="btn btn-ghost" onClick={() => setOpen(false)}>Sign in</Link>
-              )}
-              <Link to="/signup" className={`btn btn-sheen${isHome ? ' home-cta' : ''}${kallus ? ' kallus-theme' : ''}`} onClick={() => setOpen(false)}>Get started</Link>
-
+              <Link to="/signup" className="btn btn-ghost" onClick={() => setOpen(false)}>Sign in</Link>
+              <Link to="/signup" className="btn btn-sheen" onClick={() => setOpen(false)}>Get started</Link>
           </div>
         </div>
         <button className="nav-toggle" aria-label="Menu" onClick={() => setOpen((o) => !o)}>

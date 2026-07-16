@@ -201,21 +201,22 @@ export default function Industries() {
         ))}
       </div>
 
-      <div className="cta-band" style={{ marginTop: 80, borderRadius: 20 }}>
+      </div>
+
+      <section className="cta-band hiw-cta" style={{ marginTop: 80 }}>
         <div className="glow glow-cta" aria-hidden="true" />
         <div className="container">
           <Reveal>
-            <span className="cta-badge">★ Ready when you are</span>
+            <p className="hiw-badge hiw-badge--center hiw-badge--star">★ Ready when you are</p>
             <h2>Don't see your industry?</h2>
             <p>If your business runs on phone calls, KALLUS can answer them. Let's build your agent.</p>
             <div className="cta-row" style={{ justifyContent: 'center' }}>
-              <Link to="/contact" className="btn btn-cta">Book a demo <span className="arrow">→</span></Link>
-              <Link to="/pricing" className="btn btn-ghost">See pricing</Link>
+              <Link to="/contact" className="btn btn-sheen">Book a demo <span className="arrow">→</span></Link>
+              <Link to="/pricing" className="btn btn-ghost hiw-cta-ghost">See pricing</Link>
             </div>
           </Reveal>
         </div>
-      </div>
-      </div>
+      </section>
     </div>
   );
 }

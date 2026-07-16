@@ -386,23 +386,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 }
 .kallus-theme .chip-btn.active { background: var(--accent-mid); color: var(--ink); border-color: var(--accent-mid); }
 .kallus-theme .metric-value { color: var(--ink); }
-.kallus-theme .cta-band {
-  border-top: 1px solid transparent;
-  background: linear-gradient(130deg, var(--accent), var(--accent-2));
-  margin-top: 0;
-}
-.kallus-theme .cta-band h2 { color: var(--ink); }
-.kallus-theme .cta-band p { color: rgba(11,18,32,.72); }
-.kallus-theme .cta-band .eyebrow { background: rgba(11,18,32,.08); border-color: rgba(11,18,32,.16); color: var(--ink); }
-.kallus-theme .cta-band .eyebrow::before {
-  content: '★';
-  width: auto; height: auto; border-radius: 0; background: none;
-  color: var(--ink); font-size: 10px;
-}
-.kallus-theme .cta-band .btn-sheen { background: var(--ink); color: #fff; box-shadow: 0 8px 20px -10px rgba(11,18,32,.5); }
-.kallus-theme .cta-band .btn-sheen:hover { filter: brightness(1.2); }
-.kallus-theme .cta-band .btn-ghost { color: var(--ink); border-color: rgba(11,18,32,.34); background: none; }
-.kallus-theme .cta-band .btn-ghost:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
 .kallus-theme .billing-shade { background: var(--bg-tint); }
 .kallus-theme .usecase-tag { color: var(--accent-mid); }
 .kallus-theme .glow-card.usecase:hover h3 { color: var(--accent-deep-kallus); }
@@ -718,15 +701,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   transition: max-height .35s ease, opacity .25s ease, margin .35s ease;
 }
 .home-page .faq-item[open] p { max-height: 300px !important; margin: 14px 0 0; opacity: 1; }
-
-.home-page .cta-band { border-top: 1px solid transparent; background: linear-gradient(130deg, #d1f792, #aee05a); margin-top: 0; }
-.home-page .cta-band h2 { color: #0b1220; }
-.home-page .cta-band p { color: rgba(11,18,32,.72); }
-.home-page .cta-band .eyebrow, .home-page .cta-band .eyebrow::before { color: rgba(11,18,32,.55); }
-.home-page .cta-band .btn-sheen { background: #0b1220; box-shadow: 0 8px 20px -10px rgba(11,18,32,.5); }
-.home-page .cta-band .btn-ghost { color: #0b1220; border-color: rgba(11,18,32,.34); }
-.home-page .cta-band .btn-ghost:hover { background: #0b1220; color: #fff; border-color: #0b1220; }
-.home-page .cta-band .glow-cta { display: none; }
 
 /* ---- chat widget (all pages) ---- */
 .chat-widget { position: fixed; right: 24px; bottom: 24px; z-index: 200; display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }

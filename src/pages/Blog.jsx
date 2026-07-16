@@ -153,20 +153,22 @@ export default function Blog() {
           </>
         )}
 
-        <div className="cta-band" style={{ marginTop: 80, borderRadius: 20 }}>
-          <div className="container">
-            <Reveal>
-              <p className="eyebrow" style={{ justifyContent: 'center' }}>Ready when you are</p>
-              <h2>Give your front desk an AI receptionist.</h2>
-              <p>Pick a plan, forward your number, and start answering every call the same day.</p>
-              <div className="cta-row" style={{ justifyContent: 'center' }}>
-                <Link to="/pricing" className="btn btn-sheen">See pricing <span className="arrow">→</span></Link>
-                <Link to="/contact" className="btn btn-ghost">Talk to sales</Link>
-              </div>
-            </Reveal>
-          </div>
-        </div>
       </div>
+
+      <section className="cta-band hiw-cta">
+        <div className="glow glow-cta" aria-hidden="true" />
+        <div className="container">
+          <Reveal>
+            <p className="hiw-badge hiw-badge--center hiw-badge--star">★ Ready when you are</p>
+            <h2>Give your front desk an AI receptionist.</h2>
+            <p>Pick a plan, forward your number, and start answering every call the same day.</p>
+            <div className="cta-row" style={{ justifyContent: 'center' }}>
+              <Link to="/pricing" className="btn btn-sheen">See pricing <span className="arrow">→</span></Link>
+              <Link to="/contact" className="btn btn-ghost hiw-cta-ghost">Talk to sales</Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
     </div>
   );
 }

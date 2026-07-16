@@ -1,15 +1,9 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Logo from './Logo.jsx';
 
-const DARK_ROUTES = ['/', '/pricing', '/blog', '/how-it-works', '/features'];
-
 export default function Footer() {
-  const { pathname } = useLocation();
-  const dark = DARK_ROUTES.some((r) => pathname === r || pathname.startsWith(`${r}/`));
-  const isIndustries = pathname === '/industries';
-
   return (
-    <footer className={`site-footer${dark ? ' dark' : ''}${isIndustries ? ' industries-footer-theme' : ''}`}>
+    <footer className="site-footer dark">
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
@@ -36,7 +30,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© 2026 {isIndustries ? 'KALLUS' : 'KALL.US'} — AI Voice Receptionist. All rights reserved.</span>
+          <span>© 2026 KALL.US — AI Voice Receptionist. All rights reserved.</span>
           <div className="socials">
             <a href="https://x.com" target="_blank" rel="noreferrer">X</a>
             <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>

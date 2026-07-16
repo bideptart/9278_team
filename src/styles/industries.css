@@ -653,32 +653,6 @@
   .industries-theme .timeline-row.left .timeline-tags { justify-content: flex-start; }
 }
 
-.industries-theme .cta-band {
-  background: linear-gradient(120deg, var(--accent) 0%, #9ed14f 100%);
-  border-top: none;
-  color: var(--ink);
-}
-.industries-theme .cta-band h2 { color: var(--ink); }
-.industries-theme .cta-band p { color: var(--accent-ink); opacity: .75; }
-.industries-theme .cta-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255, 255, 255, .65);
-  border: 1px solid rgba(255, 255, 255, .8);
-  border-radius: 999px;
-  padding: 6px 16px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--accent-deep);
-  margin-bottom: 18px;
-}
-.industries-theme .glow-cta {
-  background: radial-gradient(circle, rgba(255, 255, 255, .25), transparent 70%);
-}
-
 /* ---- footer — dark navy theme matching the reference hero (industries page only) ---- */
 .industries-footer-theme {
   background: #0b1220;
