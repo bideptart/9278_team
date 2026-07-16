@@ -97,6 +97,9 @@
   background-clip: text;
   color: transparent;
 }
+.industries-theme .ind-hero-heading {
+  font-size: clamp(28px, 4vw, 44px);
+}
 .industries-theme .ind-hero {
   display: grid;
   grid-template-columns: 1.1fr .9fr;
@@ -137,7 +140,7 @@
   left: 50%;
   bottom: -16px;
   transform: translateX(-50%);
-  width: 453px;
+  width: calc(var(--laptop-w) * 0.94);
   height: 29px;
   background: radial-gradient(ellipse, rgba(11, 18, 32, .3), transparent 72%);
   filter: blur(4px);
@@ -190,7 +193,7 @@
   z-index: 6;
 }
 .industries-theme .ind-laptop-hinge {
-  width: 400px;
+  width: calc(var(--laptop-w) * 0.833);
   height: 7px;
   background: linear-gradient(180deg, #050607, #1c1e21 60%, #050607);
   border-radius: 2px;
@@ -459,12 +462,36 @@
 }
 @media (max-width: 960px) {
   .industries-theme .ind-hero { grid-template-columns: 1fr; }
-  .industries-theme .ind-hero-visual { min-height: 400px; order: -1; padding: 24px; justify-content: center; }
+  .industries-theme .ind-hero-visual { min-height: 400px; order: -1; padding: 24px; margin-right: 0; justify-content: center; }
   .industries-theme .ind-laptop-unit { --laptop-w: 400px; }
+}
+@media (max-width: 700px) {
+  .industries-theme .ind-laptop-content { gap: 16px; }
+  .industries-theme .ind-laptop-info { width: 104px; }
+  .industries-theme .ind-laptop-detail { max-width: none; }
 }
 @media (max-width: 560px) {
   .industries-theme .ind-hero-visual { min-height: 260px; padding: 12px; }
   .industries-theme .ind-laptop-unit { --laptop-w: 280px; }
+  .industries-theme .ind-laptop-screen { padding: 14px 16px 10px; }
+  .industries-theme .ind-laptop-content { gap: 10px; }
+  .industries-theme .ind-laptop-info { width: 88px; gap: 5px; }
+  .industries-theme .ind-phone-avatar { width: 44px; height: 44px; margin-top: 0; font-size: 20px; }
+  .industries-theme .ind-phone-name { font-size: 12px; min-height: 30px; }
+  .industries-theme .ind-phone-status { font-size: 10px; }
+  .industries-theme .ind-phone-wave { height: 14px; }
+  .industries-theme .ind-laptop-detail { gap: 7px; }
+  .industries-theme .ind-phone-transcript { gap: 4px; }
+  .industries-theme .ind-phone-bubble { font-size: 10px; padding: 5px 8px; min-height: 26px; line-height: 1.25; }
+  .industries-theme .board-tag { font-size: 9px; padding: 2px 7px; }
+  .industries-theme .ind-phone-top { font-size: 11px; gap: 6px; }
+}
+@media (max-width: 400px) {
+  .industries-theme .ind-hero-heading { font-size: 23px; }
+  .industries-theme .ind-laptop-content { flex-direction: column; height: auto; gap: 8px; }
+  .industries-theme .ind-laptop-info { width: 100%; flex-direction: row; justify-content: center; gap: 10px; }
+  .industries-theme .ind-phone-name { min-height: 0; -webkit-line-clamp: 1; }
+  .industries-theme .ind-laptop-detail { width: 100%; max-width: none; }
 }
 
 /* ---- connected timeline — circular nodes on a drawing line, alternating sides ---- */
@@ -629,7 +656,8 @@
   border-top: none;
 }
 .industries-footer-theme .brand { color: #fff; }
-.industries-footer-theme .logo-img { filter: brightness(0) invert(1); }
+.industries-footer-theme .logo-mark { color: #fff; }
+.industries-footer-theme .logo-wave { stroke: #9fe6b8; }
 .industries-footer-theme .footer-brand p { color: #8a93a6; }
 .industries-footer-theme .footer-col h5 { color: #5c6b85; }
 .industries-footer-theme .footer-col a { color: #a9b2c3; }

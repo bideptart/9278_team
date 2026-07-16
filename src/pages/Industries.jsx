@@ -59,7 +59,7 @@ export default function Industries() {
         <div className="ind-hero-copy">
           <Reveal>
             <p className="eyebrow ind-eyebrow-pill">Industries</p>
-            <h1 style={{ fontSize: 'clamp(32px,4vw,44px)' }}>
+            <h1 className="ind-hero-heading">
               Wherever the phone rings,<br /><span className="grad ind-grad">KALLUS answers.</span>
             </h1>
             <p className="lead" style={{ marginTop: 24 }}>
