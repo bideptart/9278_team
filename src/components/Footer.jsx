@@ -6,13 +6,14 @@ const DARK_ROUTES = ['/', '/pricing', '/blog', '/how-it-works'];
 export default function Footer() {
   const { pathname } = useLocation();
   const dark = DARK_ROUTES.includes(pathname);
+  const isIndustries = pathname === '/industries';
 
   return (
-    <footer className={`site-footer${dark ? ' dark' : ''}`}>
+    <footer className={`site-footer${dark ? ' dark' : ''}${isIndustries ? ' industries-footer-theme' : ''}`}>
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
-            <span className="brand"><Logo /></span>
+            <span className="brand">{isIndustries ? 'KALLUS' : <Logo />}</span>
             <p>
               The AI voice receptionist that answers every call, books every
               appointment, and never sleeps — so your team can focus on the work
@@ -36,7 +37,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© 2026 KALL.US — AI Voice Receptionist. All rights reserved.</span>
+          <span>© 2026 {isIndustries ? 'KALLUS' : 'KALL.US'} — AI Voice Receptionist. All rights reserved.</span>
           <div className="socials">
             <a href="https://x.com" target="_blank" rel="noreferrer">X</a>
             <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
