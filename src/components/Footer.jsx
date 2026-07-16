@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo.jsx';
 
-const DARK_ROUTES = ['/', '/pricing', '/blog', '/how-it-works'];
+const DARK_ROUTES = ['/', '/pricing', '/blog', '/how-it-works', '/features'];
 
 export default function Footer() {
   const { pathname } = useLocation();

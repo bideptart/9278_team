@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { blogPosts } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
@@ -32,6 +33,26 @@ export default function BlogPost() {
     : post.body;
 
   const toc = post.body.filter((b) => b.type === 'h2').map((b) => ({ text: b.text, id: headingId(b.text) }));
+  const [activeId, setActiveId] = useState(toc[0]?.id ?? null);
+  const tocIds = useRef(toc.map((t) => t.id)).current;
+
+  useEffect(() => {
+    if (tocIds.length === 0) return;
+    const headings = tocIds.map((id) => document.getElementById(id)).filter(Boolean);
+    if (headings.length === 0) return;
+
+    const OFFSET = 120;
+    const onScroll = () => {
+      let current = headings[0].id;
+      for (const h of headings) {
+        if (h.getBoundingClientRect().top - OFFSET <= 0) current = h.id;
+      }
+      setActiveId(current);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [slug, tocIds]);
 
   return (
     <div className="kallus-theme">
@@ -61,11 +82,14 @@ export default function BlogPost() {
           {toc.length > 0 && (
             <aside className="article-sidebar">
               <nav className="article-toc" aria-label="Table of contents">
-                <p className="article-toc-title">Table of contents</p>
+                <p className="article-toc-title">— Table of contents</p>
                 <ul>
-                  {toc.map((item) => (
-                    <li key={item.id}>
-                      <a href={`#${item.id}`} onClick={(e) => scrollToHeading(e, item.id)}>{item.text}</a>
+                  {toc.map((item, i) => (
+                    <li key={item.id} className={item.id === activeId ? 'active' : ''}>
+                      <a href={`#${item.id}`} onClick={(e) => scrollToHeading(e, item.id)}>
+                        <span className="article-toc-num">{String(i + 1).padStart(2, '0')}</span>
+                        <span className="article-toc-label">{item.text}</span>
+                      </a>
                     </li>
                   ))}
                 </ul>

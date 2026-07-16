@@ -163,9 +163,9 @@ export default function Pricing() {
             <tr>
               <th></th>
               {plans.map((p) => (
-                <th key={p.name}>
+                <th key={p.name} className={p.featured ? 'compare-featured-col' : ''}>
                   {p.name}
-                  {p.featured && <span className="badge" style={{ position: 'static', display: 'inline-block', marginLeft: 8 }}>Popular</span>}
+                  {p.featured && <span className="compare-popular">Popular</span>}
                 </th>
               ))}
             </tr>
@@ -175,7 +175,7 @@ export default function Pricing() {
               <tr key={row.feature}>
                 <th scope="row">{row.feature}</th>
                 {row.values.map((v, i) => (
-                  <td key={i}>
+                  <td key={i} className={plans[i]?.featured ? 'compare-featured-col' : ''}>
                     {typeof v === 'boolean' ? (v ? <span className="compare-yes">✓</span> : <span className="compare-no">—</span>) : v}
                   </td>
                 ))}
@@ -185,22 +185,31 @@ export default function Pricing() {
         </table>
       </div>
 
-      <Reveal className="section-head" style={{ marginTop: 80 }}>
-        <p className="eyebrow">What practices say</p>
-        <h2 style={{ fontSize: 'clamp(24px,3.6vw,38px)' }}>Real results from real clinics.</h2>
-      </Reveal>
-      <div className="grid grid-2">
-        {pricingTestimonials.map((t, i) => (
-          <Reveal className="quote-card" delay={i * 90} key={t.name}>
-            <div className="quote-metric">{t.metric}</div>
-            <p className="quote-text">"{t.quote}"</p>
-            <div className="quote-by">
-              <span className="quote-name">{t.name}</span>
-              <span className="quote-role">{t.role}</span>
-            </div>
-          </Reveal>
-        ))}
       </div>
+
+      <section className="section billing-shade">
+        <div className="container">
+          <Reveal className="section-head">
+            <p className="eyebrow">What practices say</p>
+            <h2>Real results from real clinics.</h2>
+          </Reveal>
+          <div className="grid grid-2">
+            {pricingTestimonials.map((t, i) => (
+              <Reveal className="usecase glow-card testimonial-card" delay={i * 90} key={t.name}>
+                <span className="usecase-tag">/{String(i + 1).padStart(2, '0')}</span>
+                <p className="quote-text">"{t.quote}"</p>
+                <div className="quote-by">
+                  <span className="quote-name">{t.name}</span>
+                  <span className="quote-role">{t.role}</span>
+                </div>
+                <div className="quote-metric">{t.metric}</div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="container pricing-body">
 
       <div className="section-head faq-head" style={{ marginTop: 80, textAlign: 'center' }}>
         <p className="eyebrow" style={{ justifyContent: 'center' }}>FAQ</p>
