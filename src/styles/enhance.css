@@ -49,9 +49,11 @@
 .brand { display: inline-flex; align-items: center; gap: 9px; }
 .brand-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent-live); box-shadow: 0 0 12px rgba(111,165,36,.8); }
 
-/* KALLUS.IO wordmark logo */
+/* KallUS wordmark logo */
 .logo-mark { display: inline-flex; align-items: center; gap: 10px; color: var(--fg); }
 .logo-icon { height: 34px; width: auto; display: block; }
+.logo-wave { stroke: #4d7c0f; }
+.site-footer.dark .logo-wave { stroke: #9fe6b8; }
 .logo-word { font-family: var(--font-sans); font-weight: 800; font-size: 20px; letter-spacing: -0.01em; }
 .footer-brand .logo-icon { height: 40px; }
 .footer-brand .logo-word { font-size: 24px; }

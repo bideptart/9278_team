@@ -15,6 +15,7 @@ export default function Blog() {
     ? byCategory.filter((p) => p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q))
     : byCategory;
   const popularTags = blogCategories.filter((c) => c !== 'All');
+  const [featured, ...rest] = posts;
 
   return (
     <div className="kallus-theme">
@@ -34,7 +35,9 @@ export default function Blog() {
             </button>
             <Link to="/contact" className="btn btn-ghost">Talk to sales</Link>
           </div>
+        </Reveal>
 
+        <Reveal className="blog-search-wrap">
           <form
             className="blog-search"
             onSubmit={(e) => { e.preventDefault(); scrollToPosts(); }}
@@ -59,55 +62,95 @@ export default function Blog() {
               ))}
             </p>
           )}
+
+          <div className="blog-stats">
+            {blogStats.map((m) => (
+              <div className="blog-stat-card" key={m.label}>
+                <div className="blog-stat-value">{m.value}</div>
+                <div className="blog-stat-label">{m.label}</div>
+              </div>
+            ))}
+          </div>
         </Reveal>
       </section>
 
-      <div className="metrics-band">
-        <div className="container metrics">
-          {blogStats.map((m) => (
-            <Reveal as="div" className="metric" key={m.label}>
-              <div className="metric-value">{m.value}</div>
-              <div className="metric-label">{m.label}</div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-
       <div className="container page-body" id="posts">
-        {blogCategories.length > 1 && (
-          <div className="blog-filters">
-            {blogCategories.map((c) => (
-              <button
-                key={c}
-                type="button"
-                className={`chip-btn${category === c ? ' active' : ''}`}
-                onClick={() => setCategory(c)}
-              >
-                {c}
-              </button>
-            ))}
-          </div>
-        )}
-
         {posts.length === 0 ? (
           <p className="lead" style={{ textAlign: 'center', padding: '60px 0' }}>
             No posts yet — check back soon.
           </p>
         ) : (
-          <div className="news-list">
-            {posts.map((post) => (
-              <Reveal as="div" className="news-item" key={post.slug}>
-                <span className="news-date">{post.date}</span>
-                <div>
-                  <span className="tag accent" style={{ marginBottom: 10, display: 'inline-block' }}>{post.category}</span>
-                  <div className="news-title">{post.title}</div>
-                  <p className="card-desc" style={{ marginTop: 8 }}>{post.excerpt}</p>
-                  <p className="blog-meta">{post.author} · {post.readTime}</p>
+          <>
+            {featured && (
+              <Reveal className="blog-featured">
+                <div className="blog-featured-media">
+                  {featured.image
+                    ? <img src={featured.image} alt="" />
+                    : <div className="blog-featured-placeholder" aria-hidden="true" />}
                 </div>
-                <span className="news-more">Read more →</span>
+                <div className="blog-featured-body">
+                  <p className="blog-featured-kicker">Featured · {featured.category}</p>
+                  <h2>{featured.title}</h2>
+                  <p>{featured.excerpt}</p>
+                  <div className="blog-featured-meta">
+                    <span className="blog-avatar" aria-hidden="true">{featured.author?.[0] || '?'}</span>
+                    <div>
+                      <div className="blog-featured-author">{featured.author}</div>
+                      <div className="blog-featured-sub">{featured.date} · {featured.readTime}</div>
+                    </div>
+                  </div>
+                  <Link to={`/blog/${featured.slug}`} className="text-link">Read the full piece →</Link>
+                </div>
               </Reveal>
-            ))}
-          </div>
+            )}
+
+            <div className="section-head" style={{ marginTop: 72 }}>
+              <p className="eyebrow">Categories</p>
+              <h2 style={{ fontSize: 'clamp(24px,3.6vw,38px)' }}>Browse by categories.</h2>
+              <p className="lead" style={{ marginTop: 12 }}>
+                Product notes, patient-care playbooks, and practice-ops deep dives our team ships every week.
+              </p>
+            </div>
+
+            {blogCategories.length > 1 ? (
+              <div className="blog-filters" style={{ marginTop: 28 }}>
+                {blogCategories.map((c) => (
+                  <button
+                    key={c}
+                    type="button"
+                    className={`chip-btn${category === c ? ' active' : ''}`}
+                    onClick={() => setCategory(c)}
+                  >
+                    {c}
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <div className="blog-filters" style={{ marginTop: 28 }}>
+                <button type="button" className="chip-btn active">All</button>
+              </div>
+            )}
+
+            {rest.length > 0 && (
+              <div className="blog-grid">
+                {rest.map((post) => (
+                  <Reveal as="div" className="blog-card" key={post.slug}>
+                    <div className="blog-card-media">
+                      {post.image
+                        ? <img src={post.image} alt="" />
+                        : <div className="blog-card-placeholder" aria-hidden="true" />}
+                      <span className="blog-card-tag">{post.category}</span>
+                    </div>
+                    <div className="blog-card-body">
+                      <h3>{post.title}</h3>
+                      <p>{post.excerpt}</p>
+                      <p className="blog-meta">{post.author} · {post.readTime}</p>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            )}
+          </>
         )}
 
         <div className="cta-band" style={{ marginTop: 80, borderRadius: 20 }}>
