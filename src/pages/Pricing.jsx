@@ -1,7 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { plans } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
+
+const fmtINR = (n) => '₹' + n.toLocaleString('en-IN');
 
 const trustBadges = [
   'HIPAA-ready',
@@ -69,6 +71,7 @@ export default function Pricing() {
   const scrollToPlans = () =>
     document.getElementById('plans')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
+  const [cycle, setCycle] = useState('monthly');
   const gridRef = useRef(null);
   const slideRefs = useRef([]);
 
@@ -122,6 +125,15 @@ export default function Pricing() {
         ))}
       </Reveal>
 
+      <div style={{ marginTop: 32, marginBottom: 40, display: 'flex', justifyContent: 'center' }}>
+        <div className="su-toggle">
+          <button type="button" className={cycle === 'monthly' ? 'on' : ''} onClick={() => setCycle('monthly')}>Monthly</button>
+          <button type="button" className={cycle === 'yearly' ? 'on' : ''} onClick={() => setCycle('yearly')}>
+            Yearly <span className="su-save">Save 20%</span>
+          </button>
+        </div>
+      </div>
+
       <p className="pricing-swipe-hint">← Swipe to compare plans →</p>
 
       <div className="pricing-grid" ref={gridRef}>
@@ -139,7 +151,14 @@ export default function Pricing() {
               {p.featured && <span className="badge">Most popular</span>}
               <h3 className="plan-name">{p.name}</h3>
               <p className="plan-blurb">{p.blurb}</p>
-              <div className="plan-rate"><span>{p.price}</span> /mo</div>
+              <div className="plan-rate">
+                <span>{fmtINR(cycle === 'yearly' ? p.priceYearly : p.priceMonthly)}</span> /{cycle === 'yearly' ? 'yr' : 'mo'}
+              </div>
+              {cycle === 'yearly' && (
+                <p className="plan-yearly-note">
+                  Save {fmtINR(p.priceMonthly * 12 - p.priceYearly)} vs monthly · {fmtINR(Math.round(p.priceYearly / 12))}/mo equivalent
+                </p>
+              )}
               <div className="plan-meta">{p.meta}</div>
               <ul className="plan-features">
                 {p.features.map((f) => (
@@ -152,7 +171,7 @@ export default function Pricing() {
                   className="btn btn-sheen"
                   style={{ width: '100%', justifyContent: 'center' }}
                 >
-                  Buy {p.price} now
+                  Buy {fmtINR(cycle === 'yearly' ? p.priceYearly : p.priceMonthly)} now
                 </Link>
               </div>
               <p className="plan-gst">GST charged at checkout.</p>
