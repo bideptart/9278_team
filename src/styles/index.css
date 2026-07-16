@@ -109,6 +109,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(32px, 5vw, 72px); align-items: center;
   padding-top: clamp(80px, 14vh, 170px);
 }
+/* Features page hero — fill viewport height, top-aligned, no double top gap */
+.feat-page .hero-split { align-items: start; padding-top: 0; min-height: calc(100vh - 68px); }
 .hero-split h1 { font-size: clamp(40px, 6.4vw, 82px); }
 
 /* live status dot */
@@ -148,6 +150,13 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 .bubble.agent .bubble-who { color: var(--accent-deep); }
 .call-foot { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); }
 .tag { font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); border: 1px solid var(--border); border-radius: 999px; padding: 5px 10px; }
+.feat-page .tag {
+  transition: transform .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+.feat-page .tag:hover {
+  border-color: var(--accent-live); color: var(--accent-live); transform: translateY(-2px);
+  box-shadow: 0 8px 18px -12px rgba(74, 124, 15, .5);
+}
 
 /* ---- blog ---- */
 .blog-filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }

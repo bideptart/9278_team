@@ -14,9 +14,8 @@ export default function Features() {
   return (
     <>
     <div className="container page-body feat-page" id="content">
-      <Reveal className="hero-split" style={{ marginBottom: 120, paddingTop: 40 }}>
+      <Reveal className="hero-split" style={{ marginBottom: 120 }}>
         <div className="hero-copy">
-          <p className="eyebrow" style={{ display: 'flex' }}>Feature</p>
           <span className="pill-badge" style={{ marginTop: 12 }}><span className="dot" />AI voice receptionist</span>
           <div className="cta-row" style={{ marginTop: 38, marginBottom: 42 }}>
             <span className="tag">Patient intake</span>
