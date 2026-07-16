@@ -193,7 +193,7 @@ export const plans = [
   },
 ];
 
-export const blogCategories = ['All', 'Patient Care', 'Practice Ops', 'Compliance', 'Onboarding'];
+export const blogCategories = ['All'];
 
 export const blogStats = [
   { value: '60+', label: 'Articles published' },
@@ -202,62 +202,7 @@ export const blogStats = [
   { value: 'Weekly', label: 'New posts' },
 ];
 
-export const blogPosts = [
-  {
-    slug: 'after-hours-calls-cost-clinics',
-    category: 'Patient Care',
-    author: 'Dr. Priya Nandakumar',
-    date: 'Jul 10, 2026',
-    readTime: '6 min read',
-    title: 'What after-hours calls are really costing your clinic',
-    excerpt: 'Missed calls after 6pm aren\'t just inconvenient — they\'re lost patients. Here\'s what we found analyzing thousands of after-hours voicemails.',
-  },
-  {
-    slug: 'ai-receptionist-vs-answering-service',
-    category: 'Practice Ops',
-    author: 'Marcus Bell',
-    date: 'Jun 28, 2026',
-    readTime: '5 min read',
-    title: 'AI receptionist vs. answering service: what\'s actually different',
-    excerpt: 'Both promise to pick up when you can\'t. Only one books the appointment, checks insurance, and remembers the caller next time.',
-  },
-  {
-    slug: 'hipaa-and-your-ai-receptionist',
-    category: 'Compliance',
-    author: 'Elena Ruiz',
-    date: 'Jun 21, 2026',
-    readTime: '7 min read',
-    title: 'HIPAA and your AI receptionist: what to ask before you sign',
-    excerpt: 'Call recording, transcripts, and patient data all pass through your voice agent. Here\'s the compliance checklist to run before go-live.',
-  },
-  {
-    slug: 'go-live-same-day-checklist',
-    category: 'Onboarding',
-    author: 'Dr. Priya Nandakumar',
-    date: 'Jun 14, 2026',
-    readTime: '4 min read',
-    title: 'Going live the same day: a practice manager\'s checklist',
-    excerpt: 'Forward your number, connect your calendar, write your greeting. Most teams are answering calls with an AI receptionist in under an hour.',
-  },
-  {
-    slug: 'insurance-verification-calls',
-    category: 'Practice Ops',
-    author: 'Marcus Bell',
-    date: 'Jun 5, 2026',
-    readTime: '5 min read',
-    title: 'Insurance verification calls: the most repetitive job at your front desk',
-    excerpt: 'Coverage checks eat up hours every week. Here\'s how clinics are routing the routine questions to a voice agent and keeping staff for the hard cases.',
-  },
-  {
-    slug: 'patient-no-shows-and-reminders',
-    category: 'Patient Care',
-    author: 'Elena Ruiz',
-    date: 'May 30, 2026',
-    readTime: '5 min read',
-    title: 'Cutting no-shows without hiring another front-desk hire',
-    excerpt: 'Confirmations, reschedules, and reminders handled on the same line that answers the phone — no extra headcount required.',
-  },
-];
+export const blogPosts = [];
 
 export const credits = [
   { amount: '$20', note: 'Try it out', minutes: '~130–200 minutes' },

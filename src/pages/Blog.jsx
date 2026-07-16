@@ -5,10 +5,16 @@ import Reveal from '../components/Reveal.jsx';
 
 export default function Blog() {
   const [category, setCategory] = useState('All');
+  const [search, setSearch] = useState('');
   const scrollToPosts = () =>
     document.getElementById('posts')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-  const posts = category === 'All' ? blogPosts : blogPosts.filter((p) => p.category === category);
+  const byCategory = category === 'All' ? blogPosts : blogPosts.filter((p) => p.category === category);
+  const q = search.trim().toLowerCase();
+  const posts = q
+    ? byCategory.filter((p) => p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q))
+    : byCategory;
+  const popularTags = blogCategories.filter((c) => c !== 'All');
 
   return (
     <div className="kallus-theme">
@@ -28,6 +34,31 @@ export default function Blog() {
             </button>
             <Link to="/contact" className="btn btn-ghost">Talk to sales</Link>
           </div>
+
+          <form
+            className="blog-search"
+            onSubmit={(e) => { e.preventDefault(); scrollToPosts(); }}
+          >
+            <span className="blog-search-icon" aria-hidden="true">🔍</span>
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search articles, authors, topics…"
+              aria-label="Search blog posts"
+            />
+            <button type="submit" className="btn btn-sheen">Search <span className="arrow">→</span></button>
+          </form>
+          {popularTags.length > 0 && (
+            <p className="blog-search-tags">
+              <span>Popular</span>
+              {popularTags.map((t) => (
+                <button key={t} type="button" onClick={() => { setCategory(t); scrollToPosts(); }}>
+                  {t}
+                </button>
+              ))}
+            </p>
+          )}
         </Reveal>
       </section>
 
@@ -43,33 +74,41 @@ export default function Blog() {
       </div>
 
       <div className="container page-body" id="posts">
-        <div className="blog-filters">
-          {blogCategories.map((c) => (
-            <button
-              key={c}
-              type="button"
-              className={`chip-btn${category === c ? ' active' : ''}`}
-              onClick={() => setCategory(c)}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
+        {blogCategories.length > 1 && (
+          <div className="blog-filters">
+            {blogCategories.map((c) => (
+              <button
+                key={c}
+                type="button"
+                className={`chip-btn${category === c ? ' active' : ''}`}
+                onClick={() => setCategory(c)}
+              >
+                {c}
+              </button>
+            ))}
+          </div>
+        )}
 
-        <div className="news-list">
-          {posts.map((post) => (
-            <Reveal as="div" className="news-item" key={post.slug}>
-              <span className="news-date">{post.date}</span>
-              <div>
-                <span className="tag accent" style={{ marginBottom: 10, display: 'inline-block' }}>{post.category}</span>
-                <div className="news-title">{post.title}</div>
-                <p className="card-desc" style={{ marginTop: 8 }}>{post.excerpt}</p>
-                <p className="blog-meta">{post.author} · {post.readTime}</p>
-              </div>
-              <span className="news-more">Read more →</span>
-            </Reveal>
-          ))}
-        </div>
+        {posts.length === 0 ? (
+          <p className="lead" style={{ textAlign: 'center', padding: '60px 0' }}>
+            No posts yet — check back soon.
+          </p>
+        ) : (
+          <div className="news-list">
+            {posts.map((post) => (
+              <Reveal as="div" className="news-item" key={post.slug}>
+                <span className="news-date">{post.date}</span>
+                <div>
+                  <span className="tag accent" style={{ marginBottom: 10, display: 'inline-block' }}>{post.category}</span>
+                  <div className="news-title">{post.title}</div>
+                  <p className="card-desc" style={{ marginTop: 8 }}>{post.excerpt}</p>
+                  <p className="blog-meta">{post.author} · {post.readTime}</p>
+                </div>
+                <span className="news-more">Read more →</span>
+              </Reveal>
+            ))}
+          </div>
+        )}
 
         <div className="cta-band" style={{ marginTop: 80, borderRadius: 20 }}>
           <div className="container">

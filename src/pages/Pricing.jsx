@@ -91,21 +91,30 @@ export default function Pricing() {
         ))}
       </div>
 
-      <Reveal className="section-head" style={{ marginTop: 80 }}>
-        <p className="eyebrow">How billing works</p>
-        <h2 style={{ fontSize: 'clamp(24px,3.6vw,38px)' }}>Predictable billing for your practice.</h2>
-      </Reveal>
-      <div className="grid grid-3">
-        {billing.map(([t, d], i) => (
-          <Reveal delay={i * 80} className="card" key={t}>
-            <h3 className="card-title">{t}</h3>
-            <p className="card-desc">{d}</p>
-          </Reveal>
-        ))}
       </div>
 
-      <div className="section-head" style={{ marginTop: 80 }}>
-        <p className="eyebrow">FAQ</p>
+      <section className="section billing-shade">
+        <div className="container">
+          <Reveal className="section-head">
+            <p className="eyebrow">How billing works</p>
+            <h2>Predictable billing for your practice.</h2>
+          </Reveal>
+          <div className="grid grid-3">
+            {billing.map(([t, d], i) => (
+              <Reveal className="usecase glow-card" delay={i * 90} key={t}>
+                <span className="usecase-tag">/{String(i + 1).padStart(2, '0')}</span>
+                <h3>{t}</h3>
+                <p>{d}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="container pricing-body">
+
+      <div className="section-head faq-head" style={{ marginTop: 80, textAlign: 'center' }}>
+        <p className="eyebrow" style={{ justifyContent: 'center' }}>FAQ</p>
         <h2 style={{ fontSize: 'clamp(24px,3.6vw,38px)' }}>Everything your practice needs to know.</h2>
       </div>
       <div className="faq">

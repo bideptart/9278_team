@@ -49,10 +49,16 @@
 .brand { display: inline-flex; align-items: center; gap: 9px; }
 .brand-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent-live); box-shadow: 0 0 12px rgba(21,154,166,.8); }
 
-/* NIXXY HEALTH logo (image, used as-is) */
-.logo-img { height: 40px; width: auto; display: block; }
-.footer-brand .logo-img { height: 48px; }
-@media (max-width: 560px) { .logo-img { height: 34px; } }
+/* KALLUS.IO wordmark logo */
+.logo-mark { display: inline-flex; align-items: center; gap: 10px; color: var(--fg); }
+.logo-icon { height: 34px; width: auto; display: block; }
+.logo-word { font-family: var(--font-sans); font-weight: 800; font-size: 20px; letter-spacing: -0.01em; }
+.footer-brand .logo-icon { height: 40px; }
+.footer-brand .logo-word { font-size: 24px; }
+@media (max-width: 560px) {
+  .logo-icon { height: 26px; }
+  .logo-word { font-size: 16px; }
+}
 .site-header { transition: background .3s ease, border-color .3s ease, box-shadow .3s ease; border-bottom: 1px solid transparent; background: transparent; }
 .site-header.scrolled { background: rgba(255,255,255,.82); border-bottom-color: var(--border); box-shadow: 0 6px 20px -12px rgba(16,38,46,.18); }
 /* home page navbar — solid white, always separated from the hero below it */
@@ -373,7 +379,7 @@ html, body { max-width: 100%; overflow-x: clip; }
 /* very small phones */
 @media (max-width: 380px) {
   .nav-actions { gap: 8px; }
-  .brand .logo-img { height: 30px; }
+  .brand .logo-icon { height: 24px; }
 }
 
 /* ============================================================
