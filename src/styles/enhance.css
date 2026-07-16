@@ -971,7 +971,7 @@ html, body { max-width: 100%; overflow-x: clip; }
 .za-map { padding: 0; }
 .za-map-svg { display: block; width: 100%; height: auto; overflow: visible; }
 .za-provinces path {
-  fill: #e3e6e0; stroke: #ffffff; stroke-width: 1;
+  fill: #e3e6e0; stroke: #6fa524; stroke-width: 1.1;
   filter: drop-shadow(0 6px 10px rgba(16,38,46,.12));
 }
 .za-link { fill: none; stroke-linecap: round; stroke-dasharray: 1px, 1px; animation: za-line-draw 2.6s cubic-bezier(.45,0,.25,1) infinite; }
