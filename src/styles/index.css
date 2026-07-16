@@ -50,7 +50,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 /* layout */
 .container { max-width: var(--maxw); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
 .page { min-height: 70vh; padding: clamp(80px, 12vh, 160px) 0 clamp(60px, 10vh, 120px); }
-.section { padding: clamp(48px, 8vh, 96px) 0; }
+.section { padding-top: clamp(48px, 8vh, 96px); padding-bottom: clamp(48px, 8vh, 96px); }
 
 /* eyebrow / kicker label */
 .eyebrow {

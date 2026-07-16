@@ -55,6 +55,16 @@
 .logo-wave { stroke: #4d7c0f; }
 .site-footer.dark .logo-wave { stroke: #9fe6b8; }
 .logo-word { font-family: var(--font-sans); font-weight: 800; font-size: 20px; letter-spacing: -0.01em; }
+
+/* logo hover animation — scoped to the How It Works page's header only
+   (.nav-animated is applied to .site-header there and nowhere else) */
+.nav-animated .logo-icon { transition: transform .4s cubic-bezier(.34,1.56,.64,1), color .25s ease; }
+.nav-animated .logo-word { transition: color .25s ease; }
+.nav-animated .brand:hover .logo-icon { transform: scale(1.14) rotate(-8deg); color: var(--accent-live); }
+.nav-animated .brand:hover .logo-word { color: var(--accent-deep); }
+@media (prefers-reduced-motion: reduce) {
+  .nav-animated .brand:hover .logo-icon { transform: none; }
+}
 .footer-brand .logo-icon { height: 40px; }
 .footer-brand .logo-word { font-size: 24px; }
 @media (max-width: 560px) {
@@ -276,7 +286,7 @@
 
 @media (max-width: 960px) {
   .hiw-hero { grid-template-columns: 1fr; }
-  .hiw-hero-visual { order: -1; max-width: 460px; }
+  .hiw-hero-visual { max-width: 460px; margin: 0 auto; }
   .hiw-glow { height: 420px; }
 }
 
