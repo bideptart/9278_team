@@ -2,8 +2,23 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { plans } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
+import Seo from '../components/Seo.jsx';
 
 const fmtINR = (n) => '₹' + n.toLocaleString('en-IN');
+
+const pricingJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'KallUS AI Voice Receptionist',
+  description: 'AI voice receptionist plans for clinics and healthcare practices — booking, rescheduling, insurance questions, and after-hours triage.',
+  offers: plans.map((p) => ({
+    '@type': 'Offer',
+    name: p.name,
+    price: p.priceMonthly,
+    priceCurrency: 'INR',
+    description: p.blurb,
+  })),
+};
 
 const trustBadges = [
   'HIPAA-ready',
@@ -96,6 +111,11 @@ export default function Pricing() {
 
   return (
     <div className="kallus-theme">
+      <Seo
+        title="Pricing"
+        description="Pay-as-you-go AI voice receptionist plans for clinics, priced in INR. Booking, rescheduling, insurance questions, and after-hours triage — plans start at ₹2,999/mo with GST invoicing built in."
+        jsonLd={pricingJsonLd}
+      />
       <section className="pricing-hero container">
         <Reveal>
           <p className="eyebrow">Pay as you go · INR pricing · GST invoices</p>

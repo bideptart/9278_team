@@ -2,6 +2,21 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { blogPosts, blogCategories, blogStats } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
+import Seo from '../components/Seo.jsx';
+
+const blogJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'KallUS Blog',
+  description: 'Research, product notes, and practical playbooks on AI voice agents for South African businesses.',
+  blogPost: blogPosts.map((p) => ({
+    '@type': 'BlogPosting',
+    headline: p.title,
+    description: p.excerpt,
+    url: `${typeof window !== 'undefined' ? window.location.origin : ''}/blog/${p.slug}`,
+    author: { '@type': 'Organization', name: p.author },
+  })),
+};
 
 export default function Blog() {
   const [category, setCategory] = useState('All');
@@ -19,6 +34,11 @@ export default function Blog() {
 
   return (
     <div className="kallus-theme">
+      <Seo
+        title="Blog"
+        description="Research, product notes, and practical playbooks on AI voice agents — call handling, POPIA compliance, and multilingual support for South African businesses."
+        jsonLd={blogPosts.length > 0 ? blogJsonLd : null}
+      />
       <section className="page-hero container">
         <Reveal>
           <p className="eyebrow">Blog</p>
@@ -85,7 +105,7 @@ export default function Blog() {
               <Reveal as={Link} to={`/blog/${featured.slug}`} className="blog-featured">
                 <div className="blog-featured-media">
                   {featured.image
-                    ? <img src={featured.image} alt="" />
+                    ? <img src={featured.image} alt={featured.title} loading="lazy" />
                     : <div className="blog-featured-placeholder" aria-hidden="true" />}
                 </div>
                 <div className="blog-featured-body">
@@ -137,7 +157,7 @@ export default function Blog() {
                   <Reveal as={Link} to={`/blog/${post.slug}`} className="blog-card" key={post.slug}>
                     <div className="blog-card-media">
                       {post.image
-                        ? <img src={post.image} alt="" />
+                        ? <img src={post.image} alt={post.title} loading="lazy" />
                         : <div className="blog-card-placeholder" aria-hidden="true" />}
                       <span className="blog-card-tag">{post.category}</span>
                     </div>
