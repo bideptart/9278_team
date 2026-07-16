@@ -23,11 +23,11 @@ export default function Blog() {
         <Reveal>
           <p className="eyebrow">Blog</p>
           <h1 style={{ fontSize: 'clamp(38px,6.4vw,72px)', maxWidth: '16ch' }}>
-            Field notes from the <span className="grad">clinic front desk.</span>
+            Field notes from <span className="grad">South Africa's front desk.</span>
           </h1>
           <p className="lead" style={{ marginTop: 24 }}>
-            Research, product notes, and practice-manager playbooks from the team
-            building an AI receptionist for clinics and hospital networks.
+            Research, product notes, and practical playbooks from the team
+            building AI voice agents for South African businesses.
           </p>
           <div className="cta-row" style={{ marginTop: 36 }}>
             <button type="button" className="btn btn-cta" onClick={scrollToPosts}>
@@ -108,7 +108,7 @@ export default function Blog() {
               <p className="eyebrow">Categories</p>
               <h2 style={{ fontSize: 'clamp(24px,3.6vw,38px)' }}>Browse by categories.</h2>
               <p className="lead" style={{ marginTop: 12 }}>
-                Product notes, patient-care playbooks, and practice-ops deep dives our team ships every week.
+                Cost breakdowns, compliance guides, and product deep dives our team ships every week.
               </p>
             </div>
 
@@ -134,7 +134,7 @@ export default function Blog() {
             {rest.length > 0 && (
               <div className="blog-grid">
                 {rest.map((post) => (
-                  <Reveal as="div" className="blog-card" key={post.slug}>
+                  <Reveal as={Link} to={`/blog/${post.slug}`} className="blog-card" key={post.slug}>
                     <div className="blog-card-media">
                       {post.image
                         ? <img src={post.image} alt="" />
@@ -158,7 +158,7 @@ export default function Blog() {
             <Reveal>
               <p className="eyebrow" style={{ justifyContent: 'center' }}>Ready when you are</p>
               <h2>Give your front desk an AI receptionist.</h2>
-              <p>Pick a plan, forward your number, and start answering patient calls the same day.</p>
+              <p>Pick a plan, forward your number, and start answering every call the same day.</p>
               <div className="cta-row" style={{ justifyContent: 'center' }}>
                 <Link to="/pricing" className="btn btn-sheen">See pricing <span className="arrow">→</span></Link>
                 <Link to="/contact" className="btn btn-ghost">Talk to sales</Link>

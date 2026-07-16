@@ -449,9 +449,23 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 /* ---- article ---- */
 .article { max-width: 760px; margin: 0 auto; }
 .article h1 { font-size: clamp(30px, 4.6vw, 50px); margin-bottom: 22px; }
+.article h2 { font-size: clamp(22px, 2.8vw, 28px); margin: 44px 0 16px; }
 .article .hero-img { border-radius: 16px; margin: 32px 0; border: 1px solid var(--border); }
 .article p { color: var(--fg-soft); margin: 0 0 22px; font-size: 17px; line-height: 1.8; }
 .article p:first-of-type { color: var(--fg); font-size: 19px; }
+.article-list { margin: 0 0 24px; padding-left: 22px; display: flex; flex-direction: column; gap: 10px; }
+.article-list li { color: var(--fg-soft); font-size: 16px; line-height: 1.7; }
+.article-image-placeholder {
+  margin: 32px 0; padding: 40px 24px; border-radius: 16px; text-align: center;
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent-2));
+  border: 1px dashed rgba(11,18,32,.25);
+}
+.article-image-placeholder span {
+  display: inline-block; font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--ink);
+  background: rgba(255,255,255,.55); border-radius: 999px; padding: 5px 12px; margin-bottom: 10px;
+}
+.article-image-placeholder p { color: rgba(11,18,32,.65); font-size: 13.5px; margin: 0; max-width: 46ch; margin-inline: auto; }
 
 /* ---- roadmap ---- */
 .roadmap { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; counter-reset: step; }
