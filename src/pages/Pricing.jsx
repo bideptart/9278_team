@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { plans } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
@@ -68,6 +69,28 @@ export default function Pricing() {
   const scrollToPlans = () =>
     document.getElementById('plans')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
+  const gridRef = useRef(null);
+  const slideRefs = useRef([]);
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid || window.innerWidth > 640) return;
+
+    const featuredIndex = plans.findIndex((p) => p.featured);
+    slideRefs.current[featuredIndex]?.scrollIntoView({ inline: 'center', block: 'nearest' });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('is-stack-active', entry.intersectionRatio > 0.6);
+        });
+      },
+      { root: grid, threshold: [0, 0.6, 1] }
+    );
+    slideRefs.current.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="kallus-theme">
       <section className="pricing-hero container">
@@ -99,35 +122,42 @@ export default function Pricing() {
         ))}
       </Reveal>
 
-      <div className="pricing-grid">
+      <p className="pricing-swipe-hint">← Swipe to compare plans →</p>
+
+      <div className="pricing-grid" ref={gridRef}>
         {plans.map((p, i) => (
-          <Reveal
-            as="div"
-            delay={i * 90}
-            className={`price-card${p.featured ? ' featured' : ''}`}
+          <div
+            className={`price-card-slide${p.featured ? ' is-stack-active' : ''}`}
+            ref={(el) => (slideRefs.current[i] = el)}
             key={p.name}
           >
-            {p.featured && <span className="badge">Most popular</span>}
-            <h3 className="plan-name">{p.name}</h3>
-            <p className="plan-blurb">{p.blurb}</p>
-            <div className="plan-rate"><span>{p.price}</span> /mo</div>
-            <div className="plan-meta">{p.meta}</div>
-            <ul className="plan-features">
-              {p.features.map((f) => (
-                <li key={f}>{f}</li>
-              ))}
-            </ul>
-            <div className="plan-actions">
-              <Link
-                to="/contact"
-                className="btn btn-sheen"
-                style={{ width: '100%', justifyContent: 'center' }}
-              >
-                Buy {p.price} now
-              </Link>
-            </div>
-            <p className="plan-gst">GST charged at checkout.</p>
-          </Reveal>
+            <Reveal
+              as="div"
+              delay={i * 90}
+              className={`price-card${p.featured ? ' featured' : ''}`}
+            >
+              {p.featured && <span className="badge">Most popular</span>}
+              <h3 className="plan-name">{p.name}</h3>
+              <p className="plan-blurb">{p.blurb}</p>
+              <div className="plan-rate"><span>{p.price}</span> /mo</div>
+              <div className="plan-meta">{p.meta}</div>
+              <ul className="plan-features">
+                {p.features.map((f) => (
+                  <li key={f}>{f}</li>
+                ))}
+              </ul>
+              <div className="plan-actions">
+                <Link
+                  to="/contact"
+                  className="btn btn-sheen"
+                  style={{ width: '100%', justifyContent: 'center' }}
+                >
+                  Buy {p.price} now
+                </Link>
+              </div>
+              <p className="plan-gst">GST charged at checkout.</p>
+            </Reveal>
+          </div>
         ))}
       </div>
 
@@ -153,10 +183,11 @@ export default function Pricing() {
 
       <div className="container pricing-body">
 
-      <Reveal className="section-head" style={{ marginTop: 80 }}>
+      <Reveal className="section-head section-gap-lg">
         <p className="eyebrow">Compare plans</p>
         <h2 style={{ fontSize: 'clamp(24px,3.6vw,38px)' }}>Every plan, side by side.</h2>
       </Reveal>
+      <p className="compare-swipe-hint">← Swipe to see all plans →</p>
       <div className="compare-table-wrap">
         <table className="compare-table">
           <thead>
@@ -211,7 +242,7 @@ export default function Pricing() {
 
       <div className="container pricing-body">
 
-      <div className="section-head faq-head" style={{ marginTop: 80, textAlign: 'center' }}>
+      <div className="section-head faq-head section-gap-lg" style={{ textAlign: 'center' }}>
         <p className="eyebrow" style={{ justifyContent: 'center' }}>FAQ</p>
         <h2 style={{ fontSize: 'clamp(24px,3.6vw,38px)' }}>Everything your practice needs to know.</h2>
       </div>
@@ -228,23 +259,24 @@ export default function Pricing() {
         GST charged at checkout. Top-ups available from ₹500. Cancel anytime.
       </p>
 
-      <div className="cta-band" style={{ marginTop: 80, borderRadius: 20 }}>
+      </div>
+
+      <section className="cta-band hiw-cta">
+        <div className="glow glow-cta" aria-hidden="true" />
         <div className="container">
           <Reveal>
-            <p className="eyebrow" style={{ justifyContent: 'center' }}>Ready when you are</p>
+            <p className="hiw-badge hiw-badge--center hiw-badge--star">★ Ready when you are</p>
             <h2>Give your front desk an AI receptionist.</h2>
             <p>Pick a plan, forward your number, and start answering patient calls the same day.</p>
             <div className="cta-row" style={{ justifyContent: 'center' }}>
               <button type="button" className="btn btn-sheen" onClick={scrollToPlans}>
                 View plans <span className="arrow">↓</span>
               </button>
-              <Link to="/contact" className="btn btn-ghost">Talk to sales</Link>
+              <Link to="/contact" className="btn btn-ghost hiw-cta-ghost">Talk to sales</Link>
             </div>
           </Reveal>
         </div>
-      </div>
-
-      </div>
+      </section>
     </div>
   );
 }

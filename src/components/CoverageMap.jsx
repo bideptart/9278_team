@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from 'react';
+
 const PROVINCES = [
   { id: 'ZA-LP', d: 'M342.94,0.34L349.46,1.82L354.66,5.07L357.22,4.66L358.91,6.26L372.9,4.57L384.12,6.51L391.88,29.41L391.84,37.6L395.28,41.81L397.16,49.17L400.1,51.25L400.1,51.25L397.55,51.56L395.58,54.04L394.18,52.89L392.7,54.01L389.02,53.03L387.87,54.24L384.05,55.2L389.85,55.04L389.85,56.59L388.45,57.9L388.71,60.9L386.44,63.83L387.87,64.72L387.32,65.74L389.65,65.78L388.49,66.88L389.1,67.8L392.86,69.38L392.86,70.9L390.75,71.15L389.39,72.89L385.89,72.89L386.35,76.11L389.62,76.46L389.39,80.64L385.75,80.24L383.69,81.5L379.75,81.51L378.36,80.05L377.62,76.07L375.11,74.84L375.27,70.75L372.97,69.11L373.99,67.71L371.85,65.84L368.42,67.89L367.31,67.36L367.29,69.11L365.78,70.62L364.75,69.26L361,68.01L360.58,69.21L357.55,68.41L357.45,70.2L356.05,69.12L353.72,69.2L353.98,72.2L355.4,73.4L355.02,75.29L353.49,75.49L347.01,80.82L347,81.78L345.2,81.95L346.92,84.68L345.75,85.08L344.95,86.91L340.35,86.11L336.42,80.45L334.68,80.98L335.53,79.56L334.68,76.34L332,75.67L330.51,76.07L330.16,79.17L327.41,80.34L326.38,78.07L323.41,77.22L323.83,79.35L318.43,79.23L315.03,80.99L315.07,83.15L311.25,84.05L311.22,84.98L308.74,85.75L308.87,87.41L315.25,85.41L315.25,85.41L316.16,87.34L317.08,87.29L315.43,89.05L312.54,88.36L312.35,89.71L307.15,89.95L307.15,89.95L305.26,86.84L302.9,87.1L302.76,85.65L301.34,85.41L301.6,84.07L302.59,83.84L305.14,84.72L305.59,82.86L301.84,80.96L298.66,80.26L296.41,80.93L296.88,79.49L295,79.05L294.85,80.66L291.96,81.12L289.68,80.07L287.59,83.99L286.24,82.5L282.94,82.88L281.36,80.91L277.86,80.75L277.09,78.53L275.22,77.82L274.63,73.01L273.56,73.04L273.43,74.48L267.62,77.28L266.12,77.18L264.34,75.84L258.93,75.55L257.97,73.62L258.09,70.58L258.09,70.58L259.96,69.19L262.13,65.21L264.98,63.59L265.38,62.17L270.09,59.9L270.22,55.4L273.84,42.47L274.45,43.63L275.19,43.35L275.23,41.72L277.63,40.35L277.26,39.17L278.96,39.47L278.64,38.59L281.6,37.25L282.23,35.8L283.35,36.52L284.12,35.52L284.47,36.43L285.25,35.35L287.44,35.17L289.35,30.65L291.52,30.21L292.9,31.04L293.99,29.42L293.48,28.45L297.84,26.04L297.99,23.38L300.7,21.86L300.72,19.88L303.56,17.94L304.78,15.19L308.52,12.56L312.84,12.85L321.06,9.98L322.01,8.92L323.31,9.29L326.35,2.52L329.39,2.44L330.67,1.53L334.14,2.17z' },
   { id: 'ZA-GT', d: 'M315.25,85.41L318.97,85L319.71,86.97L316.36,88.56L315.45,95.57L316.85,100.57L320.88,100.93L323.72,97.49L326.3,96.79L326.92,98.97L324.46,99.96L324.86,101.81L323.63,104.1L323.83,105.61L322.18,105.33L321.26,110.2L315.5,109.19L314.15,111.7L311.41,112.06L312.94,116.36L315.38,117.15L315.46,118.97L317.29,120.12L320.77,119.16L321.9,121.5L319,122.92L318.94,124.64L313.81,125.51L311.58,128.46L309.21,129.21L308.68,131.06L309.38,132.06L307.14,133.22L307.67,134.55L307.03,135.83L307.03,135.83L306.13,135.13L304.55,135.52L303.79,134.26L303.02,135.44L299.96,132.3L298.47,128.85L296.38,130.57L293.89,130.98L293.33,132.01L290.14,131.46L289.78,130.57L287.56,131.82L287.56,131.82L288.31,127.67L287.41,126.54L289.15,122.72L286.67,122.81L285.89,121.57L282.25,122.38L282.49,123.12L279.06,124.44L277.95,121.06L281.56,118.22L280.65,114.26L282.37,114.46L282.45,113.37L283.95,113.15L285.13,106.01L289.65,103.56L290.83,105.95L292.16,105.24L292.26,106.38L297.71,104.95L297.99,102.4L298.74,102.13L297.58,99.2L299.66,98.88L301.92,96.51L301.04,92.66L303.01,92.34L302.57,93.83L307.15,92.71L307.15,89.95L307.15,89.95L312.35,89.71L312.54,88.36L315.43,89.05L317.08,87.29L316.16,87.34z' },
@@ -20,6 +22,15 @@ const CITIES = [
   { name: 'Gqeberha', x: 237, y: 348, flag: '/flags/gqeberha.webp' },
   { name: 'Bloemfontein', x: 252, y: 200, flag: SA_FLAG },
   { name: 'Polokwane', x: 338, y: 50, flag: SA_FLAG },
+];
+
+const GREETINGS = [
+  { word: 'Hello', lang: 'English', city: 'Johannesburg', code: 'en-ZA', style: { top: '3%', left: '-3%' }, delay: '0s' },
+  { word: 'Thobela', lang: 'Sepedi', city: 'Polokwane', code: 'nso-ZA', style: { top: '0%', right: '-2%' }, delay: '0.7s' },
+  { word: 'Sawubona', lang: 'isiZulu', city: 'Durban', code: 'zu-ZA', style: { top: '69%', right: '-8%' }, delay: '1.4s' },
+  { word: 'Molo', lang: 'isiXhosa', city: 'Gqeberha', code: 'xh-ZA', style: { bottom: '3%', left: '46%' }, delay: '2.1s' },
+  { word: 'Hallo', lang: 'Afrikaans', city: 'Cape Town', code: 'af-ZA', style: { bottom: '3%', left: '-4%' }, delay: '2.8s' },
+  { word: 'Dumela', lang: 'Sesotho', city: 'Bloemfontein', code: 'st-ZA', style: { top: '5%', left: '30%' }, delay: '3.5s' },
 ];
 
 const byName = (n) => CITIES.find((c) => c.name === n);
@@ -48,10 +59,72 @@ function VoiceIcon() {
   );
 }
 
-export default function CoverageMap() {
+function PlayIcon() {
   return (
-    <div className="za-map" aria-hidden="true">
-      <svg className="za-map-svg" viewBox="0 0 427 375" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+  );
+}
+
+function StopIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2" /></svg>
+  );
+}
+
+export default function CoverageMap() {
+  const [playing, setPlaying] = useState(null);
+  const timerRef = useRef(null);
+  const voicesRef = useRef([]);
+
+  // preload TTS voices (Chrome populates them asynchronously)
+  useEffect(() => {
+    if (!('speechSynthesis' in window)) return undefined;
+    const load = () => { voicesRef.current = window.speechSynthesis.getVoices(); };
+    load();
+    window.speechSynthesis.addEventListener('voiceschanged', load);
+    return () => window.speechSynthesis.removeEventListener('voiceschanged', load);
+  }, []);
+
+  const speak = (g, i) => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    if (playing === i) {
+      try { window.speechSynthesis.cancel(); } catch { /* visual-only */ }
+      setPlaying(null);
+      return;
+    }
+    setPlaying(i);
+    let spoke = false;
+    try {
+      if ('speechSynthesis' in window) {
+        const synth = window.speechSynthesis;
+        synth.cancel();
+        const u = new SpeechSynthesisUtterance(g.word);
+        // pick a real installed voice — an unmatched lang code can fail silently
+        const voices = voicesRef.current.length ? voicesRef.current : synth.getVoices();
+        const norm = (l) => (l || '').toLowerCase().replace('_', '-');
+        const base = g.code.split('-')[0].toLowerCase();
+        const voice =
+          voices.find((v) => norm(v.lang) === g.code.toLowerCase()) ||
+          voices.find((v) => norm(v.lang).startsWith(base)) ||
+          voices.find((v) => norm(v.lang) === 'en-za') ||
+          voices.find((v) => norm(v.lang).startsWith('en')) ||
+          null;
+        if (voice) { u.voice = voice; u.lang = voice.lang; } else { u.lang = 'en-ZA'; }
+        u.rate = 0.85;
+        u.onend = () => setPlaying((p) => (p === i ? null : p));
+        u.onerror = () => setPlaying((p) => (p === i ? null : p));
+        // small delay — Chrome can swallow speak() fired right after cancel()
+        setTimeout(() => { synth.resume(); synth.speak(u); }, 60);
+        spoke = true;
+      }
+    } catch { /* visual-only */ }
+    // fallback timer so the wave always settles even if TTS is unavailable
+    timerRef.current = setTimeout(() => setPlaying((p) => (p === i ? null : p)), spoke ? 4500 : 1800);
+  };
+
+  return (
+    <div className="za-map">
+      <svg className="za-map-svg" viewBox="0 0 427 375" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <g className="za-provinces">
           {PROVINCES.map((p) => (
             <path key={p.id} d={p.d} />
@@ -75,15 +148,42 @@ export default function CoverageMap() {
               <circle className="za-pulse" r="9" />
               <circle className="za-dot" r="8" />
               <VoiceIcon />
-              <g className="za-flag-badge" transform="translate(4,-12)">
-                <rect x="-1" y="-1" width="16" height="11" rx="2" />
-                <image href={c.flag} x="0" y="0" width="14" height="9" preserveAspectRatio="xMidYMid slice" />
+              <g className="za-flag-badge" transform="translate(6,-18)">
+                <rect x="-1.5" y="-1.5" width="25" height="17" rx="3" />
+                <image href={c.flag} x="0" y="0" width="22" height="14" preserveAspectRatio="xMidYMid slice" />
               </g>
               <text className="za-label" y="22">{c.name}</text>
             </g>
           ))}
         </g>
       </svg>
+      <div className="za-greetings">
+        {GREETINGS.map((g, i) => (
+          <div
+            key={g.city}
+            className={`za-greet-card${playing === i ? ' playing' : ''}`}
+            style={{ ...g.style, animationDelay: g.delay }}
+          >
+            <span className="za-greet-word">{g.word}</span>
+            <span className="za-greet-lang">{g.lang} · {g.city}</span>
+            <div className="za-greet-audio">
+              <button
+                type="button"
+                className="za-greet-play"
+                aria-label={playing === i ? `Stop ${g.word}` : `Play ${g.word} in ${g.lang}`}
+                onClick={() => speak(g, i)}
+              >
+                {playing === i ? <StopIcon /> : <PlayIcon />}
+              </button>
+              <span className="za-greet-wave" aria-hidden="true">
+                {[0, 1, 2, 3, 4].map((n) => (
+                  <i key={n} style={{ animationDelay: `${n * 0.12}s` }} />
+                ))}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

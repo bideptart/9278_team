@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { industries } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
+import { INDUSTRY_ICONS } from '../components/IndustryIcons.jsx';
 
 const KEY_ROWS = [
   [
@@ -31,17 +32,6 @@ const KEY_ROWS = [
   ],
 ];
 
-const INDUSTRY_ICONS = {
-  'Real estate': '🏠',
-  'Legal services': '⚖️',
-  'Healthcare & dental': '🏥',
-  'Home services': '🔧',
-  'Restaurants': '🍽️',
-  'Automotive': '🚗',
-  'E-commerce & retail': '🛒',
-  'Professional services': '💼',
-};
-
 export default function Industries() {
   const scrollToBody = () =>
     document.getElementById('content')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -67,10 +57,9 @@ export default function Industries() {
               your booking flow, your tone.
             </p>
             <div className="cta-row" style={{ marginTop: 36 }}>
-              <button type="button" className="btn btn-cta" onClick={scrollToBody}>
+              <button type="button" className="btn btn-cta btn-sheen" onClick={scrollToBody}>
                 Explore industries <span className="arrow">↓</span>
               </button>
-              <Link to="/contact" className="btn btn-ghost">Book a demo</Link>
             </div>
           </Reveal>
         </div>
@@ -107,7 +96,20 @@ export default function Industries() {
                   >
                     <div className="ind-laptop-info">
                       <span className="ind-phone-status">Incoming call</span>
-                      <div className="ind-phone-avatar">{INDUSTRY_ICONS[phoneInd.name]}</div>
+                      <div className="ind-phone-avatar">
+                        <AnimatePresence mode="wait">
+                          <motion.span
+                            key={phoneInd.name}
+                            className="ind-icon-pop"
+                            initial={{ scale: 0.3, rotate: -90, opacity: 0 }}
+                            animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                            exit={{ scale: 0.3, rotate: 90, opacity: 0 }}
+                            transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+                          >
+                            {(() => { const Icon = INDUSTRY_ICONS[phoneInd.name]; return <Icon />; })()}
+                          </motion.span>
+                        </AnimatePresence>
+                      </div>
                       <div className="ind-phone-name">{phoneInd.name}</div>
                       <div className="ind-phone-wave" aria-hidden="true">
                         <span /><span /><span /><span /><span />
@@ -195,27 +197,34 @@ export default function Industries() {
               whileHover={{ scale: 1.15 }}
               transition={{ type: 'spring', stiffness: 300, damping: 16 }}
             >
-              <span className="timeline-node-icon">{INDUSTRY_ICONS[ind.name]}</span>
+              <motion.span
+                className="timeline-node-icon"
+                whileHover={{ rotate: -12, scale: 1.12 }}
+                transition={{ type: 'spring', stiffness: 320, damping: 14 }}
+              >
+                {(() => { const Icon = INDUSTRY_ICONS[ind.name]; return <Icon />; })()}
+              </motion.span>
             </motion.div>
           </div>
         ))}
       </div>
 
-      <div className="cta-band" style={{ marginTop: 80, borderRadius: 20 }}>
+      </div>
+
+      <section className="cta-band hiw-cta" style={{ marginTop: 80 }}>
         <div className="glow glow-cta" aria-hidden="true" />
         <div className="container">
           <Reveal>
-            <span className="cta-badge">★ Ready when you are</span>
+            <p className="hiw-badge hiw-badge--center hiw-badge--star">★ Ready when you are</p>
             <h2>Don't see your industry?</h2>
             <p>If your business runs on phone calls, KALLUS can answer them. Let's build your agent.</p>
             <div className="cta-row" style={{ justifyContent: 'center' }}>
-              <Link to="/contact" className="btn btn-cta">Book a demo <span className="arrow">→</span></Link>
-              <Link to="/pricing" className="btn btn-ghost">See pricing</Link>
+              <Link to="/contact" className="btn btn-sheen">Book a demo <span className="arrow">→</span></Link>
+              <Link to="/pricing" className="btn btn-ghost hiw-cta-ghost">See pricing</Link>
             </div>
           </Reveal>
         </div>
-      </div>
-      </div>
+      </section>
     </div>
   );
 }

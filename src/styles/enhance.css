@@ -166,10 +166,13 @@
 
 /* page intro fills one screen; content lifted a little above center */
 .page-hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 84px; padding-bottom: 90px; }
-.pricing-hero { display: flex; flex-direction: column; justify-content: center; padding-top: 140px; padding-bottom: 40px; }
+.pricing-hero { display: flex; flex-direction: column; justify-content: center; padding-top: 24px; padding-bottom: 40px; }
+/* Blog / BlogPost hero — tight spacing under the navbar, matching Home */
+.kallus-theme .page-hero { min-height: auto; padding-top: 24px; padding-bottom: 40px; }
 .pricing-body, .page-body { padding: 24px 0 96px; }
 @media (max-width: 560px) { .page-hero { min-height: 86vh; padding-bottom: 110px; } }
-@media (max-width: 560px) { .pricing-hero { padding-top: 110px; padding-bottom: 30px; } }
+@media (max-width: 560px) { .pricing-hero { padding-top: 16px; padding-bottom: 30px; } }
+@media (max-width: 560px) { .kallus-theme .page-hero { padding-top: 16px; padding-bottom: 30px; } }
 
 /* full-bleed lime-tint band, alternating with plain white sections */
 .hiw-band { background: var(--bg-tint); }
@@ -219,11 +222,11 @@
   max-width: var(--maxw); width: calc(100% - var(--pad) * 2);
   margin: 48px auto; border-radius: 32px; border-top: none;
 }
-.hiw-cta-ghost {
-  background: #ffffff; border-color: #ffffff; color: var(--fg);
+.btn-ghost.hiw-cta-ghost {
+  background: #ffffff; border-color: #ffffff; color: var(--fg); filter: none;
   box-shadow: 0 4px 14px -6px rgba(11,18,32,.3);
 }
-.hiw-cta-ghost:hover { background: #f4f6ef; border-color: #f4f6ef; color: var(--fg); }
+.btn-ghost.hiw-cta-ghost:hover { background: #f4f6ef; border-color: #f4f6ef; color: var(--fg); filter: none; }
 .hiw-scroll-btn .arrow { animation: hiw-bounce 1.6s ease-in-out infinite; }
 @keyframes hiw-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
 /* match the "Get started" pill's color + sheen sweep exactly */
@@ -1015,10 +1018,49 @@ html, body { max-width: 100%; overflow-x: clip; }
 .feat-page .btn-sheen { background: linear-gradient(90deg, #6fa524, #3a5a0c); box-shadow: 0 8px 20px -10px rgba(74,124,15,.6); }
 
 /* ---- hero coverage map: SA provinces + animated city network ---- */
-.za-map { padding: 0; }
-.za-map-svg { display: block; width: 100%; height: auto; overflow: visible; }
+/* top/bottom padding reserves space so greeting cards never cover the map */
+.za-map { padding: 96px 0 118px; position: relative; }
+.za-map-svg { display: block; width: 100%; height: auto; overflow: visible; position: relative; z-index: 1; }
+.za-greetings { position: absolute; inset: 0; pointer-events: none; }
+.za-greet-card {
+  position: absolute; display: flex; flex-direction: column; gap: 1px;
+  background: #ffffff; border: 1px solid var(--border); border-radius: 14px;
+  padding: 9px 13px; box-shadow: 0 14px 28px -14px rgba(16,38,46,.35);
+  animation: za-greet-float 5.5s ease-in-out infinite;
+  pointer-events: auto; z-index: 2;
+}
+.za-greet-word { font-weight: 700; font-size: 15px; line-height: 1.2; color: var(--ink, #0b1220); }
+.za-greet-lang { font-family: var(--font-mono); font-size: 9.5px; color: #6b7a90; white-space: nowrap; }
+.za-greet-audio { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.za-greet-play {
+  width: 26px; height: 26px; border-radius: 50%; border: none; cursor: pointer;
+  background: #6fa524; color: #ffffff; display: flex; align-items: center; justify-content: center;
+  padding: 0; flex: none; transition: background .2s ease, transform .2s ease;
+}
+.za-greet-play:hover { background: #5c8b1e; transform: scale(1.08); }
+.za-greet-play svg { width: 12px; height: 12px; display: block; }
+.za-greet-wave { display: flex; align-items: flex-end; gap: 2.5px; height: 18px; padding-bottom: 2px; }
+.za-greet-wave i { width: 3px; border-radius: 2px; background: #9ed15c; }
+.za-greet-wave i:nth-child(1) { height: 5px; }
+.za-greet-wave i:nth-child(2) { height: 11px; }
+.za-greet-wave i:nth-child(3) { height: 16px; }
+.za-greet-wave i:nth-child(4) { height: 9px; }
+.za-greet-wave i:nth-child(5) { height: 6px; }
+.za-greet-card.playing .za-greet-play { background: #3a5a0c; }
+.za-greet-card.playing .za-greet-wave i { animation: za-wave .9s ease-in-out infinite; background: #6fa524; }
+@keyframes za-wave { 0%, 100% { height: 5px; } 50% { height: 16px; } }
+@keyframes za-greet-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@media (max-width: 640px) {
+  .za-map { padding: 68px 0 86px; }
+  .za-greet-card { padding: 7px 10px; border-radius: 11px; }
+  .za-greet-word { font-size: 12px; }
+  .za-greet-lang { font-size: 8px; }
+  .za-greet-play { width: 21px; height: 21px; }
+  .za-greet-play svg { width: 10px; height: 10px; }
+  .za-greet-wave { height: 14px; }
+}
 .za-provinces path {
-  fill: #e3e6e0; stroke: #6fa524; stroke-width: 1.1;
+  fill: whitesmoke; stroke: #6fa524; stroke-width: 1.1;
   filter: drop-shadow(0 6px 10px rgba(16,38,46,.12));
 }
 .za-link { fill: none; stroke-linecap: round; stroke-dasharray: 1px, 1px; animation: za-line-draw 2.6s cubic-bezier(.45,0,.25,1) infinite; }
@@ -1041,7 +1083,7 @@ html, body { max-width: 100%; overflow-x: clip; }
 }
 
 /* call-routing diagram — incoming call branching into departments */
-.route-diagram { position: relative; padding: 24px 24px 0; }
+.route-diagram { position: relative; padding: 24px 24px 0; margin-top: 56px; }
 .route-canopy { position: relative; height: 170px; }
 .route-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .route-lines path {
@@ -1052,31 +1094,33 @@ html, body { max-width: 100%; overflow-x: clip; }
 .route-root {
   position: absolute; top: 0; transform: translate(-50%, 0);
   display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
-  background: var(--accent-live); color: #fff; font-weight: 700; font-size: 14px;
-  padding: 10px 18px; border-radius: 999px; box-shadow: 0 14px 30px -14px rgba(74, 124, 15, .5);
+  background: var(--accent-live); color: #fff; font-weight: 700; font-size: 17px;
+  padding: 12px 22px; border-radius: 999px; box-shadow: 0 14px 30px -14px rgba(74, 124, 15, .5);
   animation: route-pulse 2.4s ease-in-out infinite;
 }
 @keyframes route-pulse {
   0%, 100% { box-shadow: 0 14px 30px -14px rgba(74, 124, 15, .5), 0 0 0 0 rgba(74, 124, 15, .35); }
   50% { box-shadow: 0 14px 30px -14px rgba(74, 124, 15, .5), 0 0 0 10px rgba(74, 124, 15, 0); }
 }
-.route-root small { display: block; font-weight: 500; font-size: 11px; opacity: .85; }
-.route-branches { position: relative; min-height: 92px; }
+.route-root small { display: block; font-weight: 500; font-size: 13px; opacity: .85; }
+.route-branches { position: relative; min-height: 110px; }
 .route-branch {
-  position: absolute; top: 0; transform: translate(-50%, 0); text-align: center; width: 160px;
+  position: absolute; top: 0; transform: translate(-50%, 0); text-align: center; width: 25%; max-width: 150px;
   opacity: 0; animation: route-branch-in .5s ease both;
   animation-delay: calc(var(--i, 0) * 120ms + 300ms);
 }
 .route-node {
-  display: inline-block; border: 1px solid var(--border); background: var(--bg-card);
-  border-radius: 999px; padding: 8px 16px; font-weight: 600; font-size: 14px;
+  display: flex; align-items: center; justify-content: center; width: 100%; min-height: 46px; box-sizing: border-box;
+  border: 1px solid var(--border); background: var(--bg-card);
+  border-radius: 16px; padding: 9px 14px; font-weight: 600; font-size: 15px;
   box-shadow: 0 10px 24px -18px rgba(11, 18, 32, .3);
   transition: transform .2s ease, box-shadow .2s ease;
+  max-width: 100%; white-space: normal; line-height: 1.25;
 }
 .route-branch:hover .route-node { transform: translateY(-3px); box-shadow: 0 16px 30px -18px rgba(74, 124, 15, .4); }
 @keyframes route-branch-in { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translate(-50%, 0); }
 }
-.route-sub { margin-top: 8px; color: var(--fg-muted); font-size: 12px; }
+.route-sub { margin-top: 8px; color: var(--fg-muted); font-size: 13px; line-height: 1.3; }
 @media (max-width: 860px) {
   .route-diagram { padding: 16px 4px 0; }
   .route-canopy { height: 150px; }
