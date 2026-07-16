@@ -84,6 +84,11 @@ export default function CoverageMap() {
           ))}
         </g>
       </svg>
+      <div className="za-carriers">
+        {['Vodacom', 'MTN', 'Telkom', 'Cell C', 'Rain'].map((name, i) => (
+          <span className="za-carrier-badge" style={{ animationDelay: `${i * 0.35}s` }} key={name}>{name}</span>
+        ))}
+      </div>
     </div>
   );
 }

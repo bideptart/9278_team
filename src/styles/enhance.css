@@ -976,6 +976,14 @@ html, body { max-width: 100%; overflow-x: clip; }
 /* ---- hero coverage map: SA provinces + animated city network ---- */
 .za-map { padding: 0; }
 .za-map-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.za-carriers { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 18px; }
+.za-carrier-badge {
+  font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--ink, #0b1220);
+  background: #ffffff; border: 1px solid var(--border); border-radius: 999px;
+  padding: 6px 14px; box-shadow: 0 8px 16px -10px rgba(16,38,46,.25);
+  animation: za-carrier-float 3.2s ease-in-out infinite;
+}
+@keyframes za-carrier-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
 .za-provinces path {
   fill: whitesmoke; stroke: #6fa524; stroke-width: 1.1;
   filter: drop-shadow(0 6px 10px rgba(16,38,46,.12));
