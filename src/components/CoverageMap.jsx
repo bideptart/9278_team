@@ -22,6 +22,14 @@ const CITIES = [
   { name: 'Polokwane', x: 338, y: 50, flag: SA_FLAG },
 ];
 
+const CARRIERS = [
+  { name: 'Vodacom', src: '/carriers/vodacom.webp', layer: 'front', size: 'lg', style: { top: '-6%', left: '3%' }, delay: '0s' },
+  { name: 'MTN', src: '/carriers/mtn.webp', layer: 'back', size: 'md', style: { top: '4%', right: '-4%' }, delay: '0.9s' },
+  { name: 'Telkom', src: '/carriers/telkom.webp', layer: 'front', size: 'md', style: { bottom: '22%', left: '-5%' }, delay: '1.8s' },
+  { name: 'Cell C', src: '/carriers/cellc.webp', layer: 'back', size: 'lg', style: { bottom: '-6%', right: '12%' }, delay: '2.6s' },
+  { name: 'Rain', src: '/carriers/rain.webp', layer: 'front', size: 'sm', style: { top: '48%', left: '-7%' }, delay: '3.4s' },
+];
+
 const byName = (n) => CITIES.find((c) => c.name === n);
 const LINKS = [
   [byName('Cape Town'), byName('Gqeberha')],
@@ -85,8 +93,14 @@ export default function CoverageMap() {
         </g>
       </svg>
       <div className="za-carriers">
-        {['Vodacom', 'MTN', 'Telkom', 'Cell C', 'Rain'].map((name, i) => (
-          <span className="za-carrier-badge" style={{ animationDelay: `${i * 0.35}s` }} key={name}>{name}</span>
+        {CARRIERS.map((c) => (
+          <span
+            key={c.name}
+            className={`za-carrier-bubble za-carrier-${c.layer} za-carrier-${c.size}`}
+            style={{ ...c.style, animationDelay: c.delay }}
+          >
+            <img src={c.src} alt={c.name} loading="lazy" />
+          </span>
         ))}
       </div>
     </div>

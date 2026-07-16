@@ -977,16 +977,31 @@ html, body { max-width: 100%; overflow-x: clip; }
 .feat-page .btn-sheen { background: linear-gradient(90deg, #6fa524, #3a5a0c); box-shadow: 0 8px 20px -10px rgba(74,124,15,.6); }
 
 /* ---- hero coverage map: SA provinces + animated city network ---- */
-.za-map { padding: 0; }
-.za-map-svg { display: block; width: 100%; height: auto; overflow: visible; }
-.za-carriers { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 18px; }
-.za-carrier-badge {
-  font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--ink, #0b1220);
-  background: #ffffff; border: 1px solid var(--border); border-radius: 999px;
-  padding: 6px 14px; box-shadow: 0 8px 16px -10px rgba(16,38,46,.25);
-  animation: za-carrier-float 3.2s ease-in-out infinite;
+.za-map { padding: 0; position: relative; }
+.za-map-svg { display: block; width: 100%; height: auto; overflow: visible; position: relative; z-index: 1; }
+.za-carriers { position: absolute; inset: 0; pointer-events: none; }
+.za-carrier-bubble {
+  position: absolute; display: flex; align-items: center; justify-content: center;
+  background: #ffffff; border-radius: 50%; border: 1px solid var(--border);
+  box-shadow: 0 12px 24px -12px rgba(16,38,46,.4);
+  padding: 10px; animation: za-carrier-float 5.5s ease-in-out infinite;
+  pointer-events: none;
 }
-@keyframes za-carrier-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+.za-carrier-bubble img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.za-carrier-sm { width: 44px; height: 44px; padding: 8px; }
+.za-carrier-md { width: 58px; height: 58px; }
+.za-carrier-lg { width: 70px; height: 70px; }
+.za-carrier-front { z-index: 2; }
+.za-carrier-back { z-index: 0; opacity: .9; }
+@keyframes za-carrier-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-16px) rotate(4deg); }
+}
+@media (max-width: 640px) {
+  .za-carrier-lg { width: 52px; height: 52px; }
+  .za-carrier-md { width: 42px; height: 42px; }
+  .za-carrier-sm { width: 34px; height: 34px; padding: 6px; }
+}
 .za-provinces path {
   fill: whitesmoke; stroke: #6fa524; stroke-width: 1.1;
   filter: drop-shadow(0 6px 10px rgba(16,38,46,.12));
