@@ -183,7 +183,7 @@ export default function Pricing() {
 
       <div className="container pricing-body">
 
-      <Reveal className="section-head" style={{ marginTop: 80 }}>
+      <Reveal className="section-head section-gap-lg">
         <p className="eyebrow">Compare plans</p>
         <h2 style={{ fontSize: 'clamp(24px,3.6vw,38px)' }}>Every plan, side by side.</h2>
       </Reveal>
@@ -242,7 +242,7 @@ export default function Pricing() {
 
       <div className="container pricing-body">
 
-      <div className="section-head faq-head" style={{ marginTop: 80, textAlign: 'center' }}>
+      <div className="section-head faq-head section-gap-lg" style={{ textAlign: 'center' }}>
         <p className="eyebrow" style={{ justifyContent: 'center' }}>FAQ</p>
         <h2 style={{ fontSize: 'clamp(24px,3.6vw,38px)' }}>Everything your practice needs to know.</h2>
       </div>
