@@ -10,11 +10,26 @@ const scrollToHeading = (e, id) => {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
+function ImagePlaceholder({ caption }) {
+  return (
+    <div className="article-image-placeholder">
+      <span>Image placeholder</span>
+      <p>{caption}</p>
+    </div>
+  );
+}
+
 export default function BlogPost() {
   const { slug } = useParams();
   const post = blogPosts.find((p) => p.slug === slug);
 
   if (!post) return <NotFound />;
+
+  const heroImageIndex = post.body.findIndex((b) => b.type === 'image');
+  const heroImage = heroImageIndex !== -1 ? post.body[heroImageIndex] : null;
+  const bodyBlocks = heroImageIndex !== -1
+    ? post.body.filter((_, i) => i !== heroImageIndex)
+    : post.body;
 
   const toc = post.body.filter((b) => b.type === 'h2').map((b) => ({ text: b.text, id: headingId(b.text) }));
 
@@ -35,41 +50,45 @@ export default function BlogPost() {
         </Reveal>
       </section>
 
-      <div className="container page-body">
-        <Reveal className="article">
-          {toc.length > 0 && (
-            <nav className="article-toc" aria-label="Table of contents">
-              <p className="article-toc-title">Table of contents</p>
-              <ul>
-                {toc.map((item) => (
-                  <li key={item.id}>
-                    <a href={`#${item.id}`} onClick={(e) => scrollToHeading(e, item.id)}>{item.text}</a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          )}
-          {post.body.map((block, i) => {
-            if (block.type === 'h2') return <h2 id={headingId(block.text)} key={i}>{block.text}</h2>;
-            if (block.type === 'p') return <p key={i}>{block.text}</p>;
-            if (block.type === 'bullets') {
-              return (
-                <ul className="article-list" key={i}>
-                  {block.items.map((item, j) => <li key={j}>{item}</li>)}
-                </ul>
-              );
-            }
-            if (block.type === 'image') {
-              return (
-                <div className="article-image-placeholder" key={i}>
-                  <span>Image placeholder</span>
-                  <p>{block.caption}</p>
-                </div>
-              );
-            }
-            return null;
-          })}
+      {heroImage && (
+        <Reveal className="container" style={{ marginBottom: 8 }}>
+          <ImagePlaceholder caption={heroImage.caption} />
         </Reveal>
+      )}
+
+      <div className="container page-body">
+        <div className="article-layout">
+          {toc.length > 0 && (
+            <aside className="article-sidebar">
+              <nav className="article-toc" aria-label="Table of contents">
+                <p className="article-toc-title">Table of contents</p>
+                <ul>
+                  {toc.map((item) => (
+                    <li key={item.id}>
+                      <a href={`#${item.id}`} onClick={(e) => scrollToHeading(e, item.id)}>{item.text}</a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </aside>
+          )}
+
+          <Reveal className="article" as="div">
+            {bodyBlocks.map((block, i) => {
+              if (block.type === 'h2') return <h2 id={headingId(block.text)} key={i}>{block.text}</h2>;
+              if (block.type === 'p') return <p key={i}>{block.text}</p>;
+              if (block.type === 'bullets') {
+                return (
+                  <ul className="article-list" key={i}>
+                    {block.items.map((item, j) => <li key={j}>{item}</li>)}
+                  </ul>
+                );
+              }
+              if (block.type === 'image') return <ImagePlaceholder caption={block.caption} key={i} />;
+              return null;
+            })}
+          </Reveal>
+        </div>
 
         <div className="cta-band" style={{ marginTop: 80, borderRadius: 20 }}>
           <div className="container">

@@ -472,18 +472,25 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 .article p:first-of-type { color: var(--fg); font-size: 19px; }
 .article-list { margin: 0 0 24px; padding-left: 22px; display: flex; flex-direction: column; gap: 10px; }
 .article-list li { color: var(--fg-soft); font-size: 16px; line-height: 1.7; }
-.article-toc {
-  margin: 0 0 40px; padding: 22px 26px; border-radius: 14px;
-  background: var(--bg-elev); border: 1px solid var(--border);
+
+/* ---- article layout: sticky left sidebar TOC + main column ---- */
+.article-layout { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: 230px 1fr; gap: 56px; align-items: start; }
+.article-layout .article { max-width: none; margin: 0; }
+.article-sidebar { position: sticky; top: 100px; }
+@media (max-width: 900px) {
+  .article-layout { grid-template-columns: 1fr; gap: 0; }
+  .article-sidebar { position: static; margin-bottom: 32px; }
 }
+
+.article-toc { border-left: 2px solid var(--border); padding-left: 18px; }
 .article-toc-title {
   font-family: var(--font-mono); font-size: 12px; font-weight: 700;
   letter-spacing: .08em; text-transform: uppercase; color: var(--fg-dim); margin: 0 0 14px;
 }
-.article-toc ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 9px; list-style: decimal; }
-.article-toc li { color: var(--fg-soft); font-size: 15px; }
-.article-toc a { color: var(--fg); text-decoration: none; }
-.article-toc a:hover { color: var(--accent-mid); text-decoration: underline; }
+.article-toc ul { margin: 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.article-toc li { color: var(--fg-soft); font-size: 14px; line-height: 1.4; }
+.article-toc a { color: var(--fg-muted); text-decoration: none; }
+.article-toc a:hover { color: var(--accent-mid); }
 .article-image-placeholder {
   margin: 32px 0; padding: 40px 24px; border-radius: 16px; text-align: center;
   background: linear-gradient(135deg, var(--accent-soft), var(--accent-2));
