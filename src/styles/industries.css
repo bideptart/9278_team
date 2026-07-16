@@ -40,6 +40,10 @@
 .industries-theme .lead {
   color: var(--ink-3);
 }
+.industries-theme .page-body {
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+}
 .industries-theme .ind-eyebrow-pill {
   background: var(--accent-soft);
   border: 1px solid var(--accent-soft);
@@ -71,14 +75,14 @@
 
 .industries-theme .btn-cta,
 .industries-theme .btn-sheen {
-  background: linear-gradient(180deg, var(--accent-2) 0%, var(--accent-mid) 100%);
+  background: linear-gradient(90deg, var(--accent-2), var(--accent-mid));
   color: var(--accent-ink);
   border-color: transparent;
   box-shadow: 0 8px 22px -8px rgba(111, 165, 36, 0.5);
 }
 .industries-theme .btn-cta:hover,
 .industries-theme .btn-sheen:hover {
-  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 100%);
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
 }
 .industries-theme .btn-ghost {
   color: var(--ink);
@@ -150,6 +154,8 @@
   position: relative;
   width: var(--laptop-w);
   aspect-ratio: 16 / 9;
+  flex-shrink: 0;
+  min-height: 0;
   background: linear-gradient(160deg, #34363a 0%, #1c1e21 25%, #0c0d0f 65%, #26282c 100%);
   border-radius: 20px 20px 4px 4px;
   padding: 12px 12px 21px;
@@ -202,8 +208,9 @@
 .industries-theme .ind-laptop-base {
   position: relative;
   width: calc(var(--laptop-w) / 0.95);
-  height: 132px;
-  padding: 10px 44px 12px;
+  height: clamp(60px, calc(var(--laptop-w) * 0.275), 132px);
+  flex-shrink: 0;
+  padding: calc(var(--laptop-w) * 0.021) calc(var(--laptop-w) * 0.094) calc(var(--laptop-w) * 0.026);
   box-sizing: border-box;
   background: linear-gradient(180deg, #eef0f2 0%, #d2d4d8 55%, #b5b7bc 100%);
   clip-path: polygon(2.5% 0, 97.5% 0, 100% 100%, 0 100%);
@@ -214,7 +221,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: clamp(4px, calc(var(--laptop-w) * 0.017), 8px);
 }
 .industries-theme .ind-laptop-keys {
   width: 100%;
@@ -267,8 +274,8 @@
 .industries-theme .ind-laptop-trackpad {
   position: relative;
   flex: none;
-  width: 120px;
-  height: 26px;
+  width: clamp(60px, calc(var(--laptop-w) * 0.255), 120px);
+  height: clamp(14px, calc(var(--laptop-w) * 0.055), 26px);
   background: linear-gradient(180deg, #f0f1f2, #d7d9dc);
   border: 1px solid rgba(0, 0, 0, .12);
   border-radius: 5px;
@@ -461,37 +468,59 @@
   .industries-theme .ind-phone-wave span { animation: none; }
 }
 @media (max-width: 960px) {
+  .industries-theme .page-hero { min-height: auto; padding-top: 32px; padding-bottom: 48px; justify-content: flex-start; }
   .industries-theme .ind-hero { grid-template-columns: 1fr; }
-  .industries-theme .ind-hero-visual { min-height: 400px; order: -1; padding: 24px; margin-right: 0; justify-content: center; }
-  .industries-theme .ind-laptop-unit { --laptop-w: 400px; }
+  .industries-theme .ind-hero-visual { min-height: clamp(220px, 40vw, 400px); padding: 12px 24px 24px; margin-right: 0; margin-top: 12px; justify-content: center; }
+  .industries-theme .ind-laptop-unit { --laptop-w: clamp(220px, 34vw, 400px); }
 }
-@media (max-width: 700px) {
-  .industries-theme .ind-laptop-content { gap: 16px; }
-  .industries-theme .ind-laptop-info { width: 104px; }
-  .industries-theme .ind-laptop-detail { max-width: none; }
-}
-@media (max-width: 560px) {
-  .industries-theme .ind-hero-visual { min-height: 260px; padding: 12px; }
-  .industries-theme .ind-laptop-unit { --laptop-w: 280px; }
-  .industries-theme .ind-laptop-screen { padding: 14px 16px 10px; }
-  .industries-theme .ind-laptop-content { gap: 10px; }
-  .industries-theme .ind-laptop-info { width: 88px; gap: 5px; }
-  .industries-theme .ind-phone-avatar { width: 44px; height: 44px; margin-top: 0; font-size: 20px; }
-  .industries-theme .ind-phone-name { font-size: 12px; min-height: 30px; }
-  .industries-theme .ind-phone-status { font-size: 10px; }
-  .industries-theme .ind-phone-wave { height: 14px; }
-  .industries-theme .ind-laptop-detail { gap: 7px; }
-  .industries-theme .ind-phone-transcript { gap: 4px; }
-  .industries-theme .ind-phone-bubble { font-size: 10px; padding: 5px 8px; min-height: 26px; line-height: 1.25; }
-  .industries-theme .board-tag { font-size: 9px; padding: 2px 7px; }
-  .industries-theme .ind-phone-top { font-size: 11px; gap: 6px; }
+/* screen content: row-based & continuously scaled to --laptop-w so it always fits the 16:9 frame.
+   Wider than the 960px layout breakpoint because the side-by-side desktop column can still
+   squeeze the laptop narrow enough (down to ~320px wide) to overflow the original spacious layout. */
+@media (max-width: 1300px) {
+  .industries-theme .ind-laptop-screen {
+    padding: clamp(10px, calc(var(--laptop-w) * 0.045), 21px) clamp(12px, calc(var(--laptop-w) * 0.06), 27px) clamp(8px, calc(var(--laptop-w) * 0.028), 13px);
+  }
+  .industries-theme .ind-phone-top {
+    font-size: clamp(10px, calc(var(--laptop-w) * 0.045), 14px);
+    gap: clamp(4px, calc(var(--laptop-w) * 0.02), 9px);
+  }
+  .industries-theme .ind-laptop-content { gap: clamp(8px, calc(var(--laptop-w) * 0.04), 20px); }
+  .industries-theme .ind-laptop-info {
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(5px, calc(var(--laptop-w) * 0.025), 8px);
+  }
+  .industries-theme .ind-phone-status { display: none; }
+  .industries-theme .ind-phone-avatar {
+    width: clamp(24px, calc(var(--laptop-w) * 0.11), 44px);
+    height: clamp(24px, calc(var(--laptop-w) * 0.11), 44px);
+    margin-top: 0;
+    font-size: clamp(12px, calc(var(--laptop-w) * 0.05), 20px);
+  }
+  .industries-theme .ind-phone-name {
+    min-height: 0;
+    font-size: clamp(10px, calc(var(--laptop-w) * 0.045), 15px);
+    -webkit-line-clamp: 1;
+    text-align: left;
+  }
+  .industries-theme .ind-phone-wave { display: none; }
+  .industries-theme .ind-laptop-detail {
+    max-width: none;
+    gap: clamp(3px, calc(var(--laptop-w) * 0.015), 7px);
+  }
+  .industries-theme .ind-phone-transcript { gap: clamp(2px, calc(var(--laptop-w) * 0.012), 4px); }
+  .industries-theme .ind-phone-bubble {
+    min-height: clamp(18px, calc(var(--laptop-w) * 0.085), 28px);
+    padding: clamp(4px, calc(var(--laptop-w) * 0.018), 6px) clamp(6px, calc(var(--laptop-w) * 0.03), 9px);
+    font-size: clamp(9px, calc(var(--laptop-w) * 0.038), 11px);
+    line-height: 1.25;
+    -webkit-line-clamp: 1;
+  }
+  .industries-theme .ind-laptop-detail .ind-phone-tags { display: none; }
 }
 @media (max-width: 400px) {
   .industries-theme .ind-hero-heading { font-size: 23px; }
-  .industries-theme .ind-laptop-content { flex-direction: column; height: auto; gap: 8px; }
-  .industries-theme .ind-laptop-info { width: 100%; flex-direction: row; justify-content: center; gap: 10px; }
-  .industries-theme .ind-phone-name { min-height: 0; -webkit-line-clamp: 1; }
-  .industries-theme .ind-laptop-detail { width: 100%; max-width: none; }
 }
 
 /* ---- connected timeline — circular nodes on a drawing line, alternating sides ---- */
