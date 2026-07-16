@@ -167,9 +167,12 @@
 /* page intro fills one screen; content lifted a little above center */
 .page-hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 84px; padding-bottom: 90px; }
 .pricing-hero { display: flex; flex-direction: column; justify-content: center; padding-top: 24px; padding-bottom: 40px; }
+/* Blog / BlogPost hero — tight spacing under the navbar, matching Home */
+.kallus-theme .page-hero { min-height: auto; padding-top: 24px; padding-bottom: 40px; }
 .pricing-body, .page-body { padding: 24px 0 96px; }
 @media (max-width: 560px) { .page-hero { min-height: 86vh; padding-bottom: 110px; } }
 @media (max-width: 560px) { .pricing-hero { padding-top: 16px; padding-bottom: 30px; } }
+@media (max-width: 560px) { .kallus-theme .page-hero { padding-top: 16px; padding-bottom: 30px; } }
 
 /* full-bleed lime-tint band, alternating with plain white sections */
 .hiw-band { background: var(--bg-tint); }
