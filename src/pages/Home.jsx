@@ -172,18 +172,22 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="cta-band">
-        <div className="glow glow-cta" aria-hidden="true" />
+      <section className="section">
         <div className="container">
-          <Reveal>
-            <p className="eyebrow" style={{ justifyContent: 'center' }}><span className="live-dot" /> Ready when you are</p>
-            <h2>Hear it answer your next call.</h2>
-            <p>Spin up your AI receptionist and forward a line today. Pay only for the minutes you use.</p>
-            <div className="cta-row" style={{ justifyContent: 'center' }}>
-              <Link to="/contact" className="btn btn-sheen">Book a demo <span className="arrow">→</span></Link>
-              <Link to="/pricing" className="btn btn-ghost">See pricing</Link>
+          <div className="cta-band" style={{ borderRadius: 24 }}>
+            <div className="glow glow-cta" aria-hidden="true" />
+            <div className="container">
+              <Reveal>
+                <p className="eyebrow" style={{ justifyContent: 'center' }}><span className="live-dot" /> Ready when you are</p>
+                <h2>Hear it answer your next call.</h2>
+                <p>Spin up your AI receptionist and forward a line today. Pay only for the minutes you use.</p>
+                <div className="cta-row" style={{ justifyContent: 'center' }}>
+                  <Link to="/contact" className="btn btn-sheen">Book a demo <span className="arrow">→</span></Link>
+                  <Link to="/pricing" className="btn btn-ghost">See pricing</Link>
+                </div>
+              </Reveal>
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
     </div>

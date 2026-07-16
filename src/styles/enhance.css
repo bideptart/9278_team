@@ -163,6 +163,43 @@
   padding: 26px;
   transition: border-color .25s ease, transform .25s ease;
 }
+
+/* ---- call card header: avatar badge, agent name, live status ---- */
+.cc-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.cc-header-left { display: flex; align-items: center; gap: 12px; }
+.cc-avatar-badge {
+  flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-live); color: #fff;
+  animation: cc-breathe 2.6s ease-in-out infinite;
+}
+.cc-avatar-badge svg { width: 18px; height: 18px; }
+@keyframes cc-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+.cc-agent-name { font-weight: 700; font-size: 14.5px; color: var(--fg); }
+.cc-agent-meta { font-size: 12px; color: var(--fg-dim); margin-top: 1px; }
+.cc-live-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: .05em;
+  color: var(--accent-live); background: color-mix(in srgb, var(--accent-live) 12%, transparent);
+  border-radius: 999px; padding: 5px 10px 5px 8px; white-space: nowrap;
+}
+
+/* language tag pill inside a transcript bubble */
+.bubble-tag {
+  display: inline-block; margin-left: 8px; vertical-align: middle;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  color: var(--fg-muted); background: rgba(0,0,0,.05);
+  border-radius: 999px; padding: 2px 8px;
+}
+.bubble.agent .bubble-tag { color: rgba(255,255,255,.85); background: rgba(255,255,255,.18); }
+
+/* ---- call card footer: animated voice bars + live latency reading ---- */
+.cc-footer { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 16px; }
+.cc-voicebars-row { display: flex; align-items: center; gap: 2.5px; height: 22px; flex: 1; }
+.cc-voicebars-row span { width: 2.5px; background: var(--border); border-radius: 2px; height: 20%; transition: background .3s ease; }
+.cc-voicebars-row[data-active="true"] span { background: var(--accent-live); animation: wave 1.1s ease-in-out infinite; }
+.cc-latency { font-family: var(--font-mono); font-size: 11px; color: var(--fg-dim); white-space: nowrap; }
+.cc-latency strong { color: var(--accent-live); font-weight: 700; }
 .usecase:hover { transform: translateY(-2px); }
 .usecase-tag { font-family: var(--font-mono); font-size: 13px; color: var(--accent-live); }
 .usecase h3 { font-size: clamp(22px, 3vw, 30px); margin: 14px 0 12px; transition: color .3s ease; }
