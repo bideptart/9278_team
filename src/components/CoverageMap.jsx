@@ -25,12 +25,12 @@ const CITIES = [
 ];
 
 const GREETINGS = [
-  { word: 'Hello', lang: 'English', city: 'Johannesburg', code: 'en-ZA', style: { top: '3%', left: '-3%' }, delay: '0s' },
-  { word: 'Thobela', lang: 'Sepedi', city: 'Polokwane', code: 'nso-ZA', style: { top: '0%', right: '-2%' }, delay: '0.7s' },
-  { word: 'Sawubona', lang: 'isiZulu', city: 'Durban', code: 'zu-ZA', style: { top: '69%', right: '-8%' }, delay: '1.4s' },
-  { word: 'Molo', lang: 'isiXhosa', city: 'Gqeberha', code: 'xh-ZA', style: { bottom: '3%', left: '46%' }, delay: '2.1s' },
-  { word: 'Hallo', lang: 'Afrikaans', city: 'Cape Town', code: 'af-ZA', style: { bottom: '3%', left: '-4%' }, delay: '2.8s' },
-  { word: 'Dumela', lang: 'Sesotho', city: 'Bloemfontein', code: 'st-ZA', style: { top: '5%', left: '30%' }, delay: '3.5s' },
+  { word: 'Hello', lang: 'English', city: 'Johannesburg', code: 'en-ZA', style: { top: '2%', left: '0%' }, delay: '0s' },
+  { word: 'Dumela', lang: 'Sesotho', city: 'Bloemfontein', code: 'st-ZA', style: { top: '2%', left: '38%' }, delay: '0.7s' },
+  { word: 'Thobela', lang: 'Sepedi', city: 'Polokwane', code: 'nso-ZA', style: { top: '2%', right: '0%' }, delay: '1.4s' },
+  { word: 'Hallo', lang: 'Afrikaans', city: 'Cape Town', code: 'af-ZA', style: { bottom: '2%', left: '0%' }, delay: '2.1s' },
+  { word: 'Molo', lang: 'isiXhosa', city: 'Gqeberha', code: 'xh-ZA', style: { bottom: '2%', left: '38%' }, delay: '2.8s' },
+  { word: 'Sawubona', lang: 'isiZulu', city: 'Durban', code: 'zu-ZA', style: { bottom: '2%', right: '0%' }, delay: '3.5s' },
 ];
 
 const byName = (n) => CITIES.find((c) => c.name === n);
@@ -73,8 +73,17 @@ function StopIcon() {
 
 export default function CoverageMap() {
   const [playing, setPlaying] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const timerRef = useRef(null);
   const voicesRef = useRef([]);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 640px)');
+    setIsMobile(mq.matches);
+    const onChange = (e) => setIsMobile(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
 
   // preload TTS voices (Chrome populates them asynchronously)
   useEffect(() => {
@@ -162,7 +171,7 @@ export default function CoverageMap() {
           <div
             key={g.city}
             className={`za-greet-card${playing === i ? ' playing' : ''}`}
-            style={{ ...g.style, animationDelay: g.delay }}
+            style={{ ...g.style, ...(isMobile ? g.mobileStyle : null), animationDelay: g.delay }}
           >
             <span className="za-greet-word">{g.word}</span>
             <span className="za-greet-lang">{g.lang} · {g.city}</span>

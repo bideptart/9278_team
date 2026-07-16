@@ -1019,45 +1019,46 @@ html, body { max-width: 100%; overflow-x: clip; }
 
 /* ---- hero coverage map: SA provinces + animated city network ---- */
 /* top/bottom padding reserves space so greeting cards never cover the map */
-.za-map { padding: 96px 0 118px; position: relative; }
-.za-map-svg { display: block; width: 100%; height: auto; overflow: visible; position: relative; z-index: 1; }
+.za-map { padding: 78px 0 88px; position: relative; }
+.za-map-svg { display: block; width: 80%; margin: 0 auto; height: auto; overflow: visible; position: relative; z-index: 1; }
 .za-greetings { position: absolute; inset: 0; pointer-events: none; }
 .za-greet-card {
   position: absolute; display: flex; flex-direction: column; gap: 1px;
-  background: #ffffff; border: 1px solid var(--border); border-radius: 14px;
-  padding: 9px 13px; box-shadow: 0 14px 28px -14px rgba(16,38,46,.35);
+  background: #ffffff; border: 1px solid var(--border); border-radius: 11px;
+  padding: 6px 9px; box-shadow: 0 10px 20px -12px rgba(16,38,46,.35);
   animation: za-greet-float 5.5s ease-in-out infinite;
   pointer-events: auto; z-index: 2;
 }
-.za-greet-word { font-weight: 700; font-size: 15px; line-height: 1.2; color: var(--ink, #0b1220); }
-.za-greet-lang { font-family: var(--font-mono); font-size: 9.5px; color: #6b7a90; white-space: nowrap; }
-.za-greet-audio { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.za-greet-word { font-weight: 700; font-size: 12px; line-height: 1.2; color: var(--ink, #0b1220); }
+.za-greet-lang { font-family: var(--font-mono); font-size: 8px; color: #6b7a90; white-space: nowrap; }
+.za-greet-audio { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
 .za-greet-play {
-  width: 26px; height: 26px; border-radius: 50%; border: none; cursor: pointer;
+  width: 19px; height: 19px; border-radius: 50%; border: none; cursor: pointer;
   background: #6fa524; color: #ffffff; display: flex; align-items: center; justify-content: center;
   padding: 0; flex: none; transition: background .2s ease, transform .2s ease;
 }
 .za-greet-play:hover { background: #5c8b1e; transform: scale(1.08); }
-.za-greet-play svg { width: 12px; height: 12px; display: block; }
-.za-greet-wave { display: flex; align-items: flex-end; gap: 2.5px; height: 18px; padding-bottom: 2px; }
-.za-greet-wave i { width: 3px; border-radius: 2px; background: #9ed15c; }
-.za-greet-wave i:nth-child(1) { height: 5px; }
-.za-greet-wave i:nth-child(2) { height: 11px; }
-.za-greet-wave i:nth-child(3) { height: 16px; }
-.za-greet-wave i:nth-child(4) { height: 9px; }
-.za-greet-wave i:nth-child(5) { height: 6px; }
+.za-greet-play svg { width: 9px; height: 9px; display: block; }
+.za-greet-wave { display: flex; align-items: flex-end; gap: 2px; height: 13px; padding-bottom: 2px; }
+.za-greet-wave i { width: 2px; border-radius: 2px; background: #9ed15c; }
+.za-greet-wave i:nth-child(1) { height: 4px; }
+.za-greet-wave i:nth-child(2) { height: 8px; }
+.za-greet-wave i:nth-child(3) { height: 12px; }
+.za-greet-wave i:nth-child(4) { height: 7px; }
+.za-greet-wave i:nth-child(5) { height: 5px; }
 .za-greet-card.playing .za-greet-play { background: #3a5a0c; }
 .za-greet-card.playing .za-greet-wave i { animation: za-wave .9s ease-in-out infinite; background: #6fa524; }
-@keyframes za-wave { 0%, 100% { height: 5px; } 50% { height: 16px; } }
+@keyframes za-wave { 0%, 100% { height: 4px; } 50% { height: 12px; } }
 @keyframes za-greet-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes za-greet-float-sm { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 @media (max-width: 640px) {
-  .za-map { padding: 68px 0 86px; }
-  .za-greet-card { padding: 7px 10px; border-radius: 11px; }
-  .za-greet-word { font-size: 12px; }
-  .za-greet-lang { font-size: 8px; }
-  .za-greet-play { width: 21px; height: 21px; }
-  .za-greet-play svg { width: 10px; height: 10px; }
-  .za-greet-wave { height: 14px; }
+  .za-map { padding: 70px 0 70px; }
+  .za-greet-card { padding: 5px 8px; border-radius: 9px; animation-name: za-greet-float-sm; }
+  .za-greet-word { font-size: 10px; }
+  .za-greet-lang { font-size: 7px; }
+  .za-greet-play { width: 16px; height: 16px; }
+  .za-greet-play svg { width: 8px; height: 8px; }
+  .za-greet-wave { height: 11px; }
 }
 .za-provinces path {
   fill: whitesmoke; stroke: #6fa524; stroke-width: 1.1;
