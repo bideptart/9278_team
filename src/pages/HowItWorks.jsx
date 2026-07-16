@@ -4,6 +4,38 @@ import Reveal from '../components/Reveal.jsx';
 import SetupPreview from '../components/SetupPreview.jsx';
 import PhoneShowcase from '../components/PhoneShowcase.jsx';
 import ResponseTimeCompare from '../components/ResponseTimeCompare.jsx';
+import ScrollCards from '../components/ScrollCards.jsx';
+
+const CALL_FEATURE_CARDS = [
+  {
+    title: 'Answers instantly',
+    description: 'Every inbound call gets picked up in under half a second — no hold music, no voicemail.',
+    src: '/feature-answers-instantly.webp',
+    color: '#0b1220',
+    textColor: '#ffffff',
+  },
+  {
+    title: 'Understands intent',
+    description: 'Natural conversation parses what the caller actually needs, not just keywords.',
+    src: '/feature-understands-intent.webp',
+    color: '#0b1220',
+    textColor: '#ffffff',
+  },
+  {
+    title: 'Acts in your tools',
+    description: 'Books appointments, checks records, and updates your CRM live, mid-call.',
+    src: '/feature-acts-in-your-tools.webp',
+    color: '#4d7c0f',
+    textColor: '#ffffff',
+  },
+  {
+    title: 'Logs everything',
+    description: 'Full transcripts, sentiment, and call data land in your dashboard automatically.',
+    src: '/feature-logs-everything.webp',
+    color: '#3a5a0c',
+    textColor: '#ffffff',
+  },
+];
 
 export default function HowItWorks() {
   const scrollToBody = () =>
@@ -69,43 +101,12 @@ export default function HowItWorks() {
       </div>
 
       <section className="hiw-band">
-        <div className="container section">
-          <Reveal className="section-head">
+        <div className="container hood-split">
+          <Reveal className="hood-split-head">
             <p className="hiw-badge"><span className="live-dot" /> On every single call</p>
-            <h2 style={{ fontSize: 'clamp(26px,4vw,40px)' }}>What happens on every call.</h2>
+            <h2 style={{ fontSize: 'clamp(28px,3.6vw,44px)' }}>What happens on every call.</h2>
           </Reveal>
-          <div className="grid grid-2 hood-grid">
-            {[
-              {
-                t: 'Answers instantly',
-                d: 'Native audio-to-audio responses in under 300ms — no robotic lag, full-duplex so callers can interrupt.',
-                icon: <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z" />,
-              },
-              {
-                t: 'Understands intent',
-                d: 'Detects what the caller wants — book, ask, complain, buy — and follows your guardrails to handle it.',
-                icon: <path d="M21 11.5a8.38 8.38 0 0 1-4.9 7.6 8.5 8.5 0 0 1-8.6-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5h.5a8.48 8.48 0 0 1 8 8v.5Z" />,
-              },
-              {
-                t: 'Acts in your tools',
-                d: 'Creates calendar events, updates your CRM, sends confirmations, or warm-transfers to a teammate.',
-                icon: <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.4-3.4a6 6 0 0 1-7.6 7.6l-6.5 6.5a2.1 2.1 0 0 1-3-3l6.5-6.5a6 6 0 0 1 7.6-7.6l-3.4 3.4Z" />,
-              },
-              {
-                t: 'Logs everything',
-                d: 'Delivers a transcript, summary, sentiment, and intent for every call so you keep full visibility.',
-                icon: <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" /><path d="M14 2v6h6M8 13h8M8 17h8" /></>,
-              },
-            ].map((c, i) => (
-              <Reveal className="card hood-card" delay={(i % 2) * 70} key={c.t}>
-                <span className="hood-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">{c.icon}</svg>
-                </span>
-                <h3 className="card-title">{c.t}</h3>
-                <p className="card-desc">{c.d}</p>
-              </Reveal>
-            ))}
-          </div>
+          <ScrollCards items={CALL_FEATURE_CARDS} />
         </div>
       </section>
 
