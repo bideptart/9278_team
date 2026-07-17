@@ -713,9 +713,15 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   background: linear-gradient(90deg, #6fa524, #4d7c0f);
   box-shadow: 0 8px 20px -10px rgba(77,124,15,.6);
 }
+.home-page .hero .cta-row .btn-ghost {
+  background: none; box-shadow: none;
+}
+.home-page .hero .cta-row .btn-ghost:hover {
+  background: var(--fg); color: #fff; border-color: var(--fg);
+}
 .home-page .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
 .home-page .hero .cta-row { margin-top: 16px; }
-.home-page .hero .sub { margin-top: 12px; font-size: clamp(15px, 1.7vw, 18px); line-height: 1.5; max-width: 54ch; }
+.home-page .hero .sub { margin-top: 12px; font-size: clamp(15px, 1.7vw, 18px); line-height: 1.5; max-width: 54ch; color: var(--fg-soft); }
 .home-page .hero-note { margin-top: 8px; }
 .home-page .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 8px; padding-top: 10px; border-top: 1px solid var(--border); }
 .home-page .hero-stat { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
@@ -724,7 +730,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 @media (max-width: 560px) {
   .home-page .hero-stats { grid-template-columns: 1fr 1fr; gap: 16px 14px; }
 }
-.home-page .hero-split h1 { font-size: clamp(28px, 4vw, 46px); }
+.home-page .hero-split h1 { font-size: clamp(28px, 4vw, 46px); font-family: var(--font-display); }
 .home-page .hero-split .eyebrow { margin-bottom: 10px; }
 
 .home-page .live-dot { box-shadow: 0 0 0 0 rgba(111,165,36,.6); animation: pulse-home 1.8s infinite; }

@@ -12,19 +12,16 @@ export default function Home() {
           <div className="hero-copy">
             <p className="eyebrow"><span className="live-dot" /> AI Voice Receptionist</p>
             <h1>
-              AI voice agents <br /> that <span className="grad">actually sound <br /> human.</span>
+              AI voice agents <br /> that <span className="grad">actually <br /> sound human.</span>
             </h1>
             <p className="sub">
-              Native-audio voice agents for South African businesses.
-              Sub-second latency on Vodacom, MTN, Telkom and Cell C,
-              RAG over your own documents, and a self-hosted control
-              panel you actually own, without the enterprise vendor markup.
+              Native-audio voice agents for South African businesses. Sub-second latency
+              on Vodacom, MTN, Telkom and Cell C — fast, and fully yours.
             </p>
             <div className="cta-row">
-              <Link to="/contact" className="btn btn-sheen">Book a demo <span className="arrow">→</span></Link>
               <Link to="/pricing" className="btn btn-ghost">See pricing</Link>
+              <Link to="/features" className="btn btn-cta btn-sheen">Explore features</Link>
             </div>
-            <p className="hero-note">No new hardware · Keep your number · Live the same day</p>
             <div className="hero-stats">
               {metrics.map((m) => (
                 <div className="hero-stat" key={m.label}>
@@ -180,7 +177,6 @@ export default function Home() {
             <h2>Hear it answer your next call.</h2>
             <p>Spin up your AI receptionist and forward a line today. Pay only for the minutes you use.</p>
             <div className="cta-row" style={{ justifyContent: 'center' }}>
-              <Link to="/contact" className="btn btn-sheen">Book a demo <span className="arrow">→</span></Link>
               <Link to="/pricing" className="btn btn-ghost hiw-cta-ghost">See pricing</Link>
             </div>
           </Reveal>
