@@ -39,7 +39,7 @@ export default function Features() {
             <span className="tag">24/7 coverage</span>
             <span className="tag">Same-day live</span>
           </div>
-          <h1 style={{ fontSize: 'clamp(38px, 6.4vw, 72px)', letterSpacing: '-0.025em', lineHeight: 1.1 }}>
+          <h1 style={{ fontSize: 'clamp(28px, 4vw, 46px)', letterSpacing: '-0.025em', lineHeight: 1.1 }}>
             A call queue your <span className="grad">patients won't dread.</span>
           </h1>
           <p className="lead" style={{ marginTop: 20, fontSize: 17 }}>
