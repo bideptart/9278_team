@@ -107,8 +107,8 @@
 }
 .industries-theme .page-hero {
   min-height: auto;
-  padding-top: 56px;
-  padding-bottom: 64px;
+  padding-top: 8px;
+  padding-bottom: 40px;
   justify-content: flex-start;
 }
 .industries-theme .ind-hero {
@@ -120,13 +120,12 @@
 .industries-theme .ind-hero-visual {
   position: relative;
   min-width: 0;
-  min-height: 420px;
-  padding: 32px 0 32px 16px;
-  margin-right: -24px;
+  min-height: 0;
+  padding: 16px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   perspective: 1300px;
 }
 .industries-theme .ind-glow {
@@ -135,6 +134,203 @@
   border-radius: 50%;
   background: radial-gradient(circle, rgba(209, 247, 146, .45), transparent 65%);
   filter: blur(50px);
+}
+
+/* ---- hero motif — AI orb with connected capability cards ---- */
+.industries-theme .ind-orb-hero {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 520 / 430;
+}
+.industries-theme .ind-orb-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 24px;
+}
+.industries-theme .ind-orb-swoosh {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.industries-theme .ind-orb-swoosh circle {
+  fill: var(--accent-soft);
+  opacity: .7;
+}
+.industries-theme .ind-orb-swoosh path {
+  stroke: var(--accent-soft);
+  opacity: .8;
+  stroke-linecap: round;
+}
+.industries-theme .ind-orb-dotgrid {
+  position: absolute;
+  width: 90px;
+  height: 60px;
+  background-image: radial-gradient(circle, var(--accent-mid) 1.3px, transparent 1.6px);
+  background-size: 14px 14px;
+  opacity: .5;
+}
+.industries-theme .ind-orb-dotgrid-tr { top: 0; right: 8%; }
+.industries-theme .ind-orb-dotgrid-bl { bottom: 6%; left: 0; }
+.industries-theme .ind-orb-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.industries-theme .ind-orb-lines path {
+  stroke: var(--ink-4);
+  stroke-width: 1.5;
+  fill: none;
+}
+.industries-theme .ind-orb-arc {
+  stroke: var(--accent-mid);
+  stroke-width: 3;
+  fill: none;
+  opacity: .6;
+}
+.industries-theme .ind-orb-dot { fill: var(--accent-mid); }
+
+.industries-theme .ind-orb-core {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  width: 48%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 40%, #101a30 0%, var(--ink) 70%);
+  box-shadow: 0 30px 50px -20px rgba(11, 18, 32, .5);
+}
+.industries-theme .ind-orb-core-pulse {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.industries-theme .ind-orb-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(209, 247, 146, .18);
+}
+.industries-theme .ind-orb-ring-1 { inset: 12%; }
+.industries-theme .ind-orb-ring-2 { inset: 24%; border-style: dashed; border-color: rgba(209, 247, 146, .14); }
+.industries-theme .ind-orb-waveform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 82%;
+  height: 38%;
+}
+.industries-theme .ind-orb-waveform span {
+  width: 4.5px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+.industries-theme .ind-orb-mic {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 26%;
+  height: 26%;
+  color: var(--accent);
+  background: var(--ink);
+  padding: 4%;
+  border-radius: 50%;
+}
+
+.industries-theme .ind-orb-card {
+  position: absolute;
+  width: clamp(68px, 16%, 92px);
+  aspect-ratio: 1;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 16px 30px -16px rgba(11, 18, 32, .3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.industries-theme .ind-orb-card-icon {
+  width: 54%;
+  height: 54%;
+  color: var(--accent-mid);
+}
+.industries-theme .ind-orb-check {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.industries-theme .ind-orb-check svg { width: 12px; height: 12px; }
+
+.industries-theme .ind-orb-card-phone { left: 2%; top: 12%; }
+.industries-theme .ind-orb-card-calendar { right: 0%; top: 20%; }
+.industries-theme .ind-orb-card-person { left: 2%; top: 58%; }
+.industries-theme .ind-orb-card-chat { right: 0%; top: 68%; }
+
+.industries-theme .ind-orb-detail {
+  position: absolute;
+  left: 50%;
+  top: 71%;
+  transform: translate(-50%, -50%);
+  width: 38%;
+  min-width: 160px;
+}
+.industries-theme .ind-orb-detail-anim {
+  background: #fff;
+  border-radius: 14px;
+  padding: 11px 13px;
+  box-shadow: 0 20px 40px -18px rgba(11, 18, 32, .35);
+}
+.industries-theme .ind-orb-detail-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--ink);
+  margin: 0 0 10px;
+  white-space: nowrap;
+}
+.industries-theme .ind-orb-detail-label span { color: var(--accent-mid); font-size: 18px; }
+.industries-theme .ind-orb-detail-wave {
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
+  height: 26px;
+  margin-bottom: 10px;
+}
+.industries-theme .ind-orb-detail-wave span {
+  width: 3.5px;
+  border-radius: 2px;
+  background: var(--accent-mid);
+}
+.industries-theme .ind-orb-detail-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  font-weight: 500;
+}
+@media (max-width: 700px) {
+  .industries-theme .ind-orb-hero { max-width: 380px; }
+  .industries-theme .ind-orb-detail { min-width: 0; }
+  .industries-theme .ind-orb-detail-anim { padding: 10px 12px; }
+  .industries-theme .ind-orb-detail-text { font-size: 12px; }
+  .industries-theme .ind-orb-detail-label { font-size: 14px; }
 }
 
 /* laptop mockup — MacBook style: screen + hinge + keyboard deck, gentle 3D tilt */
@@ -687,6 +883,89 @@
   .industries-theme .timeline-index { display: none; }
   .industries-theme .timeline-node { grid-column: 1; grid-row: 1; }
   .industries-theme .timeline-row.left .timeline-tags { justify-content: flex-start; }
+}
+
+/* ---- showcase — image section between the timeline and the CTA band ---- */
+.industries-theme .ind-showcase {
+  margin: 72px auto 0;
+}
+.industries-theme .ind-showcase-heading {
+  text-align: center;
+  font-size: clamp(28px, 4vw, 40px);
+  margin: 0 0 28px;
+}
+.industries-theme .ind-showcase-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--accent-soft) 0%, var(--bg-soft) 100%);
+  border: 1px solid var(--accent-soft);
+  box-shadow: 0 30px 60px -32px rgba(11, 18, 32, .25);
+}
+.industries-theme .ind-showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.industries-theme .ind-showcase-link {
+  display: block;
+  cursor: pointer;
+}
+.industries-theme .ind-showcase-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(11, 18, 32, .55) 0%, transparent 32%);
+  pointer-events: none;
+}
+.industries-theme .ind-showcase-cta {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-family: var(--font-mono, monospace);
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(90deg, var(--accent-mid), var(--accent-deep));
+  box-shadow: 0 10px 24px -10px rgba(11, 18, 32, .5);
+}
+.industries-theme .ind-showcase-cta .arrow {
+  transition: transform .25s ease;
+}
+.industries-theme .ind-showcase-link:hover .ind-showcase-cta .arrow {
+  transform: translateX(4px);
+}
+.industries-theme .ind-showcase-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--ink-4);
+}
+.industries-theme .ind-showcase-placeholder svg {
+  width: 40px;
+  height: 40px;
+}
+.industries-theme .ind-showcase-placeholder p {
+  font-family: var(--font-head);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+@media (max-width: 700px) {
+  .industries-theme .ind-showcase { margin-top: 48px; }
+  .industries-theme .ind-showcase-frame { aspect-ratio: 4 / 3; border-radius: 18px; }
 }
 
 /* ---- footer — dark navy theme matching the reference hero (industries page only) ---- */
