@@ -23,8 +23,14 @@ export default function ShowcaseCarousel({ slides, autoplay = true }) {
   const imageContainerRef = useRef(null);
   const autoplayRef = useRef(null);
   const pauseTimeoutRef = useRef(null);
+  const prevActiveRef = useRef(0);
+  const lastDirectionRef = useRef('next');
   const count = useMemo(() => slides.length, [slides]);
   const active = slides[activeIndex];
+
+  useEffect(() => {
+    prevActiveRef.current = activeIndex;
+  }, [activeIndex]);
 
   useEffect(() => {
     function handleResize() {
@@ -38,6 +44,7 @@ export default function ShowcaseCarousel({ slides, autoplay = true }) {
   useEffect(() => {
     if (!autoplay || isPaused) return undefined;
     autoplayRef.current = setInterval(() => {
+      lastDirectionRef.current = 'next';
       setActiveIndex((i) => (i + 1) % count);
     }, 4000);
     return () => clearInterval(autoplayRef.current);
@@ -52,29 +59,41 @@ export default function ShowcaseCarousel({ slides, autoplay = true }) {
   }
 
   function handlePrev() {
+    lastDirectionRef.current = 'prev';
     setActiveIndex((i) => (i - 1 + count) % count);
     pauseAutoplay();
   }
 
   function handleNext() {
+    lastDirectionRef.current = 'next';
     setActiveIndex((i) => (i + 1) % count);
     pauseAutoplay();
+  }
+
+  function getRole(index, active_, count_) {
+    if (index === active_) return 'active';
+    if ((active_ - 1 + count_) % count_ === index) return 'left';
+    if ((active_ + 1) % count_ === index) return 'right';
+    return 'hidden';
   }
 
   function getImageStyle(index) {
     const gap = calculateGap(containerWidth);
     const stickUp = gap * 0.8;
-    const isActive = index === activeIndex;
-    const isLeft = (activeIndex - 1 + count) % count === index;
-    const isRight = (activeIndex + 1) % count === index;
-    if (isActive) {
-      return { zIndex: 3, opacity: 1, transform: 'translateX(0) translateY(0) scale(1)' };
+    const role = getRole(index, activeIndex, count);
+    const prevRole = getRole(index, prevActiveRef.current, count);
+    // Going back, the image that was on the right jumps straight to the left slot —
+    // that long cross-screen sweep is what reads as a "flip". Snap it instead of sliding it.
+    const isBackJump = lastDirectionRef.current === 'prev' && prevRole === 'right' && role === 'left';
+    const transition = isBackJump ? 'opacity 0.7s cubic-bezier(.4, 2, .3, 1)' : undefined;
+    if (role === 'active') {
+      return { zIndex: 3, opacity: 1, transform: 'translateX(0) translateY(0) scale(1)', transition };
     }
-    if (isLeft) {
-      return { zIndex: 2, opacity: 1, transform: `translateX(-${gap}px) translateY(-${stickUp}px) scale(0.85)` };
+    if (role === 'left') {
+      return { zIndex: 2, opacity: 1, transform: `translateX(-${gap}px) translateY(-${stickUp}px) scale(0.85)`, transition };
     }
-    if (isRight) {
-      return { zIndex: 2, opacity: 1, transform: `translateX(${gap}px) translateY(-${stickUp}px) scale(0.85)` };
+    if (role === 'right') {
+      return { zIndex: 2, opacity: 1, transform: `translateX(${gap}px) translateY(-${stickUp}px) scale(0.85)`, transition };
     }
     return { zIndex: 1, opacity: 0, pointerEvents: 'none' };
   }
