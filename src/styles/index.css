@@ -673,6 +673,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   .metric { border-left: none; padding-left: 0; padding-right: 0; border-top: 1px solid var(--border); }
   .metric:first-child, .metric:nth-child(2) { border-top: none; }
   .footer-top { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
   .contact-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
@@ -682,7 +683,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   .metrics { grid-template-columns: 1fr; }
   .metric:nth-child(2) { border-top: 1px solid var(--border); }
   .step-row { grid-template-columns: 1fr; gap: 8px; }
-  .footer-top { grid-template-columns: 1fr; }
+  /* keep Product and Company side by side (row-wise) on phones */
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
 
