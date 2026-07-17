@@ -172,7 +172,7 @@
 .pricing-hero { display: flex; flex-direction: column; justify-content: center; padding-top: 24px; padding-bottom: 40px; }
 /* Blog / BlogPost hero — tight spacing under the navbar, matching Home */
 .kallus-theme .page-hero { min-height: auto; padding-top: 24px; padding-bottom: 40px; }
-.pricing-body, .page-body { padding: 24px 0 96px; }
+.pricing-body, .page-body { padding-top: 24px; padding-bottom: 96px; }
 @media (max-width: 560px) { .page-hero { min-height: 86vh; padding-bottom: 110px; } }
 @media (max-width: 560px) { .pricing-hero { padding-top: 16px; padding-bottom: 30px; } }
 @media (max-width: 560px) { .kallus-theme .page-hero { padding-top: 16px; padding-bottom: 30px; } }
@@ -945,6 +945,10 @@ html, body { max-width: 100%; overflow-x: clip; }
   margin: 0 0 22px;
 }
 .pill-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-live); flex: none; }
+.feat-page .pill-badge {
+  text-transform: uppercase; font-size: 11px; letter-spacing: .08em; font-weight: 700;
+  background: #eef9d3; border: 1px solid rgba(77,124,15,.28); padding: 7px 14px; color: #3a5a0c;
+}
 .faq-center { text-align: center; max-width: 640px; margin: 0 auto 40px; }
 .faq-center h2 { font-size: clamp(30px, 4.6vw, 46px); }
 .faq-narrow { max-width: 720px; margin: 0 auto; }
@@ -1218,4 +1222,23 @@ html, body { max-width: 100%; overflow-x: clip; }
 @media (max-width: 560px) {
   .faq-glow-trigger { padding: 18px 18px; gap: 14px; }
   .faq-glow-tag { margin-left: 0; }
+}
+
+/* ---- Features hero — incoming-call phone mockup ---- */
+.feat-diagram-stage { padding: 0; }
+.feat-diagram-frame { width: min(90%, 280px); animation: none; }
+@media (max-width: 560px) {
+  .feat-diagram-frame { width: min(100%, 280px); }
+}
+.phone-avatar--live { position: relative; }
+.phone-avatar--live::after {
+  content: ''; position: absolute; inset: -6px; border-radius: 50%;
+  border: 2px solid var(--accent-live); animation: avatar-ring 1.6s ease-out infinite;
+}
+@keyframes avatar-ring {
+  0% { transform: scale(1); opacity: .7; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .phone-avatar--live::after { animation: none; opacity: 0; }
 }
