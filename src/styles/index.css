@@ -331,7 +331,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   }
   .price-card-slide {
     flex: 0 0 68vw; max-width: 272px;
-    transition: transform .3s ease, opacity .3s ease, flex-basis .3s ease;
+    transition: transform .3s ease, opacity .3s ease;
     cursor: pointer;
   }
   .price-card-slide .price-card { height: 100%; box-shadow: 0 20px 45px -28px rgba(11,18,32,.35); }
