@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { plans } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
@@ -136,27 +136,12 @@ export default function Pricing() {
     document.getElementById('plans')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   const [cycle, setCycle] = useState('monthly');
-  const gridRef = useRef(null);
-  const slideRefs = useRef([]);
-
-  useEffect(() => {
-    const grid = gridRef.current;
-    if (!grid || window.innerWidth > 640) return;
-
-    const featuredIndex = plans.findIndex((p) => p.featured);
-    slideRefs.current[featuredIndex]?.scrollIntoView({ inline: 'center', block: 'nearest' });
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          entry.target.classList.toggle('is-stack-active', entry.intersectionRatio > 0.6);
-        });
-      },
-      { root: grid, threshold: [0, 0.6, 1] }
-    );
-    slideRefs.current.forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+  // mobile-only "A" stack: which plan is currently front-and-center.
+  // Defaults to the featured plan; tapping a peeking side card opens it.
+  const [activeIndex, setActiveIndex] = useState(() => {
+    const i = plans.findIndex((p) => p.featured);
+    return i === -1 ? 0 : i;
+  });
 
   return (
     <div className="kallus-theme">
@@ -213,49 +198,86 @@ export default function Pricing() {
         </div>
       </div>
 
-      <p className="pricing-swipe-hint">← Swipe to compare plans →</p>
+      <div className="pricing-grid">
+        {plans.map((p, i) => {
+          // position relative to the active plan, wrapping around (only matters on mobile)
+          const diff = (i - activeIndex + plans.length) % plans.length;
+          const isActive = diff === 0;
+          const posClass = isActive ? 'is-active' : diff === 1 ? 'is-right' : 'is-left';
+          const moreCount = p.features.length - 5;
 
-      <div className="pricing-grid" ref={gridRef}>
-        {plans.map((p, i) => (
-          <div
-            className={`price-card-slide${p.featured ? ' is-stack-active featured' : ''}`}
-            ref={(el) => (slideRefs.current[i] = el)}
-            key={p.name}
-          >
-            <Reveal
-              as="div"
-              delay={i * 90}
-              className={`price-card${p.featured ? ' featured' : ''}`}
+          return (
+            <div
+              className={`price-card-slide ${posClass}${p.featured ? ' featured' : ''}`}
+              key={p.name}
+              onClick={() => setActiveIndex(i)}
             >
-              {p.featured && <span className="badge">Most popular</span>}
-              <h3 className="plan-name">{p.name}</h3>
-              <p className="plan-blurb">{p.blurb}</p>
-              <div className="plan-rate">
-                <AnimatedPrice value={cycle === 'yearly' ? p.priceYearly : p.priceMonthly} /> /{cycle === 'yearly' ? 'yr' : 'mo'}
-              </div>
-              {cycle === 'yearly' && (
-                <p className="plan-yearly-note">
-                  Save {fmtUSD(p.priceMonthly * 12 - p.priceYearly)} vs monthly · {fmtUSD(Math.round(p.priceYearly / 12))}/mo equivalent
-                </p>
-              )}
-              <div className="plan-meta">{p.meta}</div>
-              <ul className="plan-features">
-                {p.features.map((f) => (
-                  <li key={f}>{f}</li>
-                ))}
-              </ul>
-              <div className="plan-actions">
-                <Link
-                  to="/contact"
-                  className="btn btn-sheen"
-                  style={{ width: '100%', justifyContent: 'center' }}
-                >
-                  Buy {fmtUSD(cycle === 'yearly' ? p.priceYearly : p.priceMonthly)} now
-                </Link>
-              </div>
-            </Reveal>
-          </div>
-        ))}
+              <Reveal
+                as="div"
+                delay={i * 90}
+                className={`price-card${p.featured ? ' featured' : ''}`}
+              >
+                {p.featured && <span className="badge">Most popular</span>}
+                <h3 className="plan-name">{p.name}</h3>
+                <p className="plan-blurb">{p.blurb}</p>
+                <div className="plan-rate">
+                  <AnimatedPrice value={cycle === 'yearly' ? p.priceYearly : p.priceMonthly} /> /{cycle === 'yearly' ? 'yr' : 'mo'}
+                </div>
+                {cycle === 'yearly' && (
+                  <p className="plan-yearly-note">
+                    Save {fmtUSD(p.priceMonthly * 12 - p.priceYearly)} vs monthly · {fmtUSD(Math.round(p.priceYearly / 12))}/mo equivalent
+                  </p>
+                )}
+                <div className="plan-meta">{p.meta}</div>
+                <ul className="plan-features">
+                  {p.features.map((f) => (
+                    <li key={f}>{f}</li>
+                  ))}
+                </ul>
+                {moreCount > 0 && <p className="plan-more">+ {moreCount} more features</p>}
+                <div className="plan-actions">
+                  <Link
+                    to="/contact"
+                    className="btn btn-sheen"
+                    style={{ width: '100%', justifyContent: 'center' }}
+                  >
+                    Buy {fmtUSD(cycle === 'yearly' ? p.priceYearly : p.priceMonthly)} now
+                  </Link>
+                </div>
+              </Reveal>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="pricing-nav">
+        <button
+          type="button"
+          className="pricing-nav-arrow"
+          aria-label="Show previous plan"
+          onClick={() => setActiveIndex((activeIndex - 1 + plans.length) % plans.length)}
+        >
+          ‹
+        </button>
+        <div className="pricing-dots">
+          {plans.map((p, i) => (
+            <button
+              type="button"
+              key={p.name}
+              className={`pricing-dot${i === activeIndex ? ' is-active' : ''}`}
+              aria-label={`Show ${p.name} plan`}
+              onClick={() => setActiveIndex(i)}
+            />
+          ))}
+        </div>
+        <button
+          type="button"
+          className="pricing-nav-arrow"
+          aria-label="Show next plan"
+          onClick={() => setActiveIndex((activeIndex + 1) % plans.length)}
+        >
+          ›
+        </button>
       </div>
 
       </div>
