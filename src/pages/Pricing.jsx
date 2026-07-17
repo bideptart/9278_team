@@ -122,7 +122,7 @@ export default function Pricing() {
       />
       <section className="pricing-hero container">
         <Reveal>
-          <p className="eyebrow">Pay as you go · ZAR pricing · South African businesses</p>
+          <p className="eyebrow">Pay as you go</p>
           <h1 style={{ fontSize: 'clamp(38px,6.4vw,72px)', maxWidth: '15ch' }}>
             Pick the plan for <span className="grad">your practice.</span>
           </h1>
