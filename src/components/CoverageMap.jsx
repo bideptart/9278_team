@@ -29,7 +29,7 @@ const CITIES = [
    each card; the middle card of each row drops/rises to make the zig-zag. */
 const GREETINGS = [
   { word: 'Hello', lang: 'English', city: 'Joburg', code: 'en-ZA', pos: { top: '0%', left: '50%', tx: '-50%' }, delay: '0s' },
-  { word: 'Thobela', lang: 'Sepedi', city: 'Polokwane', code: 'nso-ZA', pos: { top: '0%', right: '-3%' }, delay: '0.7s' },
+  { word: 'Thobela', lang: 'Sepedi', city: 'Polokwane', code: 'nso-ZA', pos: { top: '-4%', right: '-3%' }, delay: '0.7s' },
   { word: 'Hallo', lang: 'Afrikaans', city: 'Cape Town', code: 'af-ZA', pos: { top: '24%', left: '0%' }, delay: '1.4s' },
   { word: 'Sawubona', lang: 'isiZulu', city: 'Durban', code: 'zu-ZA', pos: { top: '62%', right: '0%' }, delay: '2.1s' },
   { word: 'Molo', lang: 'isiXhosa', city: 'Gqeberha', code: 'xh-ZA', pos: { bottom: '0%', left: '0%' }, delay: '2.8s' },

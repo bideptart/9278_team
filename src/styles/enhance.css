@@ -1043,7 +1043,7 @@ html, body { max-width: 100%; overflow-x: clip; }
 /* widen the coverage widget past the hero column so a full-size map has room
    for the ring of cards around it */
 .za-map { padding: 20px 0 46px; position: relative; width: 126%; margin-left: -10%; }
-.za-stage { position: relative; width: 72%; max-width: 381px; margin: 0 auto; }
+.za-stage { position: relative; width: 78%; max-width: 412px; margin: 0 auto; }
 /* single-column hero (tablet/phone): the widget no longer needs to break out */
 @media (max-width: 860px) { .za-map { width: 100%; margin-left: 0; } }
 .za-map-svg { display: block; width: 100%; height: auto; overflow: visible; position: relative; z-index: 1; }
