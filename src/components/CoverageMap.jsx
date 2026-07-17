@@ -25,12 +25,12 @@ const CITIES = [
 ];
 
 const GREETINGS = [
-  { word: 'Hello', lang: 'English', city: 'Johannesburg', code: 'en-ZA', style: { top: '2%', left: '0%' }, delay: '0s' },
-  { word: 'Dumela', lang: 'Sesotho', city: 'Bloemfontein', code: 'st-ZA', style: { top: '2%', left: '38%' }, delay: '0.7s' },
-  { word: 'Thobela', lang: 'Sepedi', city: 'Polokwane', code: 'nso-ZA', style: { top: '2%', right: '0%' }, delay: '1.4s' },
-  { word: 'Hallo', lang: 'Afrikaans', city: 'Cape Town', code: 'af-ZA', style: { bottom: '2%', left: '0%' }, delay: '2.1s' },
-  { word: 'Molo', lang: 'isiXhosa', city: 'Gqeberha', code: 'xh-ZA', style: { bottom: '2%', left: '38%' }, delay: '2.8s' },
-  { word: 'Sawubona', lang: 'isiZulu', city: 'Durban', code: 'zu-ZA', style: { bottom: '2%', right: '0%' }, delay: '3.5s' },
+  { word: 'Hello', lang: 'English', city: 'Joburg', code: 'en-ZA', style: { top: '2%', left: '-1%' }, mobileStyle: { top: '0%' }, delay: '0s' },
+  { word: 'Dumela', lang: 'Sesotho', city: 'Bloem', code: 'st-ZA', style: { top: '2%', left: '36%' }, mobileStyle: { top: '10%', left: '24%' }, delay: '0.7s' },
+  { word: 'Thobela', lang: 'Sepedi', city: 'Polokwane', code: 'nso-ZA', style: { top: '2%', right: '-1%' }, mobileStyle: { top: '0%' }, delay: '1.4s' },
+  { word: 'Hallo', lang: 'Afrikaans', city: 'Cape Town', code: 'af-ZA', style: { bottom: '2%', left: '-1%' }, mobileStyle: { bottom: '10%' }, delay: '2.1s' },
+  { word: 'Molo', lang: 'isiXhosa', city: 'Gqeberha', code: 'xh-ZA', style: { bottom: '2%', left: '37%' }, mobileStyle: { bottom: '0%', left: '24%' }, delay: '2.8s' },
+  { word: 'Sawubona', lang: 'isiZulu', city: 'Durban', code: 'zu-ZA', style: { bottom: '2%', right: '-1%' }, mobileStyle: { bottom: '10%' }, delay: '3.5s' },
 ];
 
 const byName = (n) => CITIES.find((c) => c.name === n);
@@ -173,8 +173,10 @@ export default function CoverageMap() {
             className={`za-greet-card${playing === i ? ' playing' : ''}`}
             style={{ ...g.style, ...(isMobile ? g.mobileStyle : null), animationDelay: g.delay }}
           >
-            <span className="za-greet-word">{g.word}</span>
-            <span className="za-greet-lang">{g.lang} · {g.city}</span>
+            <span className="za-greet-text">
+              <span className="za-greet-word">{g.word}</span>
+              <span className="za-greet-lang">{g.lang} · {g.city}</span>
+            </span>
             <div className="za-greet-audio">
               <button
                 type="button"

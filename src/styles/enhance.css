@@ -1019,27 +1019,28 @@ html, body { max-width: 100%; overflow-x: clip; }
 
 /* ---- hero coverage map: SA provinces + animated city network ---- */
 /* top/bottom padding reserves space so greeting cards never cover the map */
-.za-map { padding: 78px 0 88px; position: relative; }
-.za-map-svg { display: block; width: 80%; margin: 0 auto; height: auto; overflow: visible; position: relative; z-index: 1; }
+.za-map { padding: 54px 0 84px; position: relative; }
+.za-map-svg { display: block; width: 84%; margin: 0 auto; height: auto; overflow: visible; position: relative; z-index: 1; }
 .za-greetings { position: absolute; inset: 0; pointer-events: none; }
 .za-greet-card {
-  position: absolute; display: flex; flex-direction: column; gap: 1px;
-  background: #ffffff; border: 1px solid var(--border); border-radius: 11px;
-  padding: 6px 9px; box-shadow: 0 10px 20px -12px rgba(16,38,46,.35);
+  position: absolute; display: flex; align-items: center; gap: 7px;
+  background: #ffffff; border: 1px solid var(--border); border-radius: 12px;
+  padding: 5px 8px; box-shadow: 0 10px 20px -12px rgba(16,38,46,.35);
   animation: za-greet-float 5.5s ease-in-out infinite;
   pointer-events: auto; z-index: 2;
 }
-.za-greet-word { font-weight: 700; font-size: 12px; line-height: 1.2; color: var(--ink, #0b1220); }
-.za-greet-lang { font-family: var(--font-mono); font-size: 8px; color: #6b7a90; white-space: nowrap; }
-.za-greet-audio { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+.za-greet-text { display: flex; flex-direction: column; gap: 1px; }
+.za-greet-word { font-weight: 700; font-size: 11px; line-height: 1.2; color: var(--ink, #0b1220); }
+.za-greet-lang { font-family: var(--font-mono); font-size: 7px; color: #6b7a90; white-space: nowrap; }
+.za-greet-audio { display: flex; align-items: center; gap: 5px; }
 .za-greet-play {
-  width: 19px; height: 19px; border-radius: 50%; border: none; cursor: pointer;
+  width: 17px; height: 17px; border-radius: 50%; border: none; cursor: pointer;
   background: #6fa524; color: #ffffff; display: flex; align-items: center; justify-content: center;
   padding: 0; flex: none; transition: background .2s ease, transform .2s ease;
 }
 .za-greet-play:hover { background: #5c8b1e; transform: scale(1.08); }
-.za-greet-play svg { width: 9px; height: 9px; display: block; }
-.za-greet-wave { display: flex; align-items: flex-end; gap: 2px; height: 13px; padding-bottom: 2px; }
+.za-greet-play svg { width: 8px; height: 8px; display: block; }
+.za-greet-wave { display: flex; align-items: flex-end; gap: 2px; height: 12px; padding-bottom: 2px; }
 .za-greet-wave i { width: 2px; border-radius: 2px; background: #9ed15c; }
 .za-greet-wave i:nth-child(1) { height: 4px; }
 .za-greet-wave i:nth-child(2) { height: 8px; }
@@ -1052,7 +1053,7 @@ html, body { max-width: 100%; overflow-x: clip; }
 @keyframes za-greet-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 @keyframes za-greet-float-sm { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 @media (max-width: 640px) {
-  .za-map { padding: 70px 0 70px; }
+  .za-map { padding: 88px 0 96px; }
   .za-greet-card { padding: 5px 8px; border-radius: 9px; animation-name: za-greet-float-sm; }
   .za-greet-word { font-size: 10px; }
   .za-greet-lang { font-size: 7px; }
