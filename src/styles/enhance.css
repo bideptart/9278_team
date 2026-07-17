@@ -1133,13 +1133,15 @@ html, body { max-width: 100%; overflow-x: clip; }
 .carousel-card {
   position: relative;
   flex: 0 0 272px; width: 272px;
-  background: var(--bg-card);
+  background: var(--bg-tint, #eef8d4);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 22px;
   box-shadow: 0 1px 2px rgba(16, 38, 46, .03);
   transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
+.carousel-card--image { padding: 0; overflow: hidden; }
+.carousel-card--image img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .carousel-card:hover {
   border-color: var(--accent-live-2);
   box-shadow: 0 14px 32px -18px rgba(21, 154, 166, .35);
@@ -1147,11 +1149,13 @@ html, body { max-width: 100%; overflow-x: clip; }
 }
 .carousel-badge {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 42px; height: 42px; border-radius: 12px;
+  width: 46px; height: 46px; border-radius: 13px;
   border: 1px solid var(--accent-live-2); background: var(--bg-elev); color: var(--accent-deep);
   margin-bottom: 16px;
+  box-shadow: 0 6px 14px -8px rgba(74,124,15,.35);
 }
 .carousel-badge .fx-icon { width: 19px; height: 19px; }
+.carousel-badge .fx-icon--pro { width: 28px; height: 28px; }
 .carousel-num {
   position: absolute; top: 22px; right: 22px;
   font-family: var(--font-mono); font-size: 11px; color: var(--fg-dim);
