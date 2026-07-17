@@ -39,7 +39,7 @@ export default function Features() {
             <span className="tag">24/7 coverage</span>
             <span className="tag">Same-day live</span>
           </div>
-          <h1 style={{ fontSize: 'clamp(34px, 3.8vw, 54px)', letterSpacing: '-0.025em', lineHeight: 1.1 }}>
+          <h1 style={{ fontSize: 'clamp(38px, 6.4vw, 72px)', letterSpacing: '-0.025em', lineHeight: 1.1 }}>
             A call queue your <span className="grad">patients won't dread.</span>
           </h1>
           <p className="lead" style={{ marginTop: 20, fontSize: 17 }}>
@@ -142,9 +142,9 @@ export default function Features() {
         {/* left — sticky intro */}
         <aside className="feat-intro">
           <span className="pill-badge"><span className="dot" />The capability library</span>
-          <h1 className="feat-intro-title" style={{ marginTop: 24 }}>
+          <h2 className="feat-intro-title" style={{ marginTop: 24 }}>
             Everything a great receptionist does — <span className="grad">at machine scale.</span>
-          </h1>
+          </h2>
           <p className="lead feat-intro-lead" style={{ marginTop: 30 }}>
             kallus.io answers, understands, books, and routes every call. Here's what powers
             the conversation.

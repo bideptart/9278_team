@@ -706,7 +706,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   font-family: var(--font-home-body);
   background: linear-gradient(180deg, #ffffff 0%, #f6f8f1 100%);
 }
-.home-page h1, .home-page h2, .home-page h3, .home-page h4 { font-family: var(--font-home-heading); }
+.home-page h2, .home-page h3, .home-page h4 { font-family: var(--font-home-heading); }
 .home-page .eyebrow {
   font-family: 'Inter', system-ui, sans-serif;
   background: #eef9d3;
@@ -737,7 +737,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 @media (max-width: 560px) {
   .home-page .hero-stats { grid-template-columns: 1fr 1fr; gap: 16px 14px; }
 }
-.home-page .hero-split h1 { font-size: clamp(28px, 4vw, 46px); }
+.home-page .hero-split h1 { font-size: clamp(38px, 6.4vw, 72px); font-family: var(--font-display); }
 .home-page .hero-split .eyebrow { margin-bottom: 10px; }
 
 .home-page .live-dot { box-shadow: 0 0 0 0 rgba(111,165,36,.6); animation: pulse-home 1.8s infinite; }

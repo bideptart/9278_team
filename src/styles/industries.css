@@ -28,7 +28,9 @@
   font-family: var(--font-body);
 }
 
-.industries-theme h1,
+.industries-theme h1 {
+  color: var(--ink);
+}
 .industries-theme h2,
 .industries-theme h3,
 .industries-theme h4 {
@@ -103,7 +105,8 @@
   color: transparent;
 }
 .industries-theme .ind-hero-heading {
-  font-size: clamp(28px, 4vw, 44px);
+  font-size: clamp(38px, 6.4vw, 72px);
+  font-family: var(--font-display);
 }
 .industries-theme .page-hero {
   min-height: auto;
@@ -735,9 +738,6 @@
     -webkit-line-clamp: 1;
   }
   .industries-theme .ind-laptop-detail .ind-phone-tags { display: none; }
-}
-@media (max-width: 400px) {
-  .industries-theme .ind-hero-heading { font-size: 23px; }
 }
 
 /* ---- connected timeline — circular nodes on a drawing line, alternating sides ---- */
