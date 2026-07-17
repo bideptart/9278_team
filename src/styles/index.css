@@ -285,13 +285,13 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   .pricing-grid {
     display: flex; gap: 14px; align-items: stretch;
     overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
-    padding: 10px 22vw 28px; margin: 0 calc(var(--pad) * -1);
+    padding: 10px 15vw 28px; margin: 0 calc(var(--pad) * -1);
     scrollbar-width: none;
   }
   .pricing-grid::-webkit-scrollbar { display: none; }
   .price-card-slide {
-    flex: 0 0 74vw; scroll-snap-align: center;
-    transform: scale(.9); opacity: .55;
+    flex: 0 0 70vw; scroll-snap-align: center;
+    transform: scale(.9); opacity: .75;
     transition: transform .35s ease, opacity .35s ease;
   }
   .price-card-slide.is-stack-active { transform: scale(1); opacity: 1; z-index: 2; }
@@ -530,8 +530,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 
 /* ---- article layout: sticky left sidebar TOC + main column ---- */
 .article-layout { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: 230px 1fr; gap: 56px; align-items: start; }
-.article-layout .article { max-width: none; margin: 0; }
-.article-sidebar { position: sticky; top: 100px; }
+.article-layout .article { max-width: none; margin: 0; min-width: 0; }
+.article-sidebar { position: sticky; top: 100px; min-width: 0; }
 @media (max-width: 900px) {
   .article-layout { grid-template-columns: 1fr; gap: 0; }
   .article-sidebar { position: static; margin-bottom: 32px; }

@@ -6,20 +6,6 @@ import Seo from '../components/Seo.jsx';
 
 const fmtZAR = (n) => 'R' + n.toLocaleString('en-US');
 
-const pricingJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: 'KallUS AI Voice Receptionist',
-  description: 'AI voice receptionist plans for clinics and healthcare practices — booking, rescheduling, insurance questions, and after-hours triage.',
-  offers: plans.map((p) => ({
-    '@type': 'Offer',
-    name: p.name,
-    price: p.priceMonthly,
-    priceCurrency: 'ZAR',
-    description: p.blurb,
-  })),
-};
-
 const trustBadges = [
   'POPIA-compliant',
   '99.9% uptime SLA',
@@ -40,13 +26,13 @@ const comparison = [
 const pricingTestimonials = [
   {
     quote: 'It paid for itself in the first week — we stopped losing after-hours bookings to voicemail.',
-    name: 'Dr. Anjali Rao',
-    role: 'Owner, Rao Family Dental',
+    name: 'Dr. Naledi Khumalo',
+    role: 'Owner, Khumalo Family Dental',
     metric: '+38% booked appointments',
   },
   {
     quote: 'Front desk finally has time for patients in the room instead of the phone. Setup took an afternoon.',
-    name: 'Vikram Shah',
+    name: 'Sipho Mahlangu',
     role: 'Practice Manager, CarePlus Clinics',
     metric: '54% fewer missed calls',
   },
@@ -85,6 +71,32 @@ const pricingFaqs = [
     meta: 'Flexibility',
   },
 ];
+
+const pricingJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Product',
+      name: 'KallUS AI Voice Receptionist',
+      description: 'AI voice receptionist plans for South African clinics and healthcare practices, priced in ZAR — booking, rescheduling, insurance questions, and after-hours triage.',
+      offers: plans.map((p) => ({
+        '@type': 'Offer',
+        name: p.name,
+        price: p.priceMonthly,
+        priceCurrency: 'ZAR',
+        description: p.blurb,
+      })),
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: pricingFaqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+};
 
 export default function Pricing() {
   const scrollToPlans = () =>
