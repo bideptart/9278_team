@@ -745,7 +745,11 @@
 @media (max-width: 860px) {
   .marquee-item { font-size: 20px; }
   .steps3 { grid-template-columns: 1fr; }
+  .steps3.steps4 { grid-template-columns: repeat(2, 1fr); }
   .step3:not(:last-child)::after { display: none; }
+}
+@media (max-width: 560px) {
+  .steps3.steps4 { grid-template-columns: 1fr; }
 }
 
 /* ============================================================
@@ -778,7 +782,8 @@ html, body { max-width: 100%; overflow-x: clip; }
   .hero .sub { font-size: 16px; }
   .hero-note { font-size: 11px; }
   .cta-row { width: 100%; }
-  .cta-row .btn { flex: 1; justify-content: center; }
+  .cta-row .btn { flex: 1 1 auto; min-width: 140px; justify-content: center; }
+  .home-page .hero .cta-row .btn { flex: 1 1 auto; min-width: 140px; justify-content: center; }
   .section-head h2, .cta-band h2 { font-size: clamp(26px, 8vw, 34px); }
   .call-card { padding: 18px; }
   .bubble { font-size: 12.5px; }
@@ -839,6 +844,9 @@ html, body { max-width: 100%; overflow-x: clip; }
   animation: quote-scroll 32s linear infinite;
 }
 .home-page .quote-track .quote-card { flex: 0 0 380px; margin-right: 24px; }
+@media (max-width: 480px) {
+  .home-page .quote-track .quote-card { flex-basis: 300px; padding: 20px; margin-right: 16px; }
+}
 @keyframes quote-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(calc(-100% / 3)); }
