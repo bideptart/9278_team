@@ -124,10 +124,55 @@ export const NIXXY_ICONS = {
   'Every call, in your CRM': Chart,
 };
 
+/* ---- richer duotone icons for the integrations marquee ---- */
+const CalendarPro = () => (
+  <svg viewBox="0 0 24 24" className="fx-icon fx-icon--pro" aria-hidden="true" focusable="false">
+    <rect x="3" y="5" width="18" height="16" rx="3" fill="var(--accent-soft-fill, #eaf6d3)" stroke="var(--accent-deep)" strokeWidth="1.4" />
+    <path d="M3 9.5h18" stroke="var(--accent-deep)" strokeWidth="1.4" />
+    <rect x="3" y="5" width="18" height="4.5" rx="3" fill="var(--accent-live)" />
+    <path d="M8 3v3.5M16 3v3.5" stroke="var(--accent-deep)" strokeWidth="1.6" strokeLinecap="round" />
+    <circle cx="8" cy="14" r="1.4" fill="var(--accent-live)" />
+    <circle cx="12" cy="14" r="1.4" fill="var(--accent-deep)" opacity=".55" />
+    <circle cx="16" cy="14" r="1.4" fill="var(--accent-deep)" opacity=".3" />
+    <circle cx="8" cy="17.5" r="1.4" fill="var(--accent-deep)" opacity=".3" />
+    <circle cx="12" cy="17.5" r="1.4" fill="var(--accent-deep)" opacity=".55" />
+  </svg>
+);
+
+const MessagePro = () => (
+  <svg viewBox="0 0 24 24" className="fx-icon fx-icon--pro" aria-hidden="true" focusable="false">
+    <path d="M20.5 11.5a7.5 7.5 0 0 1-7.5 7.5H8.4L4 21.8v-4.6a7.5 7.5 0 0 1 4.4-13.2h4.6a7.5 7.5 0 0 1 7.5 7.5z"
+      fill="var(--accent-soft-fill, #eaf6d3)" stroke="var(--accent-deep)" strokeWidth="1.4" />
+    <circle cx="8.6" cy="11.5" r="1.15" fill="var(--accent-live)" />
+    <circle cx="12" cy="11.5" r="1.15" fill="var(--accent-deep)" />
+    <circle cx="15.4" cy="11.5" r="1.15" fill="var(--accent-live)" />
+  </svg>
+);
+
+const ZapPro = () => (
+  <svg viewBox="0 0 24 24" className="fx-icon fx-icon--pro" aria-hidden="true" focusable="false">
+    <circle cx="12" cy="12" r="9.5" fill="var(--accent-soft-fill, #eaf6d3)" stroke="var(--accent-deep)" strokeWidth="1.2" opacity=".9" />
+    <path d="M12.5 4.5 6 13.5h5.2l-.9 6 6.7-9.6h-5.4l1-5.4z"
+      fill="var(--accent-live)" stroke="var(--accent-deep)" strokeWidth="1.1" strokeLinejoin="round" />
+  </svg>
+);
+
+const ChartPro = () => (
+  <svg viewBox="0 0 24 24" className="fx-icon fx-icon--pro" aria-hidden="true" focusable="false">
+    <rect x="2.5" y="2.5" width="19" height="19" rx="4.5" fill="var(--accent-soft-fill, #eaf6d3)" stroke="var(--accent-deep)" strokeWidth="1.2" />
+    <path d="M6 18V13M11 18V8M16 18v-6.5M6 18h12" stroke="var(--accent-deep)" strokeWidth="1.6" strokeLinecap="round" />
+    <rect x="4.7" y="12" width="2.6" height="6" rx="1" fill="var(--accent-live)" />
+    <rect x="9.7" y="7" width="2.6" height="11" rx="1" fill="var(--accent-deep)" />
+    <rect x="14.7" y="10.5" width="2.6" height="7.5" rx="1" fill="var(--accent-live)" />
+    <path d="M6 11l4-4 3 2 5-5" fill="none" stroke="var(--accent-deep)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" opacity=".75" />
+  </svg>
+);
+
 // Keyed by the integration's `widget` value, for the integrations marquee.
 export const INTEGRATION_ICONS = {
-  scheduling: Calendar,
+  scheduling: CalendarPro,
   crm: Sync,
-  messaging: Message,
-  automation: Zap,
+  messaging: MessagePro,
+  automation: ZapPro,
+  analytics: ChartPro,
 };

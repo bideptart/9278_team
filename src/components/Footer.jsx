@@ -31,11 +31,6 @@ export default function Footer() {
         </div>
         <div className="footer-bottom">
           <span>© 2026 KALL.US — AI Voice Receptionist. All rights reserved.</span>
-          <div className="socials">
-            <a href="https://x.com" target="_blank" rel="noreferrer">X</a>
-            <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a href="https://www.youtube.com" target="_blank" rel="noreferrer">YouTube</a>
-          </div>
         </div>
       </div>
     </footer>

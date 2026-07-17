@@ -34,16 +34,16 @@ export default function Features() {
         <div className="hero-copy">
           <span className="pill-badge" style={{ marginTop: 12 }}><span className="dot" />AI voice receptionist</span>
           <div className="cta-row" style={{ marginTop: 38, marginBottom: 42 }}>
-            <span className="tag">Patient intake</span>
+            <span className="tag">Lead qualification</span>
             <span className="tag">Multi-language</span>
             <span className="tag">24/7 coverage</span>
             <span className="tag">Same-day live</span>
           </div>
-          <h1 style={{ fontSize: 'clamp(34px, 3.8vw, 54px)', letterSpacing: '-0.025em', lineHeight: 1.1 }}>
-            A call queue your <span className="grad">patients won't dread.</span>
+          <h1 style={{ fontSize: 'clamp(28px, 4vw, 46px)', letterSpacing: '-0.025em', lineHeight: 1.1 }}>
+            Every call answered <span className="grad">like your best rep would.</span>
           </h1>
           <p className="lead" style={{ marginTop: 20, fontSize: 17 }}>
-            Appointment booking. Insurance and billing triage. After-hours coverage.
+            Lead qualification, appointment booking, and after-hours coverage.
             Every call routed automatically — no hold music, no front-desk backlog.
           </p>
           <div className="cta-row" style={{ marginTop: 56 }}>
@@ -142,9 +142,9 @@ export default function Features() {
         {/* left — sticky intro */}
         <aside className="feat-intro">
           <span className="pill-badge"><span className="dot" />The capability library</span>
-          <h1 className="feat-intro-title" style={{ marginTop: 24 }}>
+          <h2 className="feat-intro-title" style={{ marginTop: 24 }}>
             Everything a great receptionist does — <span className="grad">at machine scale.</span>
-          </h1>
+          </h2>
           <p className="lead feat-intro-lead" style={{ marginTop: 30 }}>
             kallus.io answers, understands, books, and routes every call. Here's what powers
             the conversation.

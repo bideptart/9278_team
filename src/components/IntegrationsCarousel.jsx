@@ -1,15 +1,10 @@
 import { integrations } from '../data/content.js';
-import { INTEGRATION_ICONS } from './FeatureIcons.jsx';
 import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion.js';
 
-function Card({ f, i, decorative = false }) {
-  const Icon = INTEGRATION_ICONS[f.widget];
+function Card({ f, decorative = false }) {
   return (
-    <div className="carousel-card" aria-hidden={decorative || undefined}>
-      <span className="carousel-badge">{Icon && <Icon />}</span>
-      <span className="carousel-num">{String(i + 1).padStart(2, '0')}</span>
-      <h3 className="carousel-title">{f.title}</h3>
-      <p className="carousel-desc">{f.desc}</p>
+    <div className="carousel-card carousel-card--image" aria-hidden={decorative || undefined}>
+      <img src={f.image} alt={decorative ? '' : f.title} loading="lazy" />
     </div>
   );
 }
@@ -22,9 +17,9 @@ export default function IntegrationsCarousel() {
   return (
     <div className={`int-marquee${reduced ? ' is-static' : ''}`}>
       <div className="int-marquee-track" aria-label="Integrations">
-        {integrations.map((f, i) => <Card f={f} i={i} key={f.title} />)}
+        {integrations.map((f) => <Card f={f} key={f.title} />)}
         {/* duplicate set closes the loop seamlessly; hidden from assistive tech */}
-        {integrations.map((f, i) => <Card f={f} i={i} decorative key={`dup-${f.title}`} />)}
+        {integrations.map((f) => <Card f={f} decorative key={`dup-${f.title}`} />)}
       </div>
     </div>
   );

@@ -59,13 +59,8 @@ export const features = [
   },
   {
     title: 'Bring your own numbers',
-    desc: 'Keep your existing phone numbers and carrier. Point your line at NIXXY and go live — no migrations, no new hardware.',
+    desc: 'Keep your existing phone numbers and carrier. Point your line and go live — no migrations, no new hardware.',
     bullet: 'Keep your number and carrier',
-  },
-  {
-    title: 'Every call, in your CRM',
-    desc: 'Transcripts, call summaries, sentiment, and intent flow straight into your tools, so nothing slips through the cracks.',
-    bullet: 'Transcripts, summaries, sentiment',
   },
 ];
 
@@ -80,7 +75,7 @@ export const steps = [
   },
   {
     title: 'Go live on your number',
-    desc: 'Forward your existing line to NIXXY and your AI receptionist starts answering immediately — with full transcripts from call one.',
+    desc: 'Forward your existing line and your AI receptionist starts answering immediately — with full transcripts from call one.',
   },
 ];
 
@@ -149,14 +144,14 @@ export const industries = [
 export const plans = [
   {
     name: 'Starter',
-    priceMonthly: 649,
-    priceYearly: 6230,
+    priceMonthly: 31,
+    priceYearly: 298,
     blurb: 'Pilot a single clinic line.',
-    meta: '250 included min · R2.80/min eff. · 2 agents',
+    meta: '250 included min · $0.13/min eff. · 2 agents',
     features: [
       '2 AI voice agents',
       '250 included minutes',
-      'R2.80/min effective rate · R2.80/min overage',
+      '$0.13/min effective rate · $0.13/min overage',
       'Inbound patient calls',
       'Per-second billing (no minute-rounding)',
       'Standard voice stack',
@@ -167,15 +162,15 @@ export const plans = [
   },
   {
     name: 'Growth',
-    priceMonthly: 1899,
-    priceYearly: 18230,
+    priceMonthly: 93,
+    priceYearly: 893,
     blurb: 'Most practices start here.',
-    meta: '800 included min · R2.50/min eff. · 10 agents',
+    meta: '800 included min · $0.12/min eff. · 10 agents',
     featured: true,
     features: [
       '10 AI voice agents',
       '800 included minutes',
-      'R2.50/min effective rate · R2.50/min overage',
+      '$0.12/min effective rate · $0.12/min overage',
       'Inbound patient calls',
       'Per-second billing (no minute-rounding)',
       'Standard + premium voices',
@@ -186,14 +181,14 @@ export const plans = [
   },
   {
     name: 'Scale',
-    priceMonthly: 6499,
-    priceYearly: 62390,
+    priceMonthly: 316,
+    priceYearly: 3034,
     blurb: 'High-volume clinics & hospital networks.',
-    meta: '3,000 included min · R2.20/min eff. · Unlimited agents',
+    meta: '3,000 included min · $0.11/min eff. · Unlimited agents',
     features: [
       'Unlimited AI voice agents',
       '3,000 included minutes',
-      'R2.20/min effective rate · R2.20/min overage',
+      '$0.11/min effective rate · $0.11/min overage',
       'Inbound patient calls',
       'Per-second billing (no minute-rounding)',
       'Realtime + premium voices',
@@ -516,11 +511,11 @@ export const testimonials = [
 export const faqs = [
   {
     q: 'Does it really sound human?',
-    a: 'Yes. NIXXY uses native audio-to-audio processing with sub-300ms responses, so there are no robotic pauses. Callers can interrupt and the agent keeps up naturally.',
+    a: 'Yes. We use native audio-to-audio processing with sub-300ms responses, so there are no robotic pauses. Callers can interrupt and the agent keeps up naturally.',
   },
   {
     q: 'Do I need to change my phone number?',
-    a: 'No. Keep your existing numbers and carrier. You simply forward your line to NIXXY and you can route back to a human anytime.',
+    a: 'No. Keep your existing numbers and carrier. You simply forward your line and you can route back to a human anytime.',
   },
   {
     q: 'How does it answer questions about my business?',
@@ -571,25 +566,29 @@ export const integrations = [
   {
     cat: 'Integrations',
     title: 'Scheduling & calendars',
-    desc: 'Native Google, Outlook, and Calendly integrations. Book, reschedule, and confirm — all over voice.',
+    desc: 'Native Google and Calendly integrations. Book, reschedule, and confirm — all over voice.',
     widget: 'scheduling',
+    image: '/integrations/scheduling-calendars.webp',
   },
   {
     cat: 'Integrations',
-    title: 'CRM sync',
-    desc: 'Every call logs to HubSpot, Salesforce, or Zoho automatically, with transcripts and outcomes attached.',
-    widget: 'crm',
-  },
-  {
-    cat: 'Integrations',
-    title: 'WhatsApp & SMS',
-    desc: 'Send confirmations, reminders, and follow-ups automatically the moment a call ends.',
+    title: 'SMS',
+    desc: 'Send confirmations, reminders, and follow-ups by text automatically the moment a call ends.',
     widget: 'messaging',
+    image: '/integrations/sms.webp',
   },
   {
     cat: 'Integrations',
-    title: 'Zapier & webhooks',
+    title: 'Webhooks',
     desc: 'Trigger any workflow in 5,000+ apps the moment a call ends — no engineering required.',
     widget: 'automation',
+    image: '/integrations/webhooks.webp',
+  },
+  {
+    cat: 'Integrations',
+    title: 'Analytics & reporting',
+    desc: 'Every call logs transcripts, sentiment, and outcomes to a live dashboard you can filter and export.',
+    widget: 'analytics',
+    image: '/integrations/analytics-reporting.webp',
   },
 ];

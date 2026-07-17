@@ -879,11 +879,24 @@
 }
 .ie-progress span.on { width: 26px; background: linear-gradient(90deg, var(--accent-live), var(--accent-live-2)); }
 
+/* the inline accordion panel only shows on phones (see media query below) */
+.ie-panel-inline { display: none; }
+
 @media (max-width: 860px) {
   .industry-explorer { grid-template-columns: 1fr; align-items: start; }
   .ie-section { min-height: auto; display: block; padding-top: 64px; padding-bottom: 48px; }
-  .ie-list li { flex: none; }
+  /* stack the button and its inline detail panel inside each row */
+  .ie-list li { flex: none; display: flex; flex-direction: column; align-items: stretch; }
   .ie-item { padding: 16px 6px; }
+  /* on phones the detail lives inline under the tapped industry (accordion) */
+  .ie-panel-wrap { display: none; }
+  .ie-panel-inline {
+    display: flex; flex: none;
+    margin: 4px 0 14px; padding: 16px;
+    background: rgba(255,255,255,.55);
+    border: 1px solid var(--border); border-radius: 14px;
+  }
+  .ie-panel-inline .ie-desc { font-size: 14.5px; margin: 4px 0 14px; }
 }
 
 /* testimonials */
@@ -911,7 +924,14 @@
   .step3:not(:last-child)::after { display: none; }
 }
 @media (max-width: 560px) {
-  .steps3.steps4 { grid-template-columns: 1fr; }
+  /* keep the 4 'idea to live call' cards two-per-row on phones, not stacked */
+  .steps3.steps4 { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  /* keep the 3 use-case cards in a single row on phones, compacted to fit */
+  .home-page .grid-3 { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .home-page .grid-3 .usecase { padding: 12px 9px; border-radius: 12px; }
+  .home-page .grid-3 .usecase-tag { font-size: 10px; }
+  .home-page .grid-3 .usecase h3 { font-size: 13.5px; margin: 7px 0 5px; }
+  .home-page .grid-3 .usecase p { font-size: 10.5px; line-height: 1.45; }
 }
 
 /* ============================================================
@@ -1124,6 +1144,7 @@ html, body { max-width: 100%; overflow-x: clip; }
 }
 .int-marquee-track {
   display: flex; align-items: stretch; gap: 16px; width: max-content;
+  padding: 8px 0 14px;
   animation: int-marquee-right 34s linear infinite;
 }
 .int-marquee:hover .int-marquee-track,
@@ -1138,13 +1159,15 @@ html, body { max-width: 100%; overflow-x: clip; }
 .carousel-card {
   position: relative;
   flex: 0 0 272px; width: 272px;
-  background: var(--bg-card);
+  background: var(--bg-tint, #eef8d4);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 22px;
   box-shadow: 0 1px 2px rgba(16, 38, 46, .03);
   transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
+.carousel-card--image { padding: 0; overflow: hidden; }
+.carousel-card--image img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .carousel-card:hover {
   border-color: var(--accent-live-2);
   box-shadow: 0 14px 32px -18px rgba(21, 154, 166, .35);
@@ -1152,11 +1175,13 @@ html, body { max-width: 100%; overflow-x: clip; }
 }
 .carousel-badge {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 42px; height: 42px; border-radius: 12px;
+  width: 46px; height: 46px; border-radius: 13px;
   border: 1px solid var(--accent-live-2); background: var(--bg-elev); color: var(--accent-deep);
   margin-bottom: 16px;
+  box-shadow: 0 6px 14px -8px rgba(74,124,15,.35);
 }
 .carousel-badge .fx-icon { width: 19px; height: 19px; }
+.carousel-badge .fx-icon--pro { width: 28px; height: 28px; }
 .carousel-num {
   position: absolute; top: 22px; right: 22px;
   font-family: var(--font-mono); font-size: 11px; color: var(--fg-dim);
@@ -1343,8 +1368,8 @@ html, body { max-width: 100%; overflow-x: clip; }
 /* ---- Features hero — incoming-call phone mockup ---- */
 .feat-diagram-stage { padding: 0; }
 .feat-diagram-frame { width: min(90%, 280px); animation: none; }
-@media (max-width: 560px) {
-  .feat-diagram-frame { width: min(100%, 280px); }
+@media (max-width: 768px) {
+  .feat-page .hero-visual { display: none; }
 }
 .phone-avatar--live { position: relative; }
 .phone-avatar--live::after {

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { blogPosts } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
+import Seo from '../components/Seo.jsx';
 import NotFound from './NotFound.jsx';
 
 const headingId = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -43,6 +44,16 @@ export default function BlogPost() {
 
   if (!post) return <NotFound />;
 
+  const parsedDate = Date.parse(post.date);
+  const postJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    author: { '@type': 'Organization', name: post.author },
+    ...(Number.isFinite(parsedDate) ? { datePublished: new Date(parsedDate).toISOString() } : {}),
+  };
+
   const heroImageIndex = post.body.findIndex((b) => b.type === 'image');
   const heroImage = heroImageIndex !== -1 ? post.body[heroImageIndex] : null;
   const bodyBlocks = heroImageIndex !== -1
@@ -75,6 +86,7 @@ export default function BlogPost() {
 
   return (
     <div className="kallus-theme">
+      <Seo title={post.title} description={post.excerpt} jsonLd={postJsonLd} />
       <section className="page-hero container">
         <Reveal>
           <Link to="/blog" className="text-link" style={{ display: 'block', marginBottom: 22 }}>← Back to blog</Link>

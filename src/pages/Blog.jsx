@@ -39,17 +39,17 @@ export default function Blog() {
         description="Research, product notes, and practical playbooks on AI voice agents — call handling, POPIA compliance, and multilingual support for South African businesses."
         jsonLd={blogPosts.length > 0 ? blogJsonLd : null}
       />
-      <section className="page-hero container">
+      <section className="page-hero container blog-hero">
         <Reveal>
           <p className="eyebrow">Blog</p>
-          <h1 style={{ fontSize: 'clamp(38px,6.4vw,72px)', maxWidth: '16ch' }}>
+          <h1 style={{ fontSize: 'clamp(38px,6.4vw,72px)', maxWidth: '16ch', margin: '0 auto' }}>
             Field notes from <span className="grad">South Africa's front desk.</span>
           </h1>
-          <p className="lead" style={{ marginTop: 24 }}>
+          <p className="lead" style={{ marginTop: 24, maxWidth: '58ch', marginLeft: 'auto', marginRight: 'auto' }}>
             Research, product notes, and practical playbooks from the team
             building AI voice agents for South African businesses.
           </p>
-          <div className="cta-row" style={{ marginTop: 36 }}>
+          <div className="cta-row" style={{ marginTop: 36, justifyContent: 'center' }}>
             <button type="button" className="btn btn-cta" onClick={scrollToPosts}>
               Read the latest <span className="arrow">↓</span>
             </button>
