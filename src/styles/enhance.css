@@ -1119,6 +1119,7 @@ html, body { max-width: 100%; overflow-x: clip; }
 }
 .int-marquee-track {
   display: flex; align-items: stretch; gap: 16px; width: max-content;
+  padding: 8px 0 14px;
   animation: int-marquee-right 34s linear infinite;
 }
 .int-marquee:hover .int-marquee-track,
