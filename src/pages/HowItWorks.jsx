@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { steps } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
 import SetupPreview from '../components/SetupPreview.jsx';
-import PhoneShowcase from '../components/PhoneShowcase.jsx';
+import HowItWorksDashboard from '../components/HowItWorksDashboard.jsx';
 import ResponseTimeCompare from '../components/ResponseTimeCompare.jsx';
 import ScrollCards from '../components/ScrollCards.jsx';
 
@@ -72,9 +72,9 @@ export default function HowItWorks() {
             <h2 style={{ fontSize: 'clamp(26px,4vw,40px)' }}>From sign-up to live, step by step.</h2>
           </Reveal>
           <div className="steps-showcase">
-            <div className="phone-col">
-              <PhoneShowcase />
-            </div>
+            <Reveal className="phone-col" delay={150}>
+              <HowItWorksDashboard />
+            </Reveal>
             <div className="steps-list">
               {[
                 ...steps,
