@@ -5,6 +5,15 @@ export default function IndustryExplorer() {
   const [active, setActive] = useState(0);
   const [dir, setDir] = useState('next');
   const [paused, setPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 860px)');
+    const onChange = (e) => setIsMobile(e.matches);
+    setIsMobile(mq.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
 
   const go = (i) => {
     if (i === active) return;
@@ -15,17 +24,35 @@ export default function IndustryExplorer() {
     setActive(i);
   };
 
-  // Auto-advance through industries unless the user is interacting.
+  // Auto-advance through industries on desktop; on mobile it's tap-to-expand
+  // (no auto-advance, so the accordion never jumps while you read).
   useEffect(() => {
-    if (paused) return;
+    if (paused || isMobile) return undefined;
     const id = setInterval(() => {
       setDir('next');
       setActive((a) => (a + 1) % industries.length);
     }, 3200);
     return () => clearInterval(id);
-  }, [paused]);
+  }, [paused, isMobile]);
 
   const cur = industries[active];
+
+  const panelInner = (
+    <>
+      <div className="ie-panel-glow" />
+      <p className="eyebrow"><span className="live-dot" /> {cur.name}</p>
+      <p className="ie-desc">{cur.desc}</p>
+
+      <div className="ie-call">
+        <div className="ie-call-head">
+          <span className="ie-tag">Sample call</span>
+          <span className="ie-bars"><i /><i /><i /><i /></span>
+        </div>
+        <div className="bubble caller"><span className="bubble-who">Caller</span>{cur.sample.caller}</div>
+        <div className="bubble agent"><span className="bubble-who">KallUs</span>{cur.sample.agent}</div>
+      </div>
+    </>
+  );
 
   return (
     <div
@@ -41,29 +68,24 @@ export default function IndustryExplorer() {
               onMouseEnter={() => go(i)}
               onFocus={() => go(i)}
               onClick={() => go(i)}
+              aria-expanded={i === active}
             >
               <span className="ie-num">{String(i + 1).padStart(2, '0')}</span>
               <span className="ie-name">{ind.name}</span>
               <span className="ie-arrow">→</span>
             </button>
+            {i === active && (
+              <div className={`ie-panel ie-panel-inline ie-panel--${dir}`} key={active}>
+                {panelInner}
+              </div>
+            )}
           </li>
         ))}
       </ul>
 
       <div className="ie-panel-wrap">
         <div className={`ie-panel ie-panel--${dir}`} key={active}>
-          <div className="ie-panel-glow" />
-          <p className="eyebrow"><span className="live-dot" /> {cur.name}</p>
-          <p className="ie-desc">{cur.desc}</p>
-
-          <div className="ie-call">
-            <div className="ie-call-head">
-              <span className="ie-tag">Sample call</span>
-              <span className="ie-bars"><i /><i /><i /><i /></span>
-            </div>
-            <div className="bubble caller"><span className="bubble-who">Caller</span>{cur.sample.caller}</div>
-            <div className="bubble agent"><span className="bubble-who">KallUs</span>{cur.sample.agent}</div>
-          </div>
+          {panelInner}
         </div>
 
         <div className="ie-progress">

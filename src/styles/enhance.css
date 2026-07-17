@@ -874,11 +874,24 @@
 }
 .ie-progress span.on { width: 26px; background: linear-gradient(90deg, var(--accent-live), var(--accent-live-2)); }
 
+/* the inline accordion panel only shows on phones (see media query below) */
+.ie-panel-inline { display: none; }
+
 @media (max-width: 860px) {
   .industry-explorer { grid-template-columns: 1fr; align-items: start; }
   .ie-section { min-height: auto; display: block; padding-top: 64px; padding-bottom: 48px; }
-  .ie-list li { flex: none; }
+  /* stack the button and its inline detail panel inside each row */
+  .ie-list li { flex: none; display: flex; flex-direction: column; align-items: stretch; }
   .ie-item { padding: 16px 6px; }
+  /* on phones the detail lives inline under the tapped industry (accordion) */
+  .ie-panel-wrap { display: none; }
+  .ie-panel-inline {
+    display: flex; flex: none;
+    margin: 4px 0 14px; padding: 16px;
+    background: rgba(255,255,255,.55);
+    border: 1px solid var(--border); border-radius: 14px;
+  }
+  .ie-panel-inline .ie-desc { font-size: 14.5px; margin: 4px 0 14px; }
 }
 
 /* testimonials */
@@ -906,7 +919,14 @@
   .step3:not(:last-child)::after { display: none; }
 }
 @media (max-width: 560px) {
-  .steps3.steps4 { grid-template-columns: 1fr; }
+  /* keep the 4 'idea to live call' cards two-per-row on phones, not stacked */
+  .steps3.steps4 { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  /* keep the 3 use-case cards in a single row on phones, compacted to fit */
+  .home-page .grid-3 { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .home-page .grid-3 .usecase { padding: 12px 9px; border-radius: 12px; }
+  .home-page .grid-3 .usecase-tag { font-size: 10px; }
+  .home-page .grid-3 .usecase h3 { font-size: 13.5px; margin: 7px 0 5px; }
+  .home-page .grid-3 .usecase p { font-size: 10.5px; line-height: 1.45; }
 }
 
 /* ============================================================

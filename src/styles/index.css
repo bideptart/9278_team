@@ -514,7 +514,12 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 .compare-icon.without { background: #fde3e3; color: #b42318; }
 .compare-icon.with { background: #eef9d3; color: #4d7c0f; }
 @media (max-width: 640px) {
-  .cost-compare { grid-template-columns: 1fr; }
+  /* keep both comparison boxes side by side in one row on phones */
+  .cost-compare { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .compare-card { padding: 14px 12px; }
+  .compare-badge { font-size: 9.5px; padding: 6px 10px; margin-bottom: 12px; }
+  .compare-list { gap: 10px; }
+  .compare-list li { font-size: 11.5px; gap: 7px; }
 }
 
 /* section heading */
