@@ -1343,8 +1343,8 @@ html, body { max-width: 100%; overflow-x: clip; }
 /* ---- Features hero — incoming-call phone mockup ---- */
 .feat-diagram-stage { padding: 0; }
 .feat-diagram-frame { width: min(90%, 280px); animation: none; }
-@media (max-width: 560px) {
-  .feat-diagram-frame { width: min(100%, 280px); }
+@media (max-width: 768px) {
+  .feat-page .hero-visual { display: none; }
 }
 .phone-avatar--live { position: relative; }
 .phone-avatar--live::after {
