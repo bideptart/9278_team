@@ -114,7 +114,7 @@ export default function HowItWorks() {
         <div className="glow glow-cta" aria-hidden="true" />
         <div className="container">
           <Reveal>
-            <p className="hiw-badge hiw-badge--center hiw-badge--star">★ Ready when you are</p>
+            <p className="hiw-badge hiw-badge--center hiw-badge--star hiw-badge--howitworks">★ Ready when you are</p>
             <h2>See it answer your first call today.</h2>
             <p>Design your agent, connect your knowledge, and forward your line — live in minutes.</p>
             <div className="cta-row" style={{ justifyContent: 'center' }}>

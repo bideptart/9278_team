@@ -224,6 +224,17 @@
 .hiw-badge--star {
   color: var(--accent-ink); background: rgba(255,255,255,.75); border-color: rgba(255,255,255,.6);
 }
+/* How It Works page only: match this pill to the rest of the page's pills */
+.hiw-badge--howitworks {
+  background: var(--accent-soft, #eef9d3); border-color: #d7ecab; color: var(--accent-ink);
+}
+.hiw-hero .hiw-badge,
+.hiw-band .hiw-badge,
+.lc-section .hiw-badge,
+.hiw-badge--howitworks {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12px;
+}
 .hiw-cta {
   background: linear-gradient(135deg, #c2ee6f 0%, #8dc63f 60%, #6fa524 100%);
   max-width: var(--maxw); width: calc(100% - var(--pad) * 2);
@@ -652,12 +663,15 @@
 .hood-split-head {
   flex: 0 0 340px;
   position: sticky;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 @media (max-width: 900px) {
   .hood-split { flex-direction: column; gap: 8px; padding: 48px 0 0; }
-  .hood-split-head { position: relative; top: 0; transform: none; flex: 0 0 auto; }
+  .hood-split-head { position: relative; top: 0; height: auto; transform: none; flex: 0 0 auto; }
 }
 
 .scroll-cards { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
