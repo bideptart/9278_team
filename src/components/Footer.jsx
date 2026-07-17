@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
-            <span className="brand"><Logo /></span>
+            <Link to="/" className="brand"><Logo /></Link>
             <p>
               The AI voice receptionist that answers every call, books every
               appointment, and never sleeps — so your team can focus on the work
