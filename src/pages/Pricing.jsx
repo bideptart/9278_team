@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { plans } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
 import Seo from '../components/Seo.jsx';
+import FaqGlow from '../components/FaqGlow.jsx';
 
 const fmtINR = (n) => '₹' + n.toLocaleString('en-IN');
 
@@ -63,22 +64,27 @@ const pricingFaqs = [
   {
     q: 'What does it cost?',
     a: 'Pay-as-you-go plans starting at ₹2,999/mo, billed once as wallet credit. Each plan includes voice agents and minutes; go over and you\'re billed per second at your plan\'s effective rate — as low as ₹10/min on Scale.',
+    meta: 'Billing',
   },
   {
     q: 'Is GST included?',
     a: 'GST is charged at checkout on every purchase, and you get a GST invoice automatically — no separate paperwork for your practice.',
+    meta: 'Billing',
   },
   {
     q: 'Can I just top up my wallet?',
     a: 'Yes. Top-ups are available from ₹500 any time your balance runs low, on top of your plan\'s included minutes.',
+    meta: 'Wallet',
   },
   {
     q: 'Does it handle patient calls after hours?',
     a: 'Yes. Every plan answers around the clock — booking, rescheduling, and confirming appointments, answering insurance questions, and triaging urgent calls after hours.',
+    meta: 'Coverage',
   },
   {
     q: 'Can I cancel anytime?',
     a: 'Yes, there\'s no lock-in. Cancel anytime and you keep any unused wallet credit until it expires.',
+    meta: 'Flexibility',
   },
 ];
 
@@ -285,14 +291,7 @@ export default function Pricing() {
         <p className="eyebrow" style={{ justifyContent: 'center' }}>FAQ</p>
         <h2 style={{ fontSize: 'clamp(24px,3.6vw,38px)' }}>Everything your practice needs to know.</h2>
       </div>
-      <div className="faq">
-        {pricingFaqs.map((f) => (
-          <details className="faq-item" key={f.q}>
-            <summary>{f.q}</summary>
-            <p>{f.a}</p>
-          </details>
-        ))}
-      </div>
+      <FaqGlow items={pricingFaqs} />
 
       <p className="plan-gst" style={{ marginTop: 40 }}>
         GST charged at checkout. Top-ups available from ₹500. Cancel anytime.

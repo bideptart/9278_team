@@ -9,6 +9,9 @@
 .su-toggle button.on { background: var(--fg); color: #fff; }
 .su-save { background: var(--accent-live); color: #fff; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 999px; letter-spacing: .03em; }
 .su-toggle button.on .su-save { background: rgba(0,0,0,.18); }
+
+.kallus-theme .su-toggle button.on { background: linear-gradient(90deg, var(--accent-2), var(--accent-mid)); color: var(--ink); }
+.kallus-theme .su-toggle button.on .su-save { background: rgba(11,18,32,.16); color: var(--ink); }
 .su-layout { display: grid; grid-template-columns: 1fr 360px; gap: 24px; align-items: start; }
 .su-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .su-note { margin: 18px 0; border: 1px dashed var(--border); background: rgba(11,18,32,.03); border-radius: 12px; padding: 12px 16px; color: var(--fg-muted); font-size: 13px; }
@@ -1145,4 +1148,66 @@ html, body { max-width: 100%; overflow-x: clip; }
   .route-branch { width: 68px; }
   .route-node { font-size: 9.5px; padding: 5px 6px; }
   .route-sub { font-size: 8.5px; margin-top: 5px; }
+}
+
+/* ============================================================
+   FAQ GLOW — accordion with a cursor-tracking spotlight glow
+   and an animated intro badge. Single fixed theme (no toggle).
+   ============================================================ */
+.faq-glow { max-width: 840px; margin: 0 auto; }
+
+@keyframes faq-glow-pulse { 0% { transform: scale(.7); opacity: .4; } 60% { opacity: .08; } 100% { transform: scale(1.25); opacity: 0; } }
+
+.faq-glow-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.faq-glow-card {
+  position: relative; overflow: hidden; border-radius: 20px;
+  border: 1px solid var(--border); background: var(--bg-card);
+  box-shadow: 0 20px 50px -36px rgba(11,18,32,.25);
+  transition: transform .3s ease, border-color .3s ease;
+}
+.faq-glow-card:hover, .faq-glow-card.is-open { transform: translateY(-2px); border-color: var(--accent-live, var(--accent-mid)); }
+.faq-glow-spot {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0;
+  transition: opacity .4s ease;
+  background: radial-gradient(240px circle at var(--faq-x, 50%) var(--faq-y, 50%), rgba(111,165,36,.14), transparent 70%);
+}
+.faq-glow-card:hover .faq-glow-spot, .faq-glow-card.is-open .faq-glow-spot { opacity: 1; }
+
+.faq-glow-trigger {
+  position: relative; z-index: 1; width: 100%; display: flex; align-items: flex-start; gap: 18px;
+  padding: 24px 26px; background: none; border: none; text-align: left; cursor: pointer; font: inherit;
+}
+.faq-glow-icon {
+  position: relative; flex-shrink: 0; width: 42px; height: 42px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--bg-soft);
+  display: flex; align-items: center; justify-content: center; color: var(--fg);
+  transition: transform .4s ease;
+}
+.faq-glow-card.is-open .faq-glow-icon { transform: rotate(45deg); border-color: var(--accent-live, var(--accent-mid)); }
+.faq-glow-icon-ring {
+  position: absolute; inset: 0; border-radius: 999px; border: 1px solid var(--accent-live, var(--accent-mid)); opacity: 0;
+}
+.faq-glow-card.is-open .faq-glow-icon-ring { opacity: .35; animation: faq-glow-pulse 1.6s ease-out infinite; }
+
+.faq-glow-body { flex: 1; min-width: 0; }
+.faq-glow-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.faq-glow-row h3 { font-size: 17px; font-weight: 600; margin: 0; color: var(--fg); line-height: 1.35; }
+.faq-glow-tag {
+  margin-left: auto; flex-shrink: 0; padding: 4px 12px; border-radius: 999px;
+  border: 1px solid var(--border); color: var(--fg-muted);
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+}
+.faq-glow-answer {
+  overflow: hidden; max-height: 0; opacity: 0;
+  transition: max-height .4s ease, opacity .3s ease, margin .4s ease;
+}
+.faq-glow-card.is-open .faq-glow-answer { max-height: 240px; opacity: 1; margin-top: 12px; }
+.faq-glow-answer p { margin: 0; color: var(--fg-muted); font-size: 14.5px; line-height: 1.6; }
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-glow-icon-ring { animation: none !important; }
+}
+@media (max-width: 560px) {
+  .faq-glow-trigger { padding: 18px 18px; gap: 14px; }
+  .faq-glow-tag { margin-left: 0; }
 }
