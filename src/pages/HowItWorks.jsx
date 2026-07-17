@@ -5,6 +5,7 @@ import SetupPreview from '../components/SetupPreview.jsx';
 import HowItWorksDashboard from '../components/HowItWorksDashboard.jsx';
 import ResponseTimeCompare from '../components/ResponseTimeCompare.jsx';
 import ScrollCards from '../components/ScrollCards.jsx';
+import Seo from '../components/Seo.jsx';
 
 const CALL_FEATURE_CARDS = [
   {
@@ -43,6 +44,10 @@ export default function HowItWorks() {
 
   return (
     <>
+      <Seo
+        title="How it works"
+        description="From sign-up to answering calls in a day — design your KallUS AI voice agent in plain English, test every scenario in a sandbox, then go live on a South African number."
+      />
       <section className="page-hero hiw-hero container">
         <div className="hiw-glow" aria-hidden="true" />
         <Reveal className="hiw-hero-copy">

@@ -5,6 +5,7 @@ import { industries } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
 import { INDUSTRY_ICONS } from '../components/IndustryIcons.jsx';
 import IndustriesHeroMotif from '../components/IndustriesHeroMotif.jsx';
+import Seo from '../components/Seo.jsx';
 
 const MotionLink = motion(Link);
 
@@ -21,6 +22,10 @@ export default function Industries() {
 
   return (
     <div className="industries-theme">
+      <Seo
+        title="Industries"
+        description="One KallUS AI receptionist, adapted to every South African industry — clinics, law firms, trades, restaurants, auto, retail and more. Your hours, your services, your booking flow."
+      />
       <section className="page-hero container ind-hero">
         <div className="ind-hero-copy">
           <Reveal>
