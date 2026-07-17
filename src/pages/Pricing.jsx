@@ -205,13 +205,13 @@ export default function Pricing() {
 
       </div>
 
-      <section className="section billing-shade">
-        <div className="container">
-          <Reveal className="section-head">
-            <p className="eyebrow">How billing works</p>
+      <div className="container">
+        <div className="soft-panel" style={{ marginTop: 40, marginBottom: 40 }}>
+          <Reveal className="section-head faq-center">
+            <span className="pill-badge"><span className="dot" />How billing works</span>
             <h2>Predictable billing for your practice.</h2>
           </Reveal>
-          <div className="grid grid-3">
+          <div className="grid grid-3" style={{ marginTop: 32 }}>
             {billing.map(([t, d], i) => (
               <Reveal className="usecase glow-card" delay={i * 90} key={t}>
                 <span className="usecase-tag">/{String(i + 1).padStart(2, '0')}</span>
@@ -221,7 +221,7 @@ export default function Pricing() {
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
       <div className="container pricing-body">
 
@@ -260,13 +260,13 @@ export default function Pricing() {
 
       </div>
 
-      <section className="section billing-shade">
-        <div className="container">
-          <Reveal className="section-head">
-            <p className="eyebrow">What practices say</p>
+      <div className="container">
+        <div className="soft-panel" style={{ marginTop: 40, marginBottom: 40 }}>
+          <Reveal className="section-head faq-center">
+            <span className="pill-badge"><span className="dot" />What practices say</span>
             <h2>Real results from real clinics.</h2>
           </Reveal>
-          <div className="grid grid-2">
+          <div className="grid grid-2" style={{ marginTop: 32 }}>
             {pricingTestimonials.map((t, i) => (
               <Reveal className="usecase glow-card testimonial-card" delay={i * 90} key={t.name}>
                 <span className="usecase-tag">/{String(i + 1).padStart(2, '0')}</span>
@@ -280,7 +280,7 @@ export default function Pricing() {
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
       <div className="container pricing-body">
 
