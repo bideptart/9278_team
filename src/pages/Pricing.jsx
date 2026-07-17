@@ -4,7 +4,40 @@ import { plans } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
 import Seo from '../components/Seo.jsx';
 
-const fmtZAR = (n) => 'R' + n.toLocaleString('en-US');
+const fmtUSD = (n) => '$' + n.toLocaleString('en-US');
+
+const CONFETTI_COLORS = ['#6fa524', '#c2ee6f', '#4d7c0f', '#8dc63f', '#eef9d3'];
+
+// Small hand-rolled confetti burst — no extra dependency for one animation.
+function launchConfetti(x, y) {
+  const count = 26;
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement('span');
+    el.className = 'confetti-piece';
+    const angle = (Math.PI * 2 * i) / count + Math.random() * 0.5;
+    const distance = 60 + Math.random() * 60;
+    el.style.left = `${x}px`;
+    el.style.top = `${y}px`;
+    el.style.background = CONFETTI_COLORS[i % CONFETTI_COLORS.length];
+    el.style.setProperty('--dx', `${Math.cos(angle) * distance}px`);
+    el.style.setProperty('--dy', `${Math.sin(angle) * distance - 40}px`);
+    el.style.setProperty('--rot', `${Math.round(Math.random() * 360)}deg`);
+    document.body.appendChild(el);
+    el.addEventListener('animationend', () => el.remove());
+  }
+}
+
+// Pops the price in with a short CSS animation when it changes between
+// monthly/yearly. Keying on `value` remounts the span so the animation
+// reliably replays and the correct number is always shown immediately —
+// no requestAnimationFrame loop that could get stuck mid-count.
+function AnimatedPrice({ value }) {
+  return (
+    <span className="plan-rate-value" key={value}>
+      {fmtUSD(value)}
+    </span>
+  );
+}
 
 const trustBadges = [
   'POPIA-compliant',
@@ -14,7 +47,7 @@ const trustBadges = [
 
 const comparison = [
   { feature: 'Included minutes', values: ['250 min', '800 min', '3,000 min'] },
-  { feature: 'Effective rate', values: ['R2.80/min', 'R2.50/min', 'R2.20/min'] },
+  { feature: 'Effective rate', values: ['$0.13/min', '$0.12/min', '$0.11/min'] },
   { feature: 'AI voice agents', values: ['2', '10', 'Unlimited'] },
   { feature: 'Voice stack', values: ['Standard', 'Standard + premium', 'Realtime + premium'] },
   { feature: 'Call recording', values: [true, true, true] },
@@ -39,15 +72,15 @@ const pricingTestimonials = [
 ];
 
 const billing = [
-  ['Prepaid wallet billing', 'Buy credit up front and your clinic\'s minutes draw down as patient calls come in. Top up anytime from R100.'],
-  ['Per-second overage', 'Go past your included minutes and you\'re billed per second at your plan\'s effective rate — as low as R2.20/min on Scale.'],
+  ['Prepaid wallet billing', 'Buy credit up front and your clinic\'s minutes draw down as patient calls come in. Top up anytime from $10.'],
+  ['Per-second overage', 'Go past your included minutes and you\'re billed per second at your plan\'s effective rate — as low as $0.11/min on Scale.'],
   ['No setup fees', 'Your clinic\'s phone number is assigned automatically at signup — no separate setup fee, no hidden costs.'],
 ];
 
 const pricingFaqs = [
   {
     q: 'What does it cost?',
-    a: 'Pay-as-you-go plans starting at R649/mo, billed once as wallet credit. Each plan includes voice agents and minutes; go over and you\'re billed per second at your plan\'s effective rate — as low as R2.20/min on Scale.',
+    a: 'Pay-as-you-go plans starting at $31/mo, billed once as wallet credit. Each plan includes voice agents and minutes; go over and you\'re billed per second at your plan\'s effective rate — as low as $0.11/min on Scale.',
     meta: 'Billing',
   },
   {
@@ -57,7 +90,7 @@ const pricingFaqs = [
   },
   {
     q: 'Can I just top up my wallet?',
-    a: 'Yes. Top-ups are available from R100 any time your balance runs low, on top of your plan\'s included minutes.',
+    a: 'Yes. Top-ups are available from $10 any time your balance runs low, on top of your plan\'s included minutes.',
     meta: 'Wallet',
   },
   {
@@ -78,12 +111,12 @@ const pricingJsonLd = {
     {
       '@type': 'Product',
       name: 'KallUS AI Voice Receptionist',
-      description: 'AI voice receptionist plans for South African clinics and healthcare practices, priced in ZAR — booking, rescheduling, insurance questions, and after-hours triage.',
+      description: 'AI voice receptionist plans for clinics and healthcare practices, priced in USD — booking, rescheduling, insurance questions, and after-hours triage.',
       offers: plans.map((p) => ({
         '@type': 'Offer',
         name: p.name,
         price: p.priceMonthly,
-        priceCurrency: 'ZAR',
+        priceCurrency: 'USD',
         description: p.blurb,
       })),
     },
@@ -129,7 +162,7 @@ export default function Pricing() {
     <div className="kallus-theme">
       <Seo
         title="Pricing"
-        description="Pay-as-you-go AI voice receptionist plans for South African clinics, priced in ZAR. Booking, rescheduling, insurance questions, and after-hours triage — plans start at R649/mo."
+        description="Pay-as-you-go AI voice receptionist plans for clinics, priced in USD. Booking, rescheduling, insurance questions, and after-hours triage — plans start at $31/mo."
         jsonLd={pricingJsonLd}
       />
       <section className="pricing-hero container">
@@ -141,7 +174,7 @@ export default function Pricing() {
           <p className="lead" style={{ marginTop: 24 }}>
             Every plan includes AI voice agents built for patient calls — booking,
             rescheduling, insurance questions, and after-hours triage. All plans include
-            inbound calling, call recording, and real-time transcription. Prices in R,
+            inbound calling, call recording, and real-time transcription. Prices in USD,
             billed once as wallet credit.
           </p>
           <div className="cta-row" style={{ marginTop: 36 }}>
@@ -164,7 +197,17 @@ export default function Pricing() {
       <div style={{ marginTop: 32, marginBottom: 40, display: 'flex', justifyContent: 'center' }}>
         <div className="su-toggle">
           <button type="button" className={cycle === 'monthly' ? 'on' : ''} onClick={() => setCycle('monthly')}>Monthly</button>
-          <button type="button" className={cycle === 'yearly' ? 'on' : ''} onClick={() => setCycle('yearly')}>
+          <button
+            type="button"
+            className={cycle === 'yearly' ? 'on' : ''}
+            onClick={(e) => {
+              if (cycle !== 'yearly') {
+                const rect = e.currentTarget.getBoundingClientRect();
+                launchConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
+              }
+              setCycle('yearly');
+            }}
+          >
             Yearly <span className="su-save">Save 20%</span>
           </button>
         </div>
@@ -175,7 +218,7 @@ export default function Pricing() {
       <div className="pricing-grid" ref={gridRef}>
         {plans.map((p, i) => (
           <div
-            className={`price-card-slide${p.featured ? ' is-stack-active' : ''}`}
+            className={`price-card-slide${p.featured ? ' is-stack-active featured' : ''}`}
             ref={(el) => (slideRefs.current[i] = el)}
             key={p.name}
           >
@@ -188,11 +231,11 @@ export default function Pricing() {
               <h3 className="plan-name">{p.name}</h3>
               <p className="plan-blurb">{p.blurb}</p>
               <div className="plan-rate">
-                <span>{fmtZAR(cycle === 'yearly' ? p.priceYearly : p.priceMonthly)}</span> /{cycle === 'yearly' ? 'yr' : 'mo'}
+                <AnimatedPrice value={cycle === 'yearly' ? p.priceYearly : p.priceMonthly} /> /{cycle === 'yearly' ? 'yr' : 'mo'}
               </div>
               {cycle === 'yearly' && (
                 <p className="plan-yearly-note">
-                  Save {fmtZAR(p.priceMonthly * 12 - p.priceYearly)} vs monthly · {fmtZAR(Math.round(p.priceYearly / 12))}/mo equivalent
+                  Save {fmtUSD(p.priceMonthly * 12 - p.priceYearly)} vs monthly · {fmtUSD(Math.round(p.priceYearly / 12))}/mo equivalent
                 </p>
               )}
               <div className="plan-meta">{p.meta}</div>
@@ -207,7 +250,7 @@ export default function Pricing() {
                   className="btn btn-sheen"
                   style={{ width: '100%', justifyContent: 'center' }}
                 >
-                  Buy {fmtZAR(cycle === 'yearly' ? p.priceYearly : p.priceMonthly)} now
+                  Buy {fmtUSD(cycle === 'yearly' ? p.priceYearly : p.priceMonthly)} now
                 </Link>
               </div>
             </Reveal>
@@ -310,7 +353,7 @@ export default function Pricing() {
       </div>
 
       <p className="plan-gst" style={{ marginTop: 40 }}>
-        Top-ups available from R100. Cancel anytime.
+        Top-ups available from $10. Cancel anytime.
       </p>
 
       </div>
