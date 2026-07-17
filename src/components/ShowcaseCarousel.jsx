@@ -19,8 +19,10 @@ function calculateGap(width) {
 export default function ShowcaseCarousel({ slides, autoplay = true }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [containerWidth, setContainerWidth] = useState(600);
+  const [isPaused, setIsPaused] = useState(false);
   const imageContainerRef = useRef(null);
   const autoplayRef = useRef(null);
+  const pauseTimeoutRef = useRef(null);
   const count = useMemo(() => slides.length, [slides]);
   const active = slides[activeIndex];
 
@@ -34,19 +36,29 @@ export default function ShowcaseCarousel({ slides, autoplay = true }) {
   }, []);
 
   useEffect(() => {
-    if (!autoplay) return undefined;
+    if (!autoplay || isPaused) return undefined;
     autoplayRef.current = setInterval(() => {
       setActiveIndex((i) => (i + 1) % count);
-    }, 2800);
+    }, 4000);
     return () => clearInterval(autoplayRef.current);
-  }, [autoplay, count]);
+  }, [autoplay, count, isPaused]);
+
+  useEffect(() => () => clearTimeout(pauseTimeoutRef.current), []);
+
+  function pauseAutoplay() {
+    setIsPaused(true);
+    clearTimeout(pauseTimeoutRef.current);
+    pauseTimeoutRef.current = setTimeout(() => setIsPaused(false), 3500);
+  }
 
   function handlePrev() {
     setActiveIndex((i) => (i - 1 + count) % count);
+    pauseAutoplay();
   }
 
   function handleNext() {
     setActiveIndex((i) => (i + 1) % count);
+    pauseAutoplay();
   }
 
   function getImageStyle(index) {
@@ -56,13 +68,13 @@ export default function ShowcaseCarousel({ slides, autoplay = true }) {
     const isLeft = (activeIndex - 1 + count) % count === index;
     const isRight = (activeIndex + 1) % count === index;
     if (isActive) {
-      return { zIndex: 3, opacity: 1, transform: 'translateX(0) translateY(0) scale(1) rotateY(0deg)' };
+      return { zIndex: 3, opacity: 1, transform: 'translateX(0) translateY(0) scale(1)' };
     }
     if (isLeft) {
-      return { zIndex: 2, opacity: 1, transform: `translateX(-${gap}px) translateY(-${stickUp}px) scale(0.85) rotateY(15deg)` };
+      return { zIndex: 2, opacity: 1, transform: `translateX(-${gap}px) translateY(-${stickUp}px) scale(0.85)` };
     }
     if (isRight) {
-      return { zIndex: 2, opacity: 1, transform: `translateX(${gap}px) translateY(-${stickUp}px) scale(0.85) rotateY(-15deg)` };
+      return { zIndex: 2, opacity: 1, transform: `translateX(${gap}px) translateY(-${stickUp}px) scale(0.85)` };
     }
     return { zIndex: 1, opacity: 0, pointerEvents: 'none' };
   }
