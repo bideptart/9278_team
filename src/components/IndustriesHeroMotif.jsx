@@ -82,37 +82,6 @@ export default function IndustriesHeroMotif() {
           </span>
         </motion.div>
       ))}
-
-      <div className="ind-orb-detail">
-        <motion.div
-          className="ind-orb-detail-anim"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.6 }}
-          transition={{ duration: 0.5, delay: 0.35, ease: [0.2, 0.7, 0.2, 1] }}
-        >
-          <p className="ind-orb-detail-label">
-            <motion.span
-              animate={{ rotate: [0, 25, 0, -25, 0], scale: [1, 1.35, 1] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              ✦
-            </motion.span>
-            {' '}AI Receptionist
-          </p>
-          <div className="ind-orb-detail-wave">
-            {WAVE_HEIGHTS.map((h, i) => (
-              <motion.span
-                key={i}
-                style={{ height: `${Math.max(h * 0.4, 15)}%` }}
-                animate={{ scaleY: [0.2, 1, 0.2] }}
-                transition={{ duration: 1.1, repeat: Infinity, ease: 'easeInOut', delay: i * 0.07 }}
-              />
-            ))}
-          </div>
-          <p className="ind-orb-detail-text">I can help you with scheduling, services, and more.</p>
-        </motion.div>
-      </div>
     </div>
   );
 }

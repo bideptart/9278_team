@@ -36,6 +36,7 @@
 .industries-theme h4 {
   font-family: var(--font-head);
   color: var(--ink);
+  font-weight: 800;
 }
 
 .industries-theme .eyebrow,
@@ -45,6 +46,7 @@
 .industries-theme .page-body {
   padding-left: var(--pad);
   padding-right: var(--pad);
+  padding-bottom: 24px;
 }
 .industries-theme .ind-eyebrow-pill {
   background: var(--accent-soft);
@@ -107,6 +109,8 @@
 .industries-theme .ind-hero-heading {
   font-size: clamp(38px, 6.4vw, 72px);
   font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 .industries-theme .page-hero {
   min-height: auto;
@@ -124,7 +128,7 @@
   position: relative;
   min-width: 0;
   min-height: 0;
-  padding: 16px;
+  padding: 8px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -143,7 +147,7 @@
 .industries-theme .ind-orb-hero {
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 720px;
   aspect-ratio: 520 / 430;
 }
 .industries-theme .ind-orb-bg {
@@ -802,7 +806,7 @@
 .industries-theme .timeline-name {
   font-family: var(--font-head);
   font-size: 26px;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--ink);
   min-height: 32px;
   white-space: nowrap;
@@ -844,6 +848,9 @@
   border-radius: 50%;
   background: radial-gradient(circle, var(--accent-ink) 0%, var(--accent-ink) 60%, transparent 80%);
   z-index: -1;
+  opacity: 0;
+}
+.industries-theme .timeline-node.is-active::before {
   animation: timeline-pulse 2.4s ease-out infinite;
 }
 @keyframes timeline-pulse {
@@ -882,90 +889,91 @@
   }
   .industries-theme .timeline-index { display: none; }
   .industries-theme .timeline-node { grid-column: 1; grid-row: 1; }
+  .industries-theme .timeline-name {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    min-height: 0;
+  }
   .industries-theme .timeline-row.left .timeline-tags { justify-content: flex-start; }
 }
 
 /* ---- showcase — image section between the timeline and the CTA band ---- */
 .industries-theme .ind-showcase {
-  margin: 72px auto 0;
+  margin: 12px auto 0;
 }
 .industries-theme .ind-showcase-heading {
-  text-align: center;
-  font-size: clamp(28px, 4vw, 40px);
-  margin: 0 0 28px;
+  text-align: left;
+  font-size: clamp(34px, 4.2vw, 46px);
+  margin: 0 0 88px;
 }
-.industries-theme .ind-showcase-frame {
+.industries-theme .ind-showcase-heading-accent {
+  color: var(--accent-mid);
+}
+/* ---- showcase carousel — circular 3-image carousel with animated quote text ---- */
+.industries-theme .ind-carousel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.industries-theme .ind-carousel-images {
   position: relative;
   width: 100%;
-  aspect-ratio: 21 / 9;
-  border-radius: 24px;
-  overflow: hidden;
-  background: linear-gradient(135deg, var(--accent-soft) 0%, var(--bg-soft) 100%);
-  border: 1px solid var(--accent-soft);
-  box-shadow: 0 30px 60px -32px rgba(11, 18, 32, .25);
+  max-width: 380px;
+  aspect-ratio: 1 / 1;
+  perspective: 1000px;
 }
-.industries-theme .ind-showcase-img {
+.industries-theme .ind-carousel-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px -18px rgba(11, 18, 32, .3);
+  transition: all 0.7s cubic-bezier(.4, 2, .3, 1);
+  animation: ind-carousel-loop 2.8s ease-in-out infinite;
 }
-.industries-theme .ind-showcase-link {
-  display: block;
-  cursor: pointer;
+@keyframes ind-carousel-loop {
+  0%, 100% { box-shadow: 0 20px 40px -18px rgba(11, 18, 32, .3), 0 0 0 0 rgba(111, 165, 36, 0); }
+  50% { box-shadow: 0 26px 48px -16px rgba(11, 18, 32, .35), 0 0 0 10px rgba(111, 165, 36, .12); }
 }
-.industries-theme .ind-showcase-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgba(11, 18, 32, .55) 0%, transparent 32%);
-  pointer-events: none;
+@media (prefers-reduced-motion: reduce) {
+  .industries-theme .ind-carousel-img { animation: none; }
 }
-.industries-theme .ind-showcase-cta {
-  position: absolute;
-  left: 50%;
-  bottom: 24px;
-  transform: translateX(-50%);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 22px;
-  border-radius: 999px;
-  font-family: var(--font-mono, monospace);
-  font-size: 14px;
-  font-weight: 600;
-  color: #fff;
-  background: linear-gradient(90deg, var(--accent-mid), var(--accent-deep));
-  box-shadow: 0 10px 24px -10px rgba(11, 18, 32, .5);
-}
-.industries-theme .ind-showcase-cta .arrow {
-  transition: transform .25s ease;
-}
-.industries-theme .ind-showcase-link:hover .ind-showcase-cta .arrow {
-  transform: translateX(4px);
-}
-.industries-theme .ind-showcase-placeholder {
-  position: absolute;
-  inset: 0;
+.industries-theme .ind-carousel-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  color: var(--ink-4);
 }
-.industries-theme .ind-showcase-placeholder svg {
-  width: 40px;
-  height: 40px;
-}
-.industries-theme .ind-showcase-placeholder p {
+.industries-theme .ind-carousel-name {
   font-family: var(--font-head);
-  font-size: 14px;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+.industries-theme .ind-carousel-role {
+  font-size: 13px;
   font-weight: 600;
+  color: var(--accent-deep);
+  margin: 0 0 20px;
+}
+.industries-theme .ind-carousel-quote {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-3);
   margin: 0;
 }
-@media (max-width: 700px) {
-  .industries-theme .ind-showcase { margin-top: 48px; }
-  .industries-theme .ind-showcase-frame { aspect-ratio: 4 / 3; border-radius: 18px; }
+@media (max-width: 760px) {
+  .industries-theme .ind-showcase { margin-top: 20px; }
+  .industries-theme .ind-carousel { grid-template-columns: 1fr; gap: 32px; }
+  .industries-theme .ind-carousel-images { max-width: 280px; margin: 0 auto; }
+  .industries-theme .ind-carousel-name { font-size: 20px; }
+  .industries-theme .ind-carousel-quote { font-size: 14px; }
 }
 
 /* ---- footer — dark navy theme matching the reference hero (industries page only) ---- */
