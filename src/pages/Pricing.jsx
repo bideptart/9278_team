@@ -1,7 +1,25 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { plans } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
+import Seo from '../components/Seo.jsx';
+import FaqGlow from '../components/FaqGlow.jsx';
+
+const fmtINR = (n) => '₹' + n.toLocaleString('en-IN');
+
+const pricingJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'KallUS AI Voice Receptionist',
+  description: 'AI voice receptionist plans for clinics and healthcare practices — booking, rescheduling, insurance questions, and after-hours triage.',
+  offers: plans.map((p) => ({
+    '@type': 'Offer',
+    name: p.name,
+    price: p.priceMonthly,
+    priceCurrency: 'INR',
+    description: p.blurb,
+  })),
+};
 
 const trustBadges = [
   'HIPAA-ready',
@@ -46,22 +64,27 @@ const pricingFaqs = [
   {
     q: 'What does it cost?',
     a: 'Pay-as-you-go plans starting at ₹2,999/mo, billed once as wallet credit. Each plan includes voice agents and minutes; go over and you\'re billed per second at your plan\'s effective rate — as low as ₹10/min on Scale.',
+    meta: 'Billing',
   },
   {
     q: 'Is GST included?',
     a: 'GST is charged at checkout on every purchase, and you get a GST invoice automatically — no separate paperwork for your practice.',
+    meta: 'Billing',
   },
   {
     q: 'Can I just top up my wallet?',
     a: 'Yes. Top-ups are available from ₹500 any time your balance runs low, on top of your plan\'s included minutes.',
+    meta: 'Wallet',
   },
   {
     q: 'Does it handle patient calls after hours?',
     a: 'Yes. Every plan answers around the clock — booking, rescheduling, and confirming appointments, answering insurance questions, and triaging urgent calls after hours.',
+    meta: 'Coverage',
   },
   {
     q: 'Can I cancel anytime?',
     a: 'Yes, there\'s no lock-in. Cancel anytime and you keep any unused wallet credit until it expires.',
+    meta: 'Flexibility',
   },
 ];
 
@@ -69,6 +92,7 @@ export default function Pricing() {
   const scrollToPlans = () =>
     document.getElementById('plans')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
+  const [cycle, setCycle] = useState('monthly');
   const gridRef = useRef(null);
   const slideRefs = useRef([]);
 
@@ -93,6 +117,11 @@ export default function Pricing() {
 
   return (
     <div className="kallus-theme">
+      <Seo
+        title="Pricing"
+        description="Pay-as-you-go AI voice receptionist plans for clinics, priced in INR. Booking, rescheduling, insurance questions, and after-hours triage — plans start at ₹2,999/mo with GST invoicing built in."
+        jsonLd={pricingJsonLd}
+      />
       <section className="pricing-hero container">
         <Reveal>
           <p className="eyebrow">Pay as you go · INR pricing · GST invoices</p>
@@ -122,6 +151,15 @@ export default function Pricing() {
         ))}
       </Reveal>
 
+      <div style={{ marginTop: 32, marginBottom: 40, display: 'flex', justifyContent: 'center' }}>
+        <div className="su-toggle">
+          <button type="button" className={cycle === 'monthly' ? 'on' : ''} onClick={() => setCycle('monthly')}>Monthly</button>
+          <button type="button" className={cycle === 'yearly' ? 'on' : ''} onClick={() => setCycle('yearly')}>
+            Yearly <span className="su-save">Save 20%</span>
+          </button>
+        </div>
+      </div>
+
       <p className="pricing-swipe-hint">← Swipe to compare plans →</p>
 
       <div className="pricing-grid" ref={gridRef}>
@@ -139,7 +177,14 @@ export default function Pricing() {
               {p.featured && <span className="badge">Most popular</span>}
               <h3 className="plan-name">{p.name}</h3>
               <p className="plan-blurb">{p.blurb}</p>
-              <div className="plan-rate"><span>{p.price}</span> /mo</div>
+              <div className="plan-rate">
+                <span>{fmtINR(cycle === 'yearly' ? p.priceYearly : p.priceMonthly)}</span> /{cycle === 'yearly' ? 'yr' : 'mo'}
+              </div>
+              {cycle === 'yearly' && (
+                <p className="plan-yearly-note">
+                  Save {fmtINR(p.priceMonthly * 12 - p.priceYearly)} vs monthly · {fmtINR(Math.round(p.priceYearly / 12))}/mo equivalent
+                </p>
+              )}
               <div className="plan-meta">{p.meta}</div>
               <ul className="plan-features">
                 {p.features.map((f) => (
@@ -152,7 +197,7 @@ export default function Pricing() {
                   className="btn btn-sheen"
                   style={{ width: '100%', justifyContent: 'center' }}
                 >
-                  Buy {p.price} now
+                  Buy {fmtINR(cycle === 'yearly' ? p.priceYearly : p.priceMonthly)} now
                 </Link>
               </div>
               <p className="plan-gst">GST charged at checkout.</p>
@@ -246,14 +291,7 @@ export default function Pricing() {
         <p className="eyebrow" style={{ justifyContent: 'center' }}>FAQ</p>
         <h2 style={{ fontSize: 'clamp(24px,3.6vw,38px)' }}>Everything your practice needs to know.</h2>
       </div>
-      <div className="faq">
-        {pricingFaqs.map((f) => (
-          <details className="faq-item" key={f.q}>
-            <summary>{f.q}</summary>
-            <p>{f.a}</p>
-          </details>
-        ))}
-      </div>
+      <FaqGlow items={pricingFaqs} />
 
       <p className="plan-gst" style={{ marginTop: 40 }}>
         GST charged at checkout. Top-ups available from ₹500. Cancel anytime.
