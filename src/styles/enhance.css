@@ -956,7 +956,7 @@ html, body { max-width: 100%; overflow-x: clip; }
 .home-page .tag.accent { color: #4d7c0f; border-color: #d7ecab; }
 .home-page .glow-card.usecase:hover h3 { color: #4d7c0f; }
 
-.home-page .hero.hero-split { min-height: auto; padding-top: 16px; }
+.home-page .hero.hero-split { min-height: auto; padding-top: 16px; padding-bottom: 28px; }
 
 .home-page .step3:hover { border-color: #d7ecab; }
 .home-page .step3:not(:last-child)::after { border-top-color: #6fa524; }
