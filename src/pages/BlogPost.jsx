@@ -116,7 +116,7 @@ export default function BlogPost() {
             </aside>
           )}
 
-          <Reveal className="article" as="div">
+          <div className="article">
             {bodyBlocks.map((block, i) => {
               if (block.type === 'h2') return <h2 id={headingId(block.text)} key={i}>{block.text}</h2>;
               if (block.type === 'p') return <p key={i}>{block.text}</p>;
@@ -145,7 +145,7 @@ export default function BlogPost() {
                 </div>
               </>
             )}
-          </Reveal>
+          </div>
         </div>
 
         <section className="cta-band hiw-cta" style={{ marginTop: 80 }}>
