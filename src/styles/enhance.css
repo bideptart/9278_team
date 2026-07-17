@@ -1136,8 +1136,8 @@ html, body { max-width: 100%; overflow-x: clip; }
 /* ---- integrations marquee: small cards, slow continuous scroll ---- */
 .int-marquee {
   position: relative; width: 100%; overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
 }
 .int-marquee-track {
   display: flex; align-items: stretch; gap: 16px; width: max-content;
@@ -1163,7 +1163,11 @@ html, body { max-width: 100%; overflow-x: clip; }
   box-shadow: 0 1px 2px rgba(16, 38, 46, .03);
   transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
-.carousel-card--image { padding: 0; overflow: hidden; }
+.carousel-card--image {
+  padding: 0; overflow: hidden; height: 280px;
+  flex-basis: 320px; width: 320px;
+  background: none; border: 1px solid var(--border); box-shadow: none;
+}
 .carousel-card--image img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .carousel-card:hover {
   border-color: var(--accent-live-2);

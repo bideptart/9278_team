@@ -194,7 +194,7 @@ export default function Features() {
         </div>
       </div>
 
-      <Reveal className="section-head faq-center" style={{ marginTop: 96 }}>
+      <Reveal className="section-head faq-center" style={{ marginTop: 64 }}>
         <span className="pill-badge"><span className="dot" />Integrations</span>
         <h2>Plugs into what you already use.</h2>
         <p className="lead" style={{ marginTop: 12 }}>
@@ -204,7 +204,7 @@ export default function Features() {
       </Reveal>
       <IntegrationsCarousel />
 
-      <div className="soft-panel" style={{ marginTop: 96 }}>
+      <div className="soft-panel" style={{ marginTop: 64 }}>
         <Reveal className="section-head faq-center">
           <span className="pill-badge"><span className="dot" />By the numbers</span>
           <h2>Trusted at scale.</h2>
