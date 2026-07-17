@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import { plans } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
 import Seo from '../components/Seo.jsx';
-import FaqGlow from '../components/FaqGlow.jsx';
 
-const fmtINR = (n) => '₹' + n.toLocaleString('en-IN');
+const fmtZAR = (n) => 'R' + n.toLocaleString('en-US');
 
 const pricingJsonLd = {
   '@context': 'https://schema.org',
@@ -16,21 +15,20 @@ const pricingJsonLd = {
     '@type': 'Offer',
     name: p.name,
     price: p.priceMonthly,
-    priceCurrency: 'INR',
+    priceCurrency: 'ZAR',
     description: p.blurb,
   })),
 };
 
 const trustBadges = [
-  'HIPAA-ready',
-  'GST-compliant invoicing',
+  'POPIA-compliant',
   '99.9% uptime SLA',
   'Cancel anytime',
 ];
 
 const comparison = [
   { feature: 'Included minutes', values: ['250 min', '800 min', '3,000 min'] },
-  { feature: 'Effective rate', values: ['₹12/min', '₹11/min', '₹10/min'] },
+  { feature: 'Effective rate', values: ['R2.80/min', 'R2.50/min', 'R2.20/min'] },
   { feature: 'AI voice agents', values: ['2', '10', 'Unlimited'] },
   { feature: 'Voice stack', values: ['Standard', 'Standard + premium', 'Realtime + premium'] },
   { feature: 'Call recording', values: [true, true, true] },
@@ -55,25 +53,25 @@ const pricingTestimonials = [
 ];
 
 const billing = [
-  ['Prepaid wallet billing', 'Buy credit up front and your clinic\'s minutes draw down as patient calls come in. Top up anytime from ₹500.'],
-  ['Per-second overage', 'Go past your included minutes and you\'re billed per second at your plan\'s effective rate — as low as ₹10/min on Scale.'],
-  ['GST included at checkout', 'Every purchase includes a GST invoice automatically. Your clinic\'s phone number is assigned at signup — no separate setup fee.'],
+  ['Prepaid wallet billing', 'Buy credit up front and your clinic\'s minutes draw down as patient calls come in. Top up anytime from R100.'],
+  ['Per-second overage', 'Go past your included minutes and you\'re billed per second at your plan\'s effective rate — as low as R2.20/min on Scale.'],
+  ['No setup fees', 'Your clinic\'s phone number is assigned automatically at signup — no separate setup fee, no hidden costs.'],
 ];
 
 const pricingFaqs = [
   {
     q: 'What does it cost?',
-    a: 'Pay-as-you-go plans starting at ₹2,999/mo, billed once as wallet credit. Each plan includes voice agents and minutes; go over and you\'re billed per second at your plan\'s effective rate — as low as ₹10/min on Scale.',
+    a: 'Pay-as-you-go plans starting at R649/mo, billed once as wallet credit. Each plan includes voice agents and minutes; go over and you\'re billed per second at your plan\'s effective rate — as low as R2.20/min on Scale.',
     meta: 'Billing',
   },
   {
-    q: 'Is GST included?',
-    a: 'GST is charged at checkout on every purchase, and you get a GST invoice automatically — no separate paperwork for your practice.',
-    meta: 'Billing',
+    q: 'Is it POPIA compliant?',
+    a: 'Yes. Call recording, transcripts, and patient data are handled under a POPIA-ready setup — consent capture, data protection, and audit trails are built in for South African practices.',
+    meta: 'Compliance',
   },
   {
     q: 'Can I just top up my wallet?',
-    a: 'Yes. Top-ups are available from ₹500 any time your balance runs low, on top of your plan\'s included minutes.',
+    a: 'Yes. Top-ups are available from R100 any time your balance runs low, on top of your plan\'s included minutes.',
     meta: 'Wallet',
   },
   {
@@ -119,19 +117,19 @@ export default function Pricing() {
     <div className="kallus-theme">
       <Seo
         title="Pricing"
-        description="Pay-as-you-go AI voice receptionist plans for clinics, priced in INR. Booking, rescheduling, insurance questions, and after-hours triage — plans start at ₹2,999/mo with GST invoicing built in."
+        description="Pay-as-you-go AI voice receptionist plans for South African clinics, priced in ZAR. Booking, rescheduling, insurance questions, and after-hours triage — plans start at R649/mo."
         jsonLd={pricingJsonLd}
       />
       <section className="pricing-hero container">
         <Reveal>
-          <p className="eyebrow">Pay as you go · INR pricing · GST invoices</p>
+          <p className="eyebrow">Pay as you go · ZAR pricing · South African businesses</p>
           <h1 style={{ fontSize: 'clamp(38px,6.4vw,72px)', maxWidth: '15ch' }}>
             Pick the plan for <span className="grad">your practice.</span>
           </h1>
           <p className="lead" style={{ marginTop: 24 }}>
             Every plan includes AI voice agents built for patient calls — booking,
             rescheduling, insurance questions, and after-hours triage. All plans include
-            inbound calling, call recording, and real-time transcription. Prices in ₹,
+            inbound calling, call recording, and real-time transcription. Prices in R,
             billed once as wallet credit.
           </p>
           <div className="cta-row" style={{ marginTop: 36 }}>
@@ -178,11 +176,11 @@ export default function Pricing() {
               <h3 className="plan-name">{p.name}</h3>
               <p className="plan-blurb">{p.blurb}</p>
               <div className="plan-rate">
-                <span>{fmtINR(cycle === 'yearly' ? p.priceYearly : p.priceMonthly)}</span> /{cycle === 'yearly' ? 'yr' : 'mo'}
+                <span>{fmtZAR(cycle === 'yearly' ? p.priceYearly : p.priceMonthly)}</span> /{cycle === 'yearly' ? 'yr' : 'mo'}
               </div>
               {cycle === 'yearly' && (
                 <p className="plan-yearly-note">
-                  Save {fmtINR(p.priceMonthly * 12 - p.priceYearly)} vs monthly · {fmtINR(Math.round(p.priceYearly / 12))}/mo equivalent
+                  Save {fmtZAR(p.priceMonthly * 12 - p.priceYearly)} vs monthly · {fmtZAR(Math.round(p.priceYearly / 12))}/mo equivalent
                 </p>
               )}
               <div className="plan-meta">{p.meta}</div>
@@ -197,10 +195,9 @@ export default function Pricing() {
                   className="btn btn-sheen"
                   style={{ width: '100%', justifyContent: 'center' }}
                 >
-                  Buy {fmtINR(cycle === 'yearly' ? p.priceYearly : p.priceMonthly)} now
+                  Buy {fmtZAR(cycle === 'yearly' ? p.priceYearly : p.priceMonthly)} now
                 </Link>
               </div>
-              <p className="plan-gst">GST charged at checkout.</p>
             </Reveal>
           </div>
         ))}
@@ -287,14 +284,21 @@ export default function Pricing() {
 
       <div className="container pricing-body">
 
-      <div className="section-head faq-head section-gap-lg" style={{ textAlign: 'center' }}>
-        <p className="eyebrow" style={{ justifyContent: 'center' }}>FAQ</p>
+      <Reveal className="section-head faq-center section-gap-lg">
+        <span className="pill-badge"><span className="dot" />FAQ</span>
         <h2 style={{ fontSize: 'clamp(24px,3.6vw,38px)' }}>Everything your practice needs to know.</h2>
+      </Reveal>
+      <div className="faq faq-narrow">
+        {pricingFaqs.map((f) => (
+          <details className="faq-item" key={f.q}>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
       </div>
-      <FaqGlow items={pricingFaqs} />
 
       <p className="plan-gst" style={{ marginTop: 40 }}>
-        GST charged at checkout. Top-ups available from ₹500. Cancel anytime.
+        Top-ups available from R100. Cancel anytime.
       </p>
 
       </div>
