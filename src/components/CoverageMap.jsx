@@ -28,12 +28,12 @@ const CITIES = [
    staggered zig-zag, so the full map silhouette stays visible. `pos` places
    each card; the middle card of each row drops/rises to make the zig-zag. */
 const GREETINGS = [
-  { word: 'Hello', phrase: 'Hello, welcome to KallUS AI Voice Agent', lang: 'English', city: 'Joburg', code: 'en-ZA', pos: { top: '-2%', left: '50%', tx: '-50%' }, delay: '0s' },
-  { word: 'Thobela', phrase: 'Thobela, o amogetšwe go KallUS AI Voice Agent', lang: 'Sepedi', city: 'Polokwane', code: 'nso-ZA', pos: { top: '0%', right: '0%' }, delay: '0.7s' },
-  { word: 'Hallo', phrase: 'Hallo, welkom by KallUS AI Voice Agent', lang: 'Afrikaans', city: 'Cape Town', code: 'af-ZA', pos: { top: '24%', left: '0%' }, delay: '1.4s' },
-  { word: 'Sawubona', phrase: 'Sawubona, wamukelekile ku-KallUS AI Voice Agent', lang: 'isiZulu', city: 'Durban', code: 'zu-ZA', pos: { top: '65%', right: '0%' }, delay: '2.1s' },
-  { word: 'Molo', phrase: 'Molo, wamkelekile kwi-KallUS AI Voice Agent', lang: 'isiXhosa', city: 'Gqeberha', code: 'xh-ZA', pos: { bottom: '0%', left: '0%' }, delay: '2.8s' },
-  { word: 'Dumela', phrase: 'Dumela, o amohetswe ho KallUS AI Voice Agent', lang: 'Sesotho', city: 'Bloem', code: 'st-ZA', pos: { bottom: '2%', right: '14%' }, delay: '3.5s' },
+  { word: 'Hello', phrase: 'Hello, welcome to KallUS AI Voice Agent', lang: 'English', city: 'Joburg', code: 'en-ZA', audio: '/voice/english.mp3', pos: { top: '-2%', left: '50%', tx: '-50%' }, delay: '0s' },
+  { word: 'Thobela', phrase: 'Thobela, o amogetšwe go KallUS AI Voice Agent', lang: 'Sepedi', city: 'Polokwane', code: 'nso-ZA', audio: '/voice/sepedi.mp3', pos: { top: '0%', right: '0%' }, delay: '0.7s' },
+  { word: 'Hallo', phrase: 'Hallo, welkom by KallUS AI Voice Agent', lang: 'Afrikaans', city: 'Cape Town', code: 'af-ZA', audio: '/voice/africaans.mp3', pos: { top: '24%', left: '0%' }, delay: '1.4s' },
+  { word: 'Sawubona', phrase: 'Sawubona, wamukelekile ku-KallUS AI Voice Agent', lang: 'isiZulu', city: 'Durban', code: 'zu-ZA', audio: '/voice/isizulu.mp3', pos: { top: '65%', right: '0%' }, delay: '2.1s' },
+  { word: 'Molo', phrase: 'Molo, wamkelekile kwi-KallUS AI Voice Agent', lang: 'isiXhosa', city: 'Gqeberha', code: 'xh-ZA', audio: '/voice/isixhosa.mp3', pos: { bottom: '0%', left: '0%' }, delay: '2.8s' },
+  { word: 'Dumela', phrase: 'Dumela, o amohetswe ho KallUS AI Voice Agent', lang: 'Sesotho', city: 'Bloem', code: 'st-ZA', audio: '/voice/sesotho.mp3', pos: { bottom: '2%', right: '14%' }, delay: '3.5s' },
 ];
 
 const byName = (n) => CITIES.find((c) => c.name === n);
@@ -77,52 +77,40 @@ function StopIcon() {
 export default function CoverageMap() {
   const [playing, setPlaying] = useState(null);
   const timerRef = useRef(null);
-  const voicesRef = useRef([]);
+  const audioRef = useRef(null);
 
-  // preload TTS voices (Chrome populates them asynchronously)
-  useEffect(() => {
-    if (!('speechSynthesis' in window)) return undefined;
-    const load = () => { voicesRef.current = window.speechSynthesis.getVoices(); };
-    load();
-    window.speechSynthesis.addEventListener('voiceschanged', load);
-    return () => window.speechSynthesis.removeEventListener('voiceschanged', load);
-  }, []);
-
-  const speak = (g, i) => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    if (playing === i) {
-      try { window.speechSynthesis.cancel(); } catch { /* visual-only */ }
-      setPlaying(null);
-      return;
+  const stopAudio = () => {
+    if (timerRef.current) { clearTimeout(timerRef.current); timerRef.current = null; }
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.onended = null;
+      audioRef.current.onerror = null;
+      audioRef.current = null;
     }
+  };
+
+  // stop any playing clip when the map unmounts
+  useEffect(() => stopAudio, []);
+
+  // play the recorded voice clip for this greeting's language
+  const speak = (g, i) => {
+    // tapping the active card again stops it
+    if (playing === i) { stopAudio(); setPlaying(null); return; }
+    stopAudio();
     setPlaying(i);
-    let spoke = false;
     try {
-      if ('speechSynthesis' in window) {
-        const synth = window.speechSynthesis;
-        synth.cancel();
-        const u = new SpeechSynthesisUtterance(g.phrase || g.word);
-        // pick a real installed voice — an unmatched lang code can fail silently
-        const voices = voicesRef.current.length ? voicesRef.current : synth.getVoices();
-        const norm = (l) => (l || '').toLowerCase().replace('_', '-');
-        const base = g.code.split('-')[0].toLowerCase();
-        const voice =
-          voices.find((v) => norm(v.lang) === g.code.toLowerCase()) ||
-          voices.find((v) => norm(v.lang).startsWith(base)) ||
-          voices.find((v) => norm(v.lang) === 'en-za') ||
-          voices.find((v) => norm(v.lang).startsWith('en')) ||
-          null;
-        if (voice) { u.voice = voice; u.lang = voice.lang; } else { u.lang = 'en-ZA'; }
-        u.rate = 0.85;
-        u.onend = () => setPlaying((p) => (p === i ? null : p));
-        u.onerror = () => setPlaying((p) => (p === i ? null : p));
-        // small delay — Chrome can swallow speak() fired right after cancel()
-        setTimeout(() => { synth.resume(); synth.speak(u); }, 60);
-        spoke = true;
-      }
-    } catch { /* visual-only */ }
-    // fallback timer so the wave always settles even if TTS is unavailable
-    timerRef.current = setTimeout(() => setPlaying((p) => (p === i ? null : p)), spoke ? 7000 : 2200);
+      const audio = new Audio(g.audio);
+      audioRef.current = audio;
+      const settle = () => setPlaying((p) => (p === i ? null : p));
+      audio.onended = settle;
+      audio.onerror = settle;
+      const p = audio.play();
+      if (p && typeof p.catch === 'function') p.catch(settle);
+      // safety net so the waveform always settles even if 'ended' never fires
+      timerRef.current = setTimeout(settle, 15000);
+    } catch {
+      setPlaying(null);
+    }
   };
 
   return (

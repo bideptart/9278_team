@@ -12,11 +12,13 @@ export default function Home() {
           <div className="hero-copy">
             <p className="eyebrow"><span className="live-dot" /> AI Voice Receptionist</p>
             <h1>
-              AI voice agents <br /> that <span className="grad">actually <br /> sound human.</span>
+              AI voice agents <br /> that <span className="grad">actually sound <br /> human.</span>
             </h1>
             <p className="sub">
-              Native-audio voice agents for South African businesses. Sub-second latency
-              on Vodacom, MTN, Telkom and Cell C — fast, and fully yours.
+              Native-audio voice agents for South African businesses.
+              Sub-second latency on Vodacom, MTN, Telkom and Cell C,
+              RAG over your own documents, and a self-hosted control
+              panel you actually own, without the enterprise vendor markup.
             </p>
             <div className="cta-row">
               <Link to="/pricing" className="btn btn-ghost">See pricing</Link>

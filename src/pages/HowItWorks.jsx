@@ -123,7 +123,7 @@ export default function HowItWorks() {
             <h2>See it answer your first call today.</h2>
             <p>Design your agent, connect your knowledge, and forward your line — live in minutes.</p>
             <div className="cta-row" style={{ justifyContent: 'center' }}>
-              <Link to="/industries" className="btn btn-sheen">Explore industries <span className="arrow">→</span></Link>
+              <Link to="/features" className="btn btn-sheen">Explore features <span className="arrow">→</span></Link>
               <Link to="/pricing" className="btn btn-ghost hiw-cta-ghost">See pricing</Link>
             </div>
           </Reveal>
