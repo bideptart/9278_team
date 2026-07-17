@@ -5,6 +5,7 @@ import { NIXXY_ICONS, Check } from '../components/FeatureIcons.jsx';
 import useCardStack from '../hooks/useCardStack.js';
 import Reveal from '../components/Reveal.jsx';
 import IntegrationsCarousel from '../components/IntegrationsCarousel.jsx';
+import Seo from '../components/Seo.jsx';
 
 function useCallTimer() {
   const [seconds, setSeconds] = useState(3);
@@ -24,6 +25,10 @@ export default function Features() {
 
   return (
     <>
+    <Seo
+      title="Features"
+      description="Every capability of the KallUS AI voice receptionist — sub-second answering, natural intent understanding, live actions in your tools, RAG over your documents, and a self-hosted control panel."
+    />
     <div className="container page-body feat-page" id="content">
       <Reveal className="hero-split" style={{ marginBottom: 120 }}>
         <div className="hero-copy">

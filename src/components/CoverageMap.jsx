@@ -28,12 +28,12 @@ const CITIES = [
    staggered zig-zag, so the full map silhouette stays visible. `pos` places
    each card; the middle card of each row drops/rises to make the zig-zag. */
 const GREETINGS = [
-  { word: 'Hello', lang: 'English', city: 'Joburg', code: 'en-ZA', pos: { top: '0%', left: '50%', tx: '-50%' }, delay: '0s' },
-  { word: 'Thobela', lang: 'Sepedi', city: 'Polokwane', code: 'nso-ZA', pos: { top: '-4%', right: '-3%' }, delay: '0.7s' },
-  { word: 'Hallo', lang: 'Afrikaans', city: 'Cape Town', code: 'af-ZA', pos: { top: '24%', left: '0%' }, delay: '1.4s' },
-  { word: 'Sawubona', lang: 'isiZulu', city: 'Durban', code: 'zu-ZA', pos: { top: '67%', right: '0%' }, delay: '2.1s' },
-  { word: 'Molo', lang: 'isiXhosa', city: 'Gqeberha', code: 'xh-ZA', pos: { bottom: '0%', left: '0%' }, delay: '2.8s' },
-  { word: 'Dumela', lang: 'Sesotho', city: 'Bloem', code: 'st-ZA', pos: { bottom: '2%', right: '0%' }, delay: '3.5s' },
+  { word: 'Hello', phrase: 'Hello, welcome to KallUS AI Voice Agent', lang: 'English', city: 'Joburg', code: 'en-ZA', pos: { top: '-2%', left: '50%', tx: '-50%' }, delay: '0s' },
+  { word: 'Thobela', phrase: 'Thobela, o amogetšwe go KallUS AI Voice Agent', lang: 'Sepedi', city: 'Polokwane', code: 'nso-ZA', pos: { top: '0%', right: '0%' }, delay: '0.7s' },
+  { word: 'Hallo', phrase: 'Hallo, welkom by KallUS AI Voice Agent', lang: 'Afrikaans', city: 'Cape Town', code: 'af-ZA', pos: { top: '24%', left: '0%' }, delay: '1.4s' },
+  { word: 'Sawubona', phrase: 'Sawubona, wamukelekile ku-KallUS AI Voice Agent', lang: 'isiZulu', city: 'Durban', code: 'zu-ZA', pos: { top: '65%', right: '0%' }, delay: '2.1s' },
+  { word: 'Molo', phrase: 'Molo, wamkelekile kwi-KallUS AI Voice Agent', lang: 'isiXhosa', city: 'Gqeberha', code: 'xh-ZA', pos: { bottom: '0%', left: '0%' }, delay: '2.8s' },
+  { word: 'Dumela', phrase: 'Dumela, o amohetswe ho KallUS AI Voice Agent', lang: 'Sesotho', city: 'Bloem', code: 'st-ZA', pos: { bottom: '2%', right: '14%' }, delay: '3.5s' },
 ];
 
 const byName = (n) => CITIES.find((c) => c.name === n);
@@ -101,7 +101,7 @@ export default function CoverageMap() {
       if ('speechSynthesis' in window) {
         const synth = window.speechSynthesis;
         synth.cancel();
-        const u = new SpeechSynthesisUtterance(g.word);
+        const u = new SpeechSynthesisUtterance(g.phrase || g.word);
         // pick a real installed voice — an unmatched lang code can fail silently
         const voices = voicesRef.current.length ? voicesRef.current : synth.getVoices();
         const norm = (l) => (l || '').toLowerCase().replace('_', '-');
@@ -122,7 +122,7 @@ export default function CoverageMap() {
       }
     } catch { /* visual-only */ }
     // fallback timer so the wave always settles even if TTS is unavailable
-    timerRef.current = setTimeout(() => setPlaying((p) => (p === i ? null : p)), spoke ? 4500 : 1800);
+    timerRef.current = setTimeout(() => setPlaying((p) => (p === i ? null : p)), spoke ? 7000 : 2200);
   };
 
   return (
