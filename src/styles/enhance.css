@@ -1038,8 +1038,14 @@ html, body { max-width: 100%; overflow-x: clip; }
 
 /* ---- hero coverage map: SA provinces + animated city network ---- */
 /* top/bottom padding reserves space so greeting cards never cover the map */
-.za-map { padding: 40px 0 10px; position: relative; }
-.za-stage { position: relative; width: 84%; margin: 0 auto; }
+/* padding reserves the top/bottom/side margin the perimeter cards live in,
+   so the shrunken, centred map stays 100% visible with no card over it */
+/* widen the coverage widget past the hero column so a full-size map has room
+   for the ring of cards around it */
+.za-map { padding: 20px 0 46px; position: relative; width: 126%; margin-left: -10%; }
+.za-stage { position: relative; width: 72%; max-width: 381px; margin: 0 auto; }
+/* single-column hero (tablet/phone): the widget no longer needs to break out */
+@media (max-width: 860px) { .za-map { width: 100%; margin-left: 0; } }
 .za-map-svg { display: block; width: 100%; height: auto; overflow: visible; position: relative; z-index: 1; }
 .za-greetings { position: absolute; inset: 0; pointer-events: none; }
 .za-greet-anchor { position: absolute; z-index: 2; pointer-events: none; }
@@ -1074,17 +1080,23 @@ html, body { max-width: 100%; overflow-x: clip; }
 @keyframes za-greet-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 @keyframes za-greet-float-sm { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 @media (max-width: 640px) {
-  .za-map { padding: 30px 0 8px; }
-  /* tighter screens: nudge Cape Town / Gqeberha / Durban cards so nothing collides or clips */
-  .za-greetings .za-greet-anchor:nth-child(4) { transform: translate(-62%, -100%) !important; }
-  .za-greetings .za-greet-anchor:nth-child(5) { transform: translate(-38%, -100%) !important; }
-  .za-greetings .za-greet-anchor:nth-child(6) { transform: translate(-62%, -96%) !important; }
+  /* phones can't fit 3 cards across, so side cards sit in the outer row and
+     the centre card drops to its own row below/above them — map stays clear */
+  .za-map { padding: 86px 0 90px; }
+  .za-stage { width: 78%; }
   .za-greet-card { padding: 4px 6px; border-radius: 8px; gap: 5px; animation-name: za-greet-float-sm; }
   .za-greet-word { font-size: 9px; }
   .za-greet-lang { font-size: 6px; }
   .za-greet-play { width: 14px; height: 14px; }
   .za-greet-play svg { width: 7px; height: 7px; }
   .za-greet-wave { height: 10px; }
+  /* order: 1 Hello, 2 Thobela, 3 Sawubona, 4 Hallo, 5 Molo, 6 Dumela */
+  .za-greet-anchor:nth-child(1) { top: 4px !important; bottom: auto !important; left: 0 !important; right: auto !important; transform: none !important; }
+  .za-greet-anchor:nth-child(3) { top: 4px !important; bottom: auto !important; right: 0 !important; left: auto !important; transform: none !important; }
+  .za-greet-anchor:nth-child(2) { top: 46px !important; bottom: auto !important; left: 50% !important; right: auto !important; transform: translateX(-50%) !important; }
+  .za-greet-anchor:nth-child(4) { bottom: 4px !important; top: auto !important; left: 0 !important; right: auto !important; transform: none !important; }
+  .za-greet-anchor:nth-child(6) { bottom: 4px !important; top: auto !important; right: 0 !important; left: auto !important; transform: none !important; }
+  .za-greet-anchor:nth-child(5) { bottom: 46px !important; top: auto !important; left: 50% !important; right: auto !important; transform: translateX(-50%) !important; }
 }
 .za-provinces path {
   fill: whitesmoke; stroke: #6fa524; stroke-width: 1.1;

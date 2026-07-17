@@ -17,22 +17,23 @@ const SA_FLAG = 'https://flagcdn.com/w20/za.png';
 
 const CITIES = [
   { name: 'Johannesburg', x: 301, y: 116, flag: '/flags/johannesburg.webp' },
-  { name: 'Cape Town', x: 51, y: 347, flag: '/flags/cape-town.webp' },
-  { name: 'Durban', x: 378, y: 223, flag: '/flags/durban.webp' },
+  { name: 'Cape Town', x: 51, y: 300, flag: '/flags/cape-town.webp' },
+  { name: 'Durban', x: 378, y: 188, flag: '/flags/durban.webp' },
   { name: 'Gqeberha', x: 237, y: 348, flag: '/flags/gqeberha.webp' },
   { name: 'Bloemfontein', x: 252, y: 200, flag: SA_FLAG },
   { name: 'Polokwane', x: 338, y: 50, flag: SA_FLAG },
 ];
 
-/* anchor = viewBox point the card hangs above (just over each city's flag badge);
-   tx shifts the card horizontally so it never covers a neighbouring city label */
+/* Cards sit around the OUTSIDE of the map (in the padding margin) in a
+   staggered zig-zag, so the full map silhouette stays visible. `pos` places
+   each card; the middle card of each row drops/rises to make the zig-zag. */
 const GREETINGS = [
-  { word: 'Hello', lang: 'English', city: 'Joburg', code: 'en-ZA', anchor: { x: 290, y: 90 }, tx: '-100%', delay: '0s' },
-  { word: 'Dumela', lang: 'Sesotho', city: 'Bloem', code: 'st-ZA', anchor: { x: 240, y: 174 }, tx: '-100%', delay: '0.7s' },
-  { word: 'Thobela', lang: 'Sepedi', city: 'Polokwane', code: 'nso-ZA', anchor: { x: 355, y: 25 }, tx: '-50%', delay: '1.4s' },
-  { word: 'Hallo', lang: 'Afrikaans', city: 'Cape Town', code: 'af-ZA', anchor: { x: 68, y: 322 }, tx: '-50%', delay: '2.1s' },
-  { word: 'Molo', lang: 'isiXhosa', city: 'Gqeberha', code: 'xh-ZA', anchor: { x: 254, y: 322 }, tx: '-50%', delay: '2.8s' },
-  { word: 'Sawubona', lang: 'isiZulu', city: 'Durban', code: 'zu-ZA', anchor: { x: 395, y: 197 }, tx: '-22%', delay: '3.5s' },
+  { word: 'Hello', lang: 'English', city: 'Joburg', code: 'en-ZA', pos: { top: '0%', left: '50%', tx: '-50%' }, delay: '0s' },
+  { word: 'Thobela', lang: 'Sepedi', city: 'Polokwane', code: 'nso-ZA', pos: { top: '0%', right: '-3%' }, delay: '0.7s' },
+  { word: 'Hallo', lang: 'Afrikaans', city: 'Cape Town', code: 'af-ZA', pos: { top: '24%', left: '0%' }, delay: '1.4s' },
+  { word: 'Sawubona', lang: 'isiZulu', city: 'Durban', code: 'zu-ZA', pos: { top: '62%', right: '0%' }, delay: '2.1s' },
+  { word: 'Molo', lang: 'isiXhosa', city: 'Gqeberha', code: 'xh-ZA', pos: { bottom: '0%', left: '0%' }, delay: '2.8s' },
+  { word: 'Dumela', lang: 'Sesotho', city: 'Bloem', code: 'st-ZA', pos: { bottom: '2%', right: '0%' }, delay: '3.5s' },
 ];
 
 const byName = (n) => CITIES.find((c) => c.name === n);
@@ -127,7 +128,7 @@ export default function CoverageMap() {
   return (
     <div className="za-map">
       <div className="za-stage">
-      <svg className="za-map-svg" viewBox="0 0 427 375" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <svg className="za-map-svg" viewBox="0 0 427 375" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <g className="za-provinces">
           {PROVINCES.map((p) => (
             <path key={p.id} d={p.d} />
@@ -159,16 +160,22 @@ export default function CoverageMap() {
             </g>
           ))}
         </g>
-      </svg>
+        </svg>
+      </div>
       <div className="za-greetings">
         {GREETINGS.map((g, i) => (
           <div
             key={g.city}
             className="za-greet-anchor"
             style={{
-              left: `${(g.anchor.x / 427) * 100}%`,
-              top: `${(g.anchor.y / 375) * 100}%`,
-              transform: `translate(${g.tx}, -100%)`,
+              top: g.pos.top,
+              bottom: g.pos.bottom,
+              left: g.pos.left,
+              right: g.pos.right,
+              transform: [
+                g.pos.tx ? `translateX(${g.pos.tx})` : '',
+                g.pos.ty ? `translateY(${g.pos.ty})` : '',
+              ].filter(Boolean).join(' ') || undefined,
             }}
           >
             <div
@@ -197,7 +204,6 @@ export default function CoverageMap() {
             </div>
           </div>
         ))}
-      </div>
       </div>
     </div>
   );
