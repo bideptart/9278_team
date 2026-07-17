@@ -4,6 +4,7 @@
 // framer-motion / lucide-react packages already used elsewhere on this page.
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 function calculateGap(width) {
   const minWidth = 480;
@@ -39,6 +40,14 @@ export default function ShowcaseCarousel({ slides, autoplay = true }) {
     }, 2800);
     return () => clearInterval(autoplayRef.current);
   }, [autoplay, count]);
+
+  function handlePrev() {
+    setActiveIndex((i) => (i - 1 + count) % count);
+  }
+
+  function handleNext() {
+    setActiveIndex((i) => (i + 1) % count);
+  }
 
   function getImageStyle(index) {
     const gap = calculateGap(containerWidth);
@@ -86,6 +95,14 @@ export default function ShowcaseCarousel({ slides, autoplay = true }) {
             <p className="ind-carousel-quote">{active.quote}</p>
           </motion.div>
         </AnimatePresence>
+        <div className="ind-carousel-arrows">
+          <button type="button" className="ind-carousel-arrow" onClick={handlePrev} aria-label="Previous">
+            <ArrowLeft strokeWidth={2} />
+          </button>
+          <button type="button" className="ind-carousel-arrow" onClick={handleNext} aria-label="Next">
+            <ArrowRight strokeWidth={2} />
+          </button>
+        </div>
       </div>
     </div>
   );

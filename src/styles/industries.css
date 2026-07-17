@@ -968,12 +968,37 @@
   color: var(--ink-3);
   margin: 0;
 }
+.industries-theme .ind-carousel-arrows {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+}
+.industries-theme .ind-carousel-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--ink);
+  color: #fff;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease;
+}
+.industries-theme .ind-carousel-arrow svg { width: 18px; height: 18px; }
+.industries-theme .ind-carousel-arrow:hover {
+  background: var(--accent-deep);
+  transform: translateY(-2px);
+}
 @media (max-width: 760px) {
   .industries-theme .ind-showcase { margin-top: 20px; }
+  .industries-theme .ind-showcase-heading { font-size: 22px; white-space: nowrap; margin-bottom: 40px; }
   .industries-theme .ind-carousel { grid-template-columns: 1fr; gap: 32px; }
   .industries-theme .ind-carousel-images { max-width: 280px; margin: 0 auto; }
   .industries-theme .ind-carousel-name { font-size: 20px; }
   .industries-theme .ind-carousel-quote { font-size: 14px; }
+  .industries-theme .ind-carousel-arrows { justify-content: center; margin-top: 24px; }
 }
 
 /* ---- footer — dark navy theme matching the reference hero (industries page only) ---- */
