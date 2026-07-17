@@ -1181,7 +1181,7 @@ html, body { max-width: 100%; overflow-x: clip; }
    so the shrunken, centred map stays 100% visible with no card over it */
 /* widen the coverage widget past the hero column so a full-size map has room
    for the ring of cards around it */
-.za-map { padding: 34px 0 58px; position: relative; width: 132%; margin-left: -12%; }
+.za-map { padding: 22px 0 34px; position: relative; width: 132%; margin-left: -12%; }
 .za-stage { position: relative; width: 440px; max-width: 100%; margin: 0 auto; }
 /* single-column hero (tablet/phone): the widget no longer needs to break out */
 @media (max-width: 860px) { .za-map { width: 100%; margin-left: 0; } }
@@ -1190,16 +1190,15 @@ html, body { max-width: 100%; overflow-x: clip; }
 .za-greet-anchor { position: absolute; z-index: 2; pointer-events: none; }
 .za-greet-card {
   position: relative; display: flex; align-items: center; gap: 7px;
-  width: 158px;
   background: #ffffff; border: 1px solid var(--border); border-radius: 12px;
-  padding: 6px 8px; box-shadow: 0 10px 20px -12px rgba(16,38,46,.35);
+  padding: 5px 8px; box-shadow: 0 10px 20px -12px rgba(16,38,46,.35);
   animation: za-greet-float 5.5s ease-in-out infinite;
   pointer-events: auto; z-index: 2;
 }
-.za-greet-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
-.za-greet-phrase { font-weight: 700; font-size: 9.5px; line-height: 1.28; color: var(--ink, #0b1220); }
+.za-greet-text { display: flex; flex-direction: column; gap: 1px; }
+.za-greet-word { font-weight: 700; font-size: 11px; line-height: 1.2; color: var(--ink, #0b1220); }
 .za-greet-lang { font-family: var(--font-mono); font-size: 7px; color: #6b7a90; white-space: nowrap; }
-.za-greet-audio { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: none; }
+.za-greet-audio { display: flex; align-items: center; gap: 5px; }
 .za-greet-play {
   width: 17px; height: 17px; border-radius: 50%; border: none; cursor: pointer;
   background: #6fa524; color: #ffffff; display: flex; align-items: center; justify-content: center;
@@ -1225,10 +1224,10 @@ html, body { max-width: 100%; overflow-x: clip; }
   /* three cards above the map, three below — each band interleaved into two
      rows (two side cards + one centred card) so the taller phrase cards fit
      a phone without covering the map or each other */
-  .za-map { padding: 118px 0 122px; }
-  .za-stage { width: 70%; }
-  .za-greet-card { width: 128px; padding: 4px 6px; border-radius: 8px; gap: 5px; animation-name: za-greet-float-sm; }
-  .za-greet-phrase { font-size: 8px; line-height: 1.25; }
+  .za-map { padding: 76px 0 80px; }
+  .za-stage { width: 74%; }
+  .za-greet-card { padding: 4px 6px; border-radius: 8px; gap: 5px; animation-name: za-greet-float-sm; }
+  .za-greet-word { font-size: 10px; }
   .za-greet-lang { font-size: 6px; }
   .za-greet-play { width: 14px; height: 14px; }
   .za-greet-play svg { width: 7px; height: 7px; }
@@ -1236,11 +1235,11 @@ html, body { max-width: 100%; overflow-x: clip; }
   /* order: 1 Hello, 2 Thobela, 3 Hallo, 4 Sawubona, 5 Molo, 6 Dumela */
   .za-greet-anchor:nth-child(1) { top: 2px !important; bottom: auto !important; left: 0 !important; right: auto !important; transform: none !important; }
   .za-greet-anchor:nth-child(2) { top: 2px !important; bottom: auto !important; right: 0 !important; left: auto !important; transform: none !important; }
-  .za-greet-anchor:nth-child(3) { top: 62px !important; bottom: auto !important; left: 50% !important; right: auto !important; transform: translateX(-50%) !important; }
+  .za-greet-anchor:nth-child(3) { top: 42px !important; bottom: auto !important; left: 50% !important; right: auto !important; transform: translateX(-50%) !important; }
   .za-greet-anchor:nth-child(5) { bottom: 2px !important; top: auto !important; left: 0 !important; right: auto !important; transform: none !important; }
   /* pull the bottom-right card in so the fixed chat button never sits over it */
-  .za-greet-anchor:nth-child(6) { bottom: 2px !important; top: auto !important; right: 16% !important; left: auto !important; transform: none !important; }
-  .za-greet-anchor:nth-child(4) { bottom: 62px !important; top: auto !important; left: 50% !important; right: auto !important; transform: translateX(-50%) !important; }
+  .za-greet-anchor:nth-child(6) { bottom: 2px !important; top: auto !important; right: 18% !important; left: auto !important; transform: none !important; }
+  .za-greet-anchor:nth-child(4) { bottom: 42px !important; top: auto !important; left: 50% !important; right: auto !important; transform: translateX(-50%) !important; }
 }
 .za-provinces path {
   fill: whitesmoke; stroke: #6fa524; stroke-width: 1.1;

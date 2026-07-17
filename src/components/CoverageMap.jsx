@@ -183,7 +183,7 @@ export default function CoverageMap() {
               style={{ animationDelay: g.delay }}
             >
               <span className="za-greet-text">
-                <span className="za-greet-phrase">{g.phrase}</span>
+                <span className="za-greet-word">{g.word}</span>
                 <span className="za-greet-lang">{g.lang} · {g.city}</span>
               </span>
               <div className="za-greet-audio">
