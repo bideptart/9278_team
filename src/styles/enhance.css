@@ -1019,11 +1019,13 @@ html, body { max-width: 100%; overflow-x: clip; }
 
 /* ---- hero coverage map: SA provinces + animated city network ---- */
 /* top/bottom padding reserves space so greeting cards never cover the map */
-.za-map { padding: 54px 0 84px; position: relative; }
-.za-map-svg { display: block; width: 84%; margin: 0 auto; height: auto; overflow: visible; position: relative; z-index: 1; }
+.za-map { padding: 40px 0 10px; position: relative; }
+.za-stage { position: relative; width: 84%; margin: 0 auto; }
+.za-map-svg { display: block; width: 100%; height: auto; overflow: visible; position: relative; z-index: 1; }
 .za-greetings { position: absolute; inset: 0; pointer-events: none; }
+.za-greet-anchor { position: absolute; z-index: 2; pointer-events: none; }
 .za-greet-card {
-  position: absolute; display: flex; align-items: center; gap: 7px;
+  position: relative; display: flex; align-items: center; gap: 7px;
   background: #ffffff; border: 1px solid var(--border); border-radius: 12px;
   padding: 5px 8px; box-shadow: 0 10px 20px -12px rgba(16,38,46,.35);
   animation: za-greet-float 5.5s ease-in-out infinite;
@@ -1053,13 +1055,17 @@ html, body { max-width: 100%; overflow-x: clip; }
 @keyframes za-greet-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 @keyframes za-greet-float-sm { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 @media (max-width: 640px) {
-  .za-map { padding: 88px 0 96px; }
-  .za-greet-card { padding: 5px 8px; border-radius: 9px; animation-name: za-greet-float-sm; }
-  .za-greet-word { font-size: 10px; }
-  .za-greet-lang { font-size: 7px; }
-  .za-greet-play { width: 16px; height: 16px; }
-  .za-greet-play svg { width: 8px; height: 8px; }
-  .za-greet-wave { height: 11px; }
+  .za-map { padding: 30px 0 8px; }
+  /* tighter screens: nudge Cape Town / Gqeberha / Durban cards so nothing collides or clips */
+  .za-greetings .za-greet-anchor:nth-child(4) { transform: translate(-62%, -100%) !important; }
+  .za-greetings .za-greet-anchor:nth-child(5) { transform: translate(-38%, -100%) !important; }
+  .za-greetings .za-greet-anchor:nth-child(6) { transform: translate(-62%, -96%) !important; }
+  .za-greet-card { padding: 4px 6px; border-radius: 8px; gap: 5px; animation-name: za-greet-float-sm; }
+  .za-greet-word { font-size: 9px; }
+  .za-greet-lang { font-size: 6px; }
+  .za-greet-play { width: 14px; height: 14px; }
+  .za-greet-play svg { width: 7px; height: 7px; }
+  .za-greet-wave { height: 10px; }
 }
 .za-provinces path {
   fill: whitesmoke; stroke: #6fa524; stroke-width: 1.1;

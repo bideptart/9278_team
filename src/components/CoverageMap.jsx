@@ -24,13 +24,15 @@ const CITIES = [
   { name: 'Polokwane', x: 338, y: 50, flag: SA_FLAG },
 ];
 
+/* anchor = viewBox point the card hangs above (just over each city's flag badge);
+   tx shifts the card horizontally so it never covers a neighbouring city label */
 const GREETINGS = [
-  { word: 'Hello', lang: 'English', city: 'Joburg', code: 'en-ZA', style: { top: '2%', left: '-1%' }, mobileStyle: { top: '0%' }, delay: '0s' },
-  { word: 'Dumela', lang: 'Sesotho', city: 'Bloem', code: 'st-ZA', style: { top: '2%', left: '36%' }, mobileStyle: { top: '10%', left: '24%' }, delay: '0.7s' },
-  { word: 'Thobela', lang: 'Sepedi', city: 'Polokwane', code: 'nso-ZA', style: { top: '2%', right: '-1%' }, mobileStyle: { top: '0%' }, delay: '1.4s' },
-  { word: 'Hallo', lang: 'Afrikaans', city: 'Cape Town', code: 'af-ZA', style: { bottom: '2%', left: '-1%' }, mobileStyle: { bottom: '10%' }, delay: '2.1s' },
-  { word: 'Molo', lang: 'isiXhosa', city: 'Gqeberha', code: 'xh-ZA', style: { bottom: '2%', left: '37%' }, mobileStyle: { bottom: '0%', left: '24%' }, delay: '2.8s' },
-  { word: 'Sawubona', lang: 'isiZulu', city: 'Durban', code: 'zu-ZA', style: { bottom: '2%', right: '-1%' }, mobileStyle: { bottom: '10%' }, delay: '3.5s' },
+  { word: 'Hello', lang: 'English', city: 'Joburg', code: 'en-ZA', anchor: { x: 290, y: 90 }, tx: '-100%', delay: '0s' },
+  { word: 'Dumela', lang: 'Sesotho', city: 'Bloem', code: 'st-ZA', anchor: { x: 240, y: 174 }, tx: '-100%', delay: '0.7s' },
+  { word: 'Thobela', lang: 'Sepedi', city: 'Polokwane', code: 'nso-ZA', anchor: { x: 355, y: 25 }, tx: '-50%', delay: '1.4s' },
+  { word: 'Hallo', lang: 'Afrikaans', city: 'Cape Town', code: 'af-ZA', anchor: { x: 68, y: 322 }, tx: '-50%', delay: '2.1s' },
+  { word: 'Molo', lang: 'isiXhosa', city: 'Gqeberha', code: 'xh-ZA', anchor: { x: 254, y: 322 }, tx: '-50%', delay: '2.8s' },
+  { word: 'Sawubona', lang: 'isiZulu', city: 'Durban', code: 'zu-ZA', anchor: { x: 395, y: 197 }, tx: '-22%', delay: '3.5s' },
 ];
 
 const byName = (n) => CITIES.find((c) => c.name === n);
@@ -73,17 +75,8 @@ function StopIcon() {
 
 export default function CoverageMap() {
   const [playing, setPlaying] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
   const timerRef = useRef(null);
   const voicesRef = useRef([]);
-
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 640px)');
-    setIsMobile(mq.matches);
-    const onChange = (e) => setIsMobile(e.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
 
   // preload TTS voices (Chrome populates them asynchronously)
   useEffect(() => {
@@ -133,6 +126,7 @@ export default function CoverageMap() {
 
   return (
     <div className="za-map">
+      <div className="za-stage">
       <svg className="za-map-svg" viewBox="0 0 427 375" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <g className="za-provinces">
           {PROVINCES.map((p) => (
@@ -170,30 +164,40 @@ export default function CoverageMap() {
         {GREETINGS.map((g, i) => (
           <div
             key={g.city}
-            className={`za-greet-card${playing === i ? ' playing' : ''}`}
-            style={{ ...g.style, ...(isMobile ? g.mobileStyle : null), animationDelay: g.delay }}
+            className="za-greet-anchor"
+            style={{
+              left: `${(g.anchor.x / 427) * 100}%`,
+              top: `${(g.anchor.y / 375) * 100}%`,
+              transform: `translate(${g.tx}, -100%)`,
+            }}
           >
-            <span className="za-greet-text">
-              <span className="za-greet-word">{g.word}</span>
-              <span className="za-greet-lang">{g.lang} · {g.city}</span>
-            </span>
-            <div className="za-greet-audio">
-              <button
-                type="button"
-                className="za-greet-play"
-                aria-label={playing === i ? `Stop ${g.word}` : `Play ${g.word} in ${g.lang}`}
-                onClick={() => speak(g, i)}
-              >
-                {playing === i ? <StopIcon /> : <PlayIcon />}
-              </button>
-              <span className="za-greet-wave" aria-hidden="true">
-                {[0, 1, 2, 3, 4].map((n) => (
-                  <i key={n} style={{ animationDelay: `${n * 0.12}s` }} />
-                ))}
+            <div
+              className={`za-greet-card${playing === i ? ' playing' : ''}`}
+              style={{ animationDelay: g.delay }}
+            >
+              <span className="za-greet-text">
+                <span className="za-greet-word">{g.word}</span>
+                <span className="za-greet-lang">{g.lang} · {g.city}</span>
               </span>
+              <div className="za-greet-audio">
+                <button
+                  type="button"
+                  className="za-greet-play"
+                  aria-label={playing === i ? `Stop ${g.word}` : `Play ${g.word} in ${g.lang}`}
+                  onClick={() => speak(g, i)}
+                >
+                  {playing === i ? <StopIcon /> : <PlayIcon />}
+                </button>
+                <span className="za-greet-wave" aria-hidden="true">
+                  {[0, 1, 2, 3, 4].map((n) => (
+                    <i key={n} style={{ animationDelay: `${n * 0.12}s` }} />
+                  ))}
+                </span>
+              </div>
             </div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );
