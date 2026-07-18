@@ -55,7 +55,7 @@ export default function ShowcaseCarousel({ slides, autoplay = true }) {
   function pauseAutoplay() {
     setIsPaused(true);
     clearTimeout(pauseTimeoutRef.current);
-    pauseTimeoutRef.current = setTimeout(() => setIsPaused(false), 3500);
+    pauseTimeoutRef.current = setTimeout(() => setIsPaused(false), 6000);
   }
 
   function handlePrev() {
