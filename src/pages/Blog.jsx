@@ -29,7 +29,6 @@ export default function Blog() {
   const posts = q
     ? byCategory.filter((p) => p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q))
     : byCategory;
-  const popularTags = blogCategories.filter((c) => c !== 'All');
   const [featured, ...rest] = posts;
 
   return (
@@ -58,8 +57,18 @@ export default function Blog() {
         </Reveal>
 
         <Reveal className="blog-search-wrap">
+          <div className="blog-stats">
+            {blogStats.map((m) => (
+              <div className="blog-stat-card" key={m.label}>
+                <div className="blog-stat-value">{m.value}</div>
+                <div className="blog-stat-label">{m.label}</div>
+              </div>
+            ))}
+          </div>
+
           <form
             className="blog-search"
+            style={{ marginTop: 28 }}
             onSubmit={(e) => { e.preventDefault(); scrollToPosts(); }}
           >
             <span className="blog-search-icon" aria-hidden="true">🔍</span>
@@ -72,25 +81,6 @@ export default function Blog() {
             />
             <button type="submit" className="btn btn-sheen">Search <span className="arrow">→</span></button>
           </form>
-          {popularTags.length > 0 && (
-            <p className="blog-search-tags">
-              <span>Popular</span>
-              {popularTags.map((t) => (
-                <button key={t} type="button" onClick={() => { setCategory(t); scrollToPosts(); }}>
-                  {t}
-                </button>
-              ))}
-            </p>
-          )}
-
-          <div className="blog-stats">
-            {blogStats.map((m) => (
-              <div className="blog-stat-card" key={m.label}>
-                <div className="blog-stat-value">{m.value}</div>
-                <div className="blog-stat-label">{m.label}</div>
-              </div>
-            ))}
-          </div>
         </Reveal>
       </section>
 
@@ -101,30 +91,7 @@ export default function Blog() {
           </p>
         ) : (
           <>
-            {featured && (
-              <Reveal as={Link} to={`/blog/${featured.slug}`} className="blog-featured">
-                <div className="blog-featured-media">
-                  {featured.image
-                    ? <img src={featured.image} alt={featured.title} loading="lazy" />
-                    : <div className="blog-featured-placeholder" aria-hidden="true" />}
-                </div>
-                <div className="blog-featured-body">
-                  <p className="blog-featured-kicker">Featured · {featured.category}</p>
-                  <h2>{featured.title}</h2>
-                  <p>{featured.excerpt}</p>
-                  <div className="blog-featured-meta">
-                    <span className="blog-avatar" aria-hidden="true">{featured.author?.[0] || '?'}</span>
-                    <div>
-                      <div className="blog-featured-author">{featured.author}</div>
-                      <div className="blog-featured-sub">{featured.date} · {featured.readTime}</div>
-                    </div>
-                  </div>
-                  <span className="text-link">Read the full piece →</span>
-                </div>
-              </Reveal>
-            )}
-
-            <div className="section-head" style={{ marginTop: 72 }}>
+            <div className="section-head" style={{ marginTop: 0 }}>
               <p className="eyebrow">Categories</p>
               <h2 style={{ fontSize: 'clamp(24px,3.6vw,38px)' }}>Browse by categories.</h2>
               <p className="lead" style={{ marginTop: 12 }}>
@@ -149,6 +116,29 @@ export default function Blog() {
               <div className="blog-filters" style={{ marginTop: 28 }}>
                 <button type="button" className="chip-btn active">All</button>
               </div>
+            )}
+
+            {featured && (
+              <Reveal as={Link} to={`/blog/${featured.slug}`} className="blog-featured" style={{ marginTop: 40 }}>
+                <div className="blog-featured-media">
+                  {featured.image
+                    ? <img src={featured.image} alt={featured.title} loading="lazy" />
+                    : <div className="blog-featured-placeholder" aria-hidden="true" />}
+                </div>
+                <div className="blog-featured-body">
+                  <p className="blog-featured-kicker">Featured · {featured.category}</p>
+                  <h2>{featured.title}</h2>
+                  <p>{featured.excerpt}</p>
+                  <div className="blog-featured-meta">
+                    <span className="blog-avatar" aria-hidden="true">{featured.author?.[0] || '?'}</span>
+                    <div>
+                      <div className="blog-featured-author">{featured.author}</div>
+                      <div className="blog-featured-sub">{featured.date} · {featured.readTime}</div>
+                    </div>
+                  </div>
+                  <span className="text-link">Read the full piece →</span>
+                </div>
+              </Reveal>
             )}
 
             {rest.length > 0 && (

@@ -325,7 +325,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 /* mobile — "A" stack: active plan front and center, the other two peek side by side behind it; tap a peeking card to open it */
 @media (max-width: 640px) {
   .pricing-grid {
-    display: flex; justify-content: center; align-items: flex-start;
+    display: flex; justify-content: center; align-items: stretch;
     gap: 0; overflow: visible;
     padding: 34px 0 10px; margin: 0;
   }
@@ -342,17 +342,19 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   .price-card-slide.is-right {
     flex-basis: 42vw; max-width: 172px;
     z-index: 1; opacity: .96;
-    transform: translateY(30px);
+    transform: translateY(18px);
   }
   .price-card-slide.is-left { margin-right: -23vw; }
   .price-card-slide.is-right { margin-left: -23vw; }
-  .price-card-slide:not(.is-active) .price-card { padding: 20px 16px; }
+  .price-card-slide:not(.is-active) .price-card { padding: 20px 16px; overflow: hidden; }
   .price-card-slide:not(.is-active) .plan-blurb,
   .price-card-slide:not(.is-active) .plan-meta,
-  .price-card-slide:not(.is-active) .plan-gst { display: none; }
+  .price-card-slide:not(.is-active) .plan-gst,
+  .price-card-slide:not(.is-active) .badge { display: none; }
   .price-card-slide:not(.is-active) .plan-features li:nth-child(n+6) { display: none; }
   .price-card-slide:not(.is-active) .plan-more { display: block; }
-  .price-card-slide:not(.is-active) .plan-actions .btn { padding: 10px 12px; font-size: 12.5px; pointer-events: none; }
+  .price-card-slide:not(.is-active) .plan-actions { pointer-events: none; margin-top: 12px; }
+  .price-card-slide:not(.is-active) .plan-actions .btn { padding: 10px 12px; font-size: 12.5px; }
 
   /* tighter spacing/type on the active card's content so it doesn't run so tall */
   .pricing-grid .price-card { padding: 22px 18px; }

@@ -147,7 +147,7 @@ export default function Pricing() {
     <div className="kallus-theme">
       <Seo
         title="Pricing"
-        description="Pay-as-you-go AI voice receptionist plans for clinics, priced in USD. Booking, rescheduling, insurance questions, and after-hours triage — plans start at $31/mo."
+        description="Pay-as-you-go AI voice receptionist plans for clinics, priced in USD — booking, rescheduling, insurance and after-hours triage from $31/mo."
         jsonLd={pricingJsonLd}
       />
       <section className="pricing-hero container">
@@ -218,7 +218,7 @@ export default function Pricing() {
                 className={`price-card${p.featured ? ' featured' : ''}`}
               >
                 {p.featured && <span className="badge">Most popular</span>}
-                <h3 className="plan-name">{p.name}</h3>
+                <h2 className="plan-name">{p.name}</h2>
                 <p className="plan-blurb">{p.blurb}</p>
                 <div className="plan-rate">
                   <AnimatedPrice value={cycle === 'yearly' ? p.priceYearly : p.priceMonthly} /> /{cycle === 'yearly' ? 'yr' : 'mo'}
