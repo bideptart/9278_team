@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { plans } from '../data/content.js';
 import Reveal from '../components/Reveal.jsx';
@@ -143,6 +143,38 @@ export default function Pricing() {
     return i === -1 ? 0 : i;
   });
 
+  // mobile swipe: track the touch start so a horizontal drag can step
+  // the active plan without also firing the tap-to-select handler.
+  const touchState = useRef({ x: 0, y: 0, dragging: false });
+
+  const onPlansTouchStart = (e) => {
+    const t = e.touches[0];
+    touchState.current = { x: t.clientX, y: t.clientY, dragging: false };
+  };
+  const onPlansTouchMove = (e) => {
+    const t = e.touches[0];
+    const dx = t.clientX - touchState.current.x;
+    const dy = t.clientY - touchState.current.y;
+    if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) {
+      touchState.current.dragging = true;
+    }
+  };
+  const onPlansTouchEnd = (e) => {
+    if (!touchState.current.dragging) return;
+    const dx = e.changedTouches[0].clientX - touchState.current.x;
+    if (Math.abs(dx) > 40) {
+      setActiveIndex((cur) => {
+        const dir = dx < 0 ? 1 : -1;
+        return (cur + dir + plans.length) % plans.length;
+      });
+    }
+    touchState.current.dragging = false;
+  };
+  const selectPlan = (i) => {
+    if (touchState.current.dragging) return;
+    setActiveIndex(i);
+  };
+
   return (
     <div className="kallus-theme">
       <Seo
@@ -198,7 +230,12 @@ export default function Pricing() {
         </div>
       </div>
 
-      <div className="pricing-grid">
+      <div
+        className="pricing-grid"
+        onTouchStart={onPlansTouchStart}
+        onTouchMove={onPlansTouchMove}
+        onTouchEnd={onPlansTouchEnd}
+      >
         {plans.map((p, i) => {
           // position relative to the active plan, wrapping around (only matters on mobile)
           const diff = (i - activeIndex + plans.length) % plans.length;
@@ -210,7 +247,7 @@ export default function Pricing() {
             <div
               className={`price-card-slide ${posClass}${p.featured ? ' featured' : ''}`}
               key={p.name}
-              onClick={() => setActiveIndex(i)}
+              onClick={() => selectPlan(i)}
             >
               <Reveal
                 as="div"
